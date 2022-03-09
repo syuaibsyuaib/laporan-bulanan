@@ -1,0 +1,3344 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://saravanajd.github.io/YearPicker/yearpicker.css" crossorigin="anonymous">
+    <title>Hello, world!</title>
+    <style>
+        @media (max-width: 421px) {
+            .skrol {
+                overflow: scroll;
+                width: 308px;
+            }
+        }
+
+        .anim {
+            animation: animJello 2s ease 0s 1 normal forwards;
+        }
+
+        @keyframes animJello {
+            0% {
+                transform: scale3d(1, 1, 1);
+            }
+
+            30% {
+                transform: scale3d(0.75, 1.25, 1);
+            }
+
+            40% {
+                transform: scale3d(1.25, 0.75, 1);
+            }
+
+            50% {
+                transform: scale3d(0.85, 1.15, 1);
+            }
+
+            65% {
+                transform: scale3d(1.05, 0.95, 1);
+            }
+
+            75% {
+                transform: scale3d(0.95, 1.05, 1);
+            }
+
+            100% {
+                transform: scale3d(1, 1, 1);
+            }
+        }
+
+        #tabel_print, #tabel_print_keadaan_siswa {
+            font-family: "Arial Narrow", Arial, sans-serif;
+            font-size: 8pt;
+        }
+
+        #tabel_print table th,
+        #tabel_print table td {
+            padding: 3px;
+            border: 0.5px black solid;
+        }
+
+        /* #tabel_print_keadaan_siswa table td,
+        #tabel_print_keadaan_siswa table th */
+
+        .tanpa-border td,
+        .tanpa-border th {
+            border: none !important;
+        }
+
+        .pake-border{
+            border: 0.5px black solid;
+            padding: 0 3px;
+        }
+    </style>
+</head>
+
+<body class="m-5">
+    <!-- Modal Info -->
+    <div class="modal fade" id="modal_info" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">Info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-5 text-center" id="body_modal_info">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal info terkirim atau gagal -->
+    <div class="modal" style="z-index: 1051;" data-backdrop="false" id="fetch_info" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content rounded-circle shadow-lg border-0 p-3 anim"
+                style="max-width: 117px; max-height: 117px;margin:auto">
+                <div class="text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="80" width="80" fill="currentColor"
+                        class="bi bi-check2-circle text-success" viewBox="0 0 16 16">
+                        <path
+                            d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z" />
+                        <path
+                            d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Loading -->
+    <div class="modal fade" id="loading" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="spinner-border text-white m-auto" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal info user/pass salah-->
+    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p>NPSN/Password Salah</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EDIT GURU -->
+    <div class="modal fade" id="modal_keadaan_guru" tabindex="-1" role="dialog" aria-labelledby="keadaanGuruLabel"
+        aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-md modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Keadaan Guru</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form_edit_guru">
+                        <div class="card">
+                            <div class="card-header" id="head_nama_guru">
+                                ---nama guru---
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-hover table-responsive" id="tabel_keadaan_guru">
+                                    <tbody>
+                                        <tr class="d-none">
+                                            <td>ID</td>
+                                            <td>:</td>
+                                            <td><input name="id" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td>NAMA</td>
+                                            <td>:</td>
+                                            <td><input type="text" class="form-control" name="nama_guru"
+                                                    required></input></td>
+                                        </tr>
+                                        <tr>
+                                            <td>NIP</td>
+                                            <td>:</td>
+                                            <td><span></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gender</td>
+                                            <td>:</td>
+                                            <td>
+                                                <select name="select_gender_guru" class="custom-select">
+                                                    <option value="laki-laki">Laki-laki
+                                                    </option>
+                                                    <option value="perempuan">Perempuan
+                                                    </option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Agama</td>
+                                            <td>:</td>
+                                            <td>
+                                                <select name="select_agama_guru" class="custom-select">
+                                                    <option value="islam">Islam</option>
+                                                    <option value="protestan">Kristen
+                                                        Protestan
+                                                    </option>
+                                                    <option value="katolik">Kristen Katolik
+                                                    </option>
+                                                    <option value="hindu">Hindu</option>
+                                                    <option value="budha">Budha</option>
+                                                    <option value="konghucu">Konghucu
+                                                    </option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status Perkawinan</td>
+                                            <td>:</td>
+                                            <td>
+                                                <select name="select_perkawinan_guru" class="custom-select">
+                                                    <option value="kawin">Kawin</option>
+                                                    <option value="belum kawin">Belum Kawin
+                                                    </option>
+                                                    <option value="duda">Duda
+                                                    </option>
+                                                    <option value="janda">Janda</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tempat Lahir</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input type="text" name="tempat_lahir_guru" class="form-control"
+                                                    required>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tanggal Lahir</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input type="date" name="tanggal_lahir_guru" class="form-control"
+                                                    required>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jabatan</td>
+                                            <td>:</td>
+                                            <td>
+                                                <select name="select_jabatan_guru" class="custom-select">
+                                                    <option value="kepala sekolah">Kepala Sekolah
+                                                    </option>
+                                                    <option value="guru kelas">Guru Kelas
+                                                    </option>
+                                                    <option value="guru agama islam">Guru Agama Islam
+                                                    </option>
+                                                    <option value="guru pjok">Guru PJOK
+                                                    </option>
+                                                    <option value="guru bahasa inggris">Guru Bahasa Inggris
+                                                    </option>
+                                                    <option value="guru mulok">Guru Muatan Lokal
+                                                    </option>
+                                                    <option value="tenaga administrasi">
+                                                        Tenaga
+                                                        Administrasi
+                                                    </option>
+                                                    <option value="tenaga perpustakaan">
+                                                        Tenaga
+                                                        Perpustakaan
+                                                    </option>
+                                                    <option value="bujang sekolah">Bujang
+                                                        Sekolah
+                                                    </option>
+                                                    <option value="satpam">Satpam
+                                                    </option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Keterangan Jabatan</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input type="text" class="form-control" name="keterangan_jabatan_guru"
+                                                    placeholder="misal: WALI KELAS 6">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ijazah Tertinggi
+                                            <td>:</td>
+                                            <td>
+                                                <select name="select_ijazah_tertinggi_guru" class="custom-select">
+                                                    <option value="s3">S3</option>
+                                                    <option value="s2">S2
+                                                    </option>
+                                                    <option value="s1">S1
+                                                    </option>
+                                                    <option value="d4">D4
+                                                    </option>
+                                                    <option value="d3">D3
+                                                    </option>
+                                                    <option value="d2">D2
+                                                    </option>
+                                                    <option value="d1">D1
+                                                    </option>
+                                                    <option value="sma">SMA
+                                                    </option>
+                                                    <option value="smp">SMP
+                                                    </option>
+                                                    <option value="sd">SD
+                                                    </option>
+                                                    <option value="lainnya">
+                                                        Lainnya
+                                                    </option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr class="collapse" id="collapse_ijazah_lainnya">
+                                            <td>Jika Ijasah Lainnya</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input type="text" name="ijazah_tertinggi_lainnya_guru"
+                                                    class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tahun Ijazah</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input name="tahun_ijazah_guru" type="number" min="1900" maxlength="4"
+                                                    class="form-control yearpicker" required>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status</td>
+                                            <td>:</td>
+                                            <td>
+                                                <select name="select_status_guru" class="custom-select">
+                                                    <option value="pns">PNS</option>
+                                                    <option value="honor daerah">Honor
+                                                        Daerah
+                                                    </option>
+                                                    <option value="sosial">Sosial</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>NUPTK</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input name="nuptk_guru" type="number" min="0" minlength="16"
+                                                    class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gaji Pokok</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input name="gapok_guru" type="text" pattern="[\d.]+"
+                                                    title="tanpa titik/koma" class="form-control" required>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Golongan/Ruang</td>
+                                            <td>:</td>
+                                            <td>
+                                                <select name="select_golru_guru" class="custom-select">
+                                                    <option value=""></option>
+                                                    <option value="2a">II/a</option>
+                                                    <option value="2b">II/b</option>
+                                                    <option value="2c">II/c</option>
+                                                    <option value="2d">II/d</option>
+                                                    <option value="3a">III/a</option>
+                                                    <option value="3b">III/b</option>
+                                                    <option value="3c">III/c</option>
+                                                    <option value="3d">III/d</option>
+                                                    <option value="4a">IV/a</option>
+                                                    <option value="4b">IV/b</option>
+                                                    <option value="4c">IV/c</option>
+                                                    <option value="4d">IV/d</option>
+                                                    <option value="4e">IV/e</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tanggal SK. Pangkat Terakhir</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input name="tanggal_sk_pengangkatan_guru" type="date"
+                                                    class="form-control" required>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nomor SK. Pangkat Terakhir</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input name="nomor_sk_pengangkatan_guru" type="text"
+                                                    class="form-control" required>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>TMT SK. Pangkat Terakhir</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input name="tmt_golru_guru" type="date" class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>MKG pada SK. Pangkat Terakhir</td>
+                                            <td>:</td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input name="mkg_tahun_guru" type="number" placeholder="tahun"
+                                                        min="0" class="form-control">
+                                                    <input name="mkg_bulan_guru" type="number" placeholder="bulan"
+                                                        min="0" max="11" class="form-control">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>TMT SK. CPNS</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input name="tmt_cpns_guru" type="date" class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>MKG pada SK. CPNS</td>
+                                            <td>:</td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input name="mkg_cpns_tahun_guru" type="number" placeholder="tahun"
+                                                        min="0" class="form-control">
+                                                    <input name="mkg_cpns_bulan_guru" type="number" placeholder="bulan"
+                                                        min="0" max="11" class="form-control">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sebagai Guru</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input name="sebagai_guru" type="date" name="sebagai_guru"
+                                                    class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Didaerah ini</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input name="didaerah_ini_guru" type="date" name="didaerah_ini"
+                                                    class="form-control" required>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Disekolah ini</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input name="disekolah_ini_guru" type="date" name="disekolah_ini"
+                                                    class="form-control" required>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jumlah Sakit</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input name="sakit_guru" type="number" min="0" name="sakit_guru"
+                                                    class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jumlah Izin</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input name="izin_guru" type="number" min="0" name="izin_guru"
+                                                    class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jumlah Alpha</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input name="alpha_guru" type="number" min="0" name="alpha_guru"
+                                                    class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jumlah Ke-tidak Hadiran</td>
+                                            <td>:</td>
+                                            <td>
+                                                <span></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status Sekolah</td>
+                                            <td>:</td>
+                                            <td>
+                                                <select name="status_sekolah" class="custom-select">
+                                                    <option value="induk">Induk</option>
+                                                    <option value="bukan induk">Bukan Induk
+                                                    </option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="card-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Akun -->
+    <div class="modal fade" id="modal_akun" tabindex="-1" role="dialog" aria-labelledby="modalAkunTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <form id="form_akun">
+                    <div class="modal-header rounded-0 text-light" style="background-color: #4e555aad!important;">
+                        <h5>Pengaturan Akun</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="input-group">
+                                    <input type="password" class="form-control" placeholder="Password Lama"
+                                        aria-label="Password Lama" aria-describedby="button-addon2" name="pass_lama">
+                                    <div class="input-group-append">
+                                        <button style="display:none" class="btn btn-outline-secondary"
+                                            type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                                <path
+                                                    d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                            </svg></button>
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />
+                                                <path
+                                                    d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z" />
+                                                <path
+                                                    d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <input type="password" class="form-control" placeholder="Password Baru"
+                                        aria-label="Password Baru" aria-describedby="button-addon2" name="pass_baru">
+                                    <div class="input-group-append">
+                                        <button style="display:none" class="btn btn-outline-secondary"
+                                            type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                                <path
+                                                    d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                            </svg></button>
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />
+                                                <path
+                                                    d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z" />
+                                                <path
+                                                    d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <input type="password" class="form-control" placeholder="Konfirmasi Password Baru"
+                                        aria-label="Konfirmasi Password Baru" aria-describedby="button-addon2"
+                                        name="konfirmasi_pass_baru">
+                                    <div class="input-group-append">
+                                        <button style="display:none" class="btn btn-outline-secondary"
+                                            type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                                <path
+                                                    d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                            </svg></button>
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />
+                                                <path
+                                                    d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z" />
+                                                <path
+                                                    d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div class="my-5" id="divLogin">
+        <form class="m-auto p-5 shadow rounded" id="login"
+            style="width:280px;background-image:url('https://disdikbud.pareparekota.go.id/wp-content/uploads/2022/02/5291450-scaled.jpg');background-size: cover;">
+            <div class="text-center border-bottom border-primary">
+                <h3>Login</h3>
+            </div>
+            <div class="form-group my-3">
+                <label for="npsn">NPSN</label>
+                <input type="number" class="form-control inp-login" id="npsn" placeholder="NPSN Sekolah" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="password">Password</label>
+                <input type="password" class="form-control inp-login" id="password" placeholder="Password" required>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary w-100">Masuk</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- MAIN FORM -->
+    <div id="formLaporan" class="d-none">
+        <div class="text-right mb-3">
+            <button type="button" class="btn btn-outline-secondary" id="akun" data-toggle="modal"
+                data-target="#modal_akun">Akun</button>
+            <button type="button" class="btn btn-outline-danger" id="keluar">Keluar</button>
+        </div>
+        <div class="text-center mb-3 border-bottom">
+            <h1>Laporan Bulanan Online</h1>
+        </div>
+        <!-- INFORMASI SEKOLAH -->
+        <div class="mb-3 skrol">
+            <div class="row">
+                <div class="col" style="min-width: 133px;max-width: 143px;">Nama Sekolah</div>
+                <div class="col-1 px-0" style="max-width: 10px;">:</div>
+                <div class="col" id="nama_sekolah"></div>
+            </div>
+            <div class="row">
+                <div class="col" style="min-width: 133px;max-width: 143px;">Kecamatan</div>
+                <div class="col-1 px-0" style="max-width: 10px;">:</div>
+                <div class="col" id="kecamatan"></div>
+            </div>
+            <div class="row">
+                <div class="col" style="min-width: 133px;max-width: 143px;">Kelurahan</div>
+                <div class="col-1 px-0" style="max-width: 10px;">:</div>
+                <div class="col" id="kelurahan"></div>
+            </div>
+            <div class="row">
+                <div class="col" style="min-width: 133px;max-width: 143px;">Alamat</div>
+                <div class="col-1 px-0" style="max-width: 10px;">:</div>
+                <div class="col" id="alamat"></div>
+            </div>
+            <div class="row">
+                <div class="col" style="min-width: 133px;max-width: 143px;">Status</div>
+                <div class="col-1 px-0" style="max-width: 10px;">:</div>
+                <div class="col" id="status"></div>
+            </div>
+        </div>
+
+        <!-- BODY MAIN FORM -->
+        <div class="border-top pt-3">
+            <!-- INFORMASI LAPORAN -->
+            <div>
+                <div class="form-group w-50">
+                    <label for="bulan_laporan">Untuk Bulan</label><br>
+                    <input class="form-control" type="month" name="" id="bulan_laporan">
+                </div>
+                <div class="form-group">
+                    <label for="bulan_laporan">Nomor Dokumen</label><br>
+                    <input class="form-control" type="text" id="nomor_bulan_laporan">
+                </div>
+                <div class="form-group">
+                    <label for="bulan_laporan">Kurikulum yang digunakan</label><br>
+                    <select class="form-control" id="kurikulum">
+                        <option value="kurikulum 2013">Kurikulum 2013</option>
+                        <option value="kurikulum darurat">Kurikulum Darurat</option>
+                        <option value="kurikulum merdeka">Kurikulum Merdeka</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <!-- SELECT KEADAAN -->
+                <div class="card-header">
+                    <select class="custom-select custom-select-lg bg-warning text-dark" id="select_keadaan">
+                        <option value="keadaan siswa">
+                            Keadaan Siswa
+                        </option>
+                        <option value="keadaan guru">
+                            Keadaan Guru/Pegawai
+                        </option>
+                        <option value="keadaan gedung">
+                            Keadaan Gedung
+                        </option>
+                        <option value="absensi siswa">
+                            Absensi Murid
+                        </option>
+                        <option value="mobilier">
+                            Mobilier
+                        </option>
+                        <option id="opt_rekap" value="rekap" style="display: none;">
+                            Rekapitulasi
+                        </option>
+                    </select>
+                </div>
+
+                <div id="div_keadaan">
+                    <!-- KEADAAN SISWA -->
+                    <div class="card-body collapse" id="body_keadaan_siswa">
+                        <form id="form_siswa">
+                            <div class="form-group sticky-top ">
+                                <select name="siswa_select_kelas"
+                                    class="custom-select custom-select-lg bg-info text-light">
+                                    <option value="1">Kelas 1</option>
+                                    <option value="2">Kelas 2</option>
+                                    <option value="3">Kelas 3</option>
+                                    <option value="4">Kelas 4</option>
+                                    <option value="5">Kelas 5</option>
+                                    <option value="6">Kelas 6</option>
+                                </select>
+                            </div>
+                            <!-- AKHIR BULAN LALU -->
+                            <div class="form-group">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">AKHIR BULAN LALU</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row ">
+                                            <div class="col" style="min-width: fit-content;">
+                                                <label class="font-weight-bold">Laki-laki</label>
+                                                <p>Jumlah : <input min="0" type="number" class="form-control"
+                                                        name="bulan_lalu_laki" required /></p>
+                                            </div>
+                                            <div class="col" style="min-width: fit-content;">
+                                                <label class="font-weight-bold">Perempuan</label>
+                                                <p>Jumlah : <input min="0" type="number" class="form-control"
+                                                        name="bulan_lalu_perempuan" required /></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-header">
+                                        <b>Kewarganegaraan</b>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row ">
+                                            <div class="col" style="min-width: fit-content;">
+                                                <label class="font-weight-bold">Laki-laki</label>
+                                                <p>Indonesia : <input name="bulan_lalu_indonesia" min="0" type="number"
+                                                        class="form-control" /></p>
+                                                <p>WNI Keturunan Cina : <input name="bulan_lalu_cina_laki" min="0"
+                                                        type="number" class="form-control" /></p>
+                                                <p>WNI Keturunan Arab : <input name="bulan_lalu_arab_laki" min="0"
+                                                        type="number" class="form-control" /></p>
+                                                <p>WNI Keturunan Asing : <input name="bulan_lalu_asing_laki" min="0"
+                                                        type="number" class="form-control" />
+                                            </div>
+                                            <div class="col" style="min-width: fit-content;">
+                                                <label class="font-weight-bold">Perempuan</label>
+                                                <p>Indonesia : <input name="bulan_lalu_indonesia_perempuan" min="0"
+                                                        type="number" class="form-control" /></p>
+                                                <p>WNI Keturunan Cina : <input name="bulan_lalu_cina_perempuan" min="0"
+                                                        type="number" class="form-control" /></p>
+                                                <p>WNI Keturunan Arab : <input name="bulan_lalu_arab_perempuan" min="0"
+                                                        type="number" class="form-control" /></p>
+                                                <p>WNI Keturunan Asing : <input name="bulan_lalu_asing_perempuan"
+                                                        min="0" type="number" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-header">
+                                        <b>Agama/Kepercayaan</b>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col" style="min-width: fit-content;">
+                                                <label class="font-weight-bold">Laki-laki</label>
+                                                <p>Islam : <input name="bulan_lalu_islam_laki" min="0" type="number"
+                                                        class="form-control" /></p>
+                                                <p>Katholik : <input name="bulan_lalu_katolik_laki" min="0"
+                                                        type="number" class="form-control" /></p>
+                                                <p>Kristen : <input name="bulan_lalu_kristen_laki" min="0" type="number"
+                                                        class="form-control" /></p>
+                                                <p>Hindu : <input name="bulan_lalu_hindu_laki" min="0" type="number"
+                                                        class="form-control" /></p>
+                                                <p>Budha : <input name="bulan_lalu_budha_laki" min="0" type="number"
+                                                        class="form-control" /></p>
+                                                <p>Konghucu : <input name="bulan_lalu_konghucu_laki" min="0"
+                                                        type="number" class="form-control" /></p>
+                                            </div>
+                                            <div class="col" style="min-width: fit-content;">
+                                                <label class="font-weight-bold">Perempuan</label>
+                                                <p>Islam : <input name="bulan_lalu_islam_perempuan" min="0"
+                                                        type="number" class="form-control" /></p>
+                                                <p>Katholik : <input name="bulan_lalu_katolik_perempuan" min="0"
+                                                        type="number" class="form-control" /></p>
+                                                <p>Kristen : <input name="bulan_lalu_kristen_perempuan" min="0"
+                                                        type="number" class="form-control" /></p>
+                                                <p>Hindu : <input name="bulan_lalu_hindu_perempuan" min="0"
+                                                        type="number" class="form-control" /></p>
+                                                <p>Budha : <input name="bulan_lalu_budha_perempuan" min="0"
+                                                        type="number" class="form-control" /></p>
+                                                <p>Konghucu : <input name="bulan_lalu_konghucu_perempuan" min="0"
+                                                        type="number" class="form-control" /></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- MASUK BULAN INI -->
+                            <div class="form-group">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">MASUK BULAN INI</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row" id="siswa_masuk_bulan_ini">
+                                            <div class="col" style="min-width: fit-content;">
+                                                <label class="font-weight-bold">Laki-laki</label>
+                                                <input name="masuk_bulan_ini_laki" min="0" type="number"
+                                                    class="form-control" />
+                                            </div>
+                                            <div class="col" style="min-width: fit-content;">
+                                                <label class="font-weight-bold">Perempuan</label>
+                                                <input name="masuk_bulan_ini_perempuan" min="0" type="number"
+                                                    class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mx-3 collapse siswa_kewarganegaraan">
+                                        <div class="card-header">
+                                            <b>Kewarganegaraan</b>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col" style="min-width: fit-content;">
+                                                    <label class="font-weight-bold">Laki-laki</label>
+                                                    <p>Indonesia : <input name="masuk_bulan_ini_indonesia_laki" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>WNI Keturunan Cina : <input name="masuk_bulan_ini_cina_laki"
+                                                            min="0" type="number" class="form-control" /></p>
+                                                    <p>WNI Keturunan Arab : <input name="masuk_bulan_ini_arab_laki"
+                                                            min="0" type="number" class="form-control" /></p>
+                                                    <p>WNI Keturunan Asing : <input name="masuk_bulan_ini_asing_laki"
+                                                            min="0" type="number" class="form-control" /></p>
+                                                </div>
+                                                <div class="col" style="min-width: fit-content;">
+                                                    <label class="font-weight-bold">Perempuan</label>
+                                                    <p>Indonesia : <input name="masuk_bulan_ini_indonesia_perempuan"
+                                                            min="0" type="number" class="form-control" /></p>
+                                                    <p>WNI Keturunan Cina : <input name="masuk_bulan_ini_cina_perempuan"
+                                                            min="0" type="number" class="form-control" /></p>
+                                                    <p>WNI Keturunan Arab : <input name="masuk_bulan_ini_arab_perempuan"
+                                                            min="0" type="number" class="form-control" /></p>
+                                                    <p>WNI Keturunan Asing : <input
+                                                            name="masuk_bulan_ini_asing_perempuan" min="0" type="number"
+                                                            class="form-control" /></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-header">
+                                            <b>Agama/Kepercayaan</b>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col" style="min-width: fit-content;">
+                                                    <label class="font-weight-bold">Laki-laki</label>
+                                                    <p>Islam : <input name="masuk_bulan_ini_islam_laki" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>Katholik : <input name="masuk_bulan_ini_katolik_laki" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>Kristen : <input name="masuk_bulan_ini_kristen_laki" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>Hindu : <input name="masuk_bulan_ini_hindu_laki" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>Budha : <input name="masuk_bulan_ini_budha_laki" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>Konghucu : <input name="masuk_bulan_ini_konghucu_laki" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                </div>
+                                                <div class="col" style="min-width: fit-content;">
+                                                    <label class="font-weight-bold">Perempuan</label>
+                                                    <p>Islam : <input name="masuk_bulan_ini_islam_perempuan" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>Katholik : <input name="masuk_bulan_ini_katolik_perempuan"
+                                                            min="0" type="number" class="form-control" /></p>
+                                                    <p>Kristen : <input name="masuk_bulan_ini_kristen_perempuan" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>Hindu : <input name="masuk_bulan_ini_hindu_perempuan" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>Budha : <input name="masuk_bulan_ini_budha_perempuan" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>Konghucu : <input name="masuk_bulan_ini_konghucu_perempuan"
+                                                            min="0" type="number" class="form-control" /></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- KELUAR BULAN INI -->
+                            <div class="form-group">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">KELUAR BULAN INI</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row" id="siswa_keluar_bulan_ini">
+                                            <div class="col" style="min-width: fit-content;">
+                                                <label class="font-weight-bold">Laki-laki</label>
+                                                <input name="keluar_bulan_ini_laki" min="0" type="number"
+                                                    class="form-control" />
+                                            </div>
+                                            <div class="col" style="min-width: fit-content;">
+                                                <label class="font-weight-bold">Perempuan</label>
+                                                <input name="keluar_bulan_ini_perempuan" min="0" type="number"
+                                                    class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mx-3 collapse siswa_kewarganegaraan">
+                                        <div class="card-header">
+                                            <b>Kewarganegaraan</b>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col" style="min-width: fit-content;">
+                                                    <label class="font-weight-bold">Laki-laki</label>
+                                                    <p>Indonesia : <input name="keluar_bulan_ini_indonesia_laki" min="0"
+                                                            type="number" class="form-control" />
+                                                    <p>WNI Keturunan Cina : <input name="keluar_bulan_ini_cina_laki"
+                                                            min="0" type="number" class="form-control" />
+                                                    <p>WNI Keturunan Arab : <input name="keluar_bulan_ini_arab_laki"
+                                                            min="0" type="number" class="form-control" />
+                                                    <p>WNI Keturunan Asing : <input name="keluar_bulan_ini_asing_laki"
+                                                            min="0" type="number" class="form-control" />
+                                                </div>
+                                                <div class="col" style="min-width: fit-content;">
+                                                    <label class="font-weight-bold">Perempuan</label>
+                                                    <p>Indonesia : <input name="keluar_bulan_ini_indonesia_perempuan"
+                                                            min="0" type="number" class="form-control" />
+                                                    <p>WNI Keturunan Cina : <input
+                                                            name="keluar_bulan_ini_cina_perempuan" min="0" type="number"
+                                                            class="form-control" />
+                                                    <p>WNI Keturunan Arab : <input
+                                                            name="keluar_bulan_ini_arab_perempuan" min="0" type="number"
+                                                            class="form-control" />
+                                                    <p>WNI Keturunan Asing : <input
+                                                            name="keluar_bulan_ini_asing_perempuan" min="0"
+                                                            type="number" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-header">
+                                            <b>Agama/Kepercayaan</b>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col" style="min-width: fit-content;">
+                                                    <label class="font-weight-bold">Laki-laki</label>
+                                                    <p>Islam : <input name="keluar_bulan_ini_islam_laki" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>Katholik : <input name="keluar_bulan_ini_katolik_laki" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>Kristen : <input name="keluar_bulan_ini_kristen_laki" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>Hindu : <input name="keluar_bulan_ini_hindu_laki" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>Budha : <input name="keluar_bulan_ini_budha_laki" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>Konghucu : <input name="keluar_bulan_ini_konghucu_laki" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                </div>
+                                                <div class="col" style="min-width: fit-content;">
+                                                    <label class="font-weight-bold">Perempuan</label>
+                                                    <p>Islam : <input name="keluar_bulan_ini_islam_perempuan" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>Katholik : <input name="keluar_bulan_ini_katolik_perempuan"
+                                                            min="0" type="number" class="form-control" /></p>
+                                                    <p>Kristen : <input name="keluar_bulan_ini_kristen_perempuan"
+                                                            min="0" type="number" class="form-control" /></p>
+                                                    <p>Hindu : <input name="keluar_bulan_ini_hindu_perempuan" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>Budha : <input name="keluar_bulan_ini_budha_perempuan" min="0"
+                                                            type="number" class="form-control" /></p>
+                                                    <p>Konghucu : <input name="keluar_bulan_ini_konghucu_perempuan"
+                                                            min="0" type="number" class="form-control" /></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AKHIR BULAN INI -->
+                            <!-- <div class="form-group">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">AKHIR BULAN INI</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row ">
+                                            <div class="col" style="min-width: fit-content;">
+                                                <p class="font-weight-bold">Laki-laki</p>
+                                                Jumlah : <span></span>
+                                            </div>
+                                            <div class="col" style="min-width: fit-content;">
+                                                <p class="font-weight-bold">Perempuan</p>
+                                                Jumlah : <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-header">
+                                        <b>Kewarganegaraan</b>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row ">
+                                            <div class="col" style="min-width: fit-content;">
+                                                <label class="font-weight-bold">Laki-laki</label>
+                                                <p>Jumlah : <span></span></p>
+                                                <p>Indonesia : <span></span></p>
+                                                <p>WNI Keturunan Cina : <span></span></p>
+                                                <p>WNI Keturunan Arab : <span></span></p>
+                                                <p>WNI Keturunan Asing : <span></span>
+                                            </div>
+                                            <div class="col" style="min-width: fit-content;">
+                                                <label class="font-weight-bold">Perempuan</label>
+                                                <p>Jumlah : <span></span></p>
+                                                <p>Indonesia : <span></span></p>
+                                                <p>WNI Keturunan Cina : <span></span></p>
+                                                <p>WNI Keturunan Arab : <span></span></p>
+                                                <p>WNI Keturunan Asing : <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-header">
+                                        <b>Agama/Kepercayaan</b>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col" style="min-width: fit-content;">
+                                                <label class="font-weight-bold">Laki-laki</label>
+                                                <p>Islam : <span></span></p>
+                                                <p>Katholik : <span></span></p>
+                                                <p>Kristen : <span></span></p>
+                                                <p>Hindu : <span></span></p>
+                                                <p>Budha : <span></span></p>
+                                                <p>Konghucu : <span></span></p>
+                                            </div>
+                                            <div class="col" style="min-width: fit-content;">
+                                                <label class="font-weight-bold">Perempuan</label>
+                                                <p>Islam : <span></span></p>
+                                                <p>Katholik : <span></span></p>
+                                                <p>Kristen : <span></span></p>
+                                                <p>Hindu : <span></span></p>
+                                                <p>Budha : <span></span></p>
+                                                <p>Konghucu : <span></span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="form-group border p-3 d-flex align-items-center">
+                                <label for="jml_siswa_bulan_ini" class="font-weight-bold float-left mr-3 mb-0">Jumlah
+                                    siswa bulan ini : </label>
+                                <input readonly name="jml_siswa_bulan_ini" id="siswa_jml_bln_ini"
+                                    class="px-3 form-control-plaintext w-25"></input>
+
+                            </div>
+                            <div class="form-group border p-3">
+                                <label for="siswa_banyak_kelas" class="font-weight-bold mb-0">Banyaknya kelas</label>
+                                <input name="banyak_kelas" type="number" class="form-control" id="siswa_banyak_kelas"
+                                    required min="0" />
+                            </div>
+                            <div class="form-group p-3 text-right">
+                                <button type="submit" class="btn btn-success">Simpan</button>
+                            </div>
+                            <!-- --------------- END --------------- -->
+                        </form>
+                    </div>
+
+                    <!-- KEADAAN GURU -->
+                    <div class="card-body collapse" id="body_keadaan_guru">
+                        <form id="form_guru">
+
+                            <div class="form-group">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">JUMLAH GURU/PEGAWAI</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>Bulan lalu : <span id="jml_guru_bln_lalu"></span></p>
+                                        <div class="row">
+                                            <div class="col" style="min-width: fit-content;">
+                                                <p>Keluar bulan ini : <input name="keluar_bulan_ini_guru" type="number"
+                                                        class="form-control" min="0"></p>
+                                            </div>
+                                            <div class="col" style="min-width: fit-content;">
+                                                <p>Masuk bulan ini : <input name="masuk_bulan_ini_guru" type="number"
+                                                        class="form-control" min="0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <!-- <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                    data-target="#edit_guru_collapse" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    Edit Keadaan Guru
+                                </button> -->
+
+                                <div id="edit_guru_collapse">
+                                    <div class="card card-body table-responsive">
+                                        <table class="table table-hover">
+                                            <thead class="text-center">
+                                                <th>#</th>
+                                                <th class="d-none">ID</th>
+                                                <th>Nama</th>
+                                                <th>NIP</th>
+                                                <th>Tugas</th>
+                                                <th>Aksi</th>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- <div class="form-group">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">JUMLAH GURU PER-BIDANG STUDI</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col" style="min-width: fit-content;">
+                                                <p>Guru Umum : <span></span></p>
+                                                <p>Guru Agama : <span></span></p>
+                                                <p>Guru Agama (non-Islam) : <span></span></p>
+                                            </div>
+                                            <div class="col" style="min-width: fit-content;">
+                                                <p>Guru Olahraga : <span></span></p>
+                                                <p>Guru Bahasa Inggris : <span></span></p>
+                                                <p>Guru Mulok : <span></span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">JUMLAH PEGAWAI</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col" style="min-width: fit-content;">
+                                                <p>Guru Honor: <span></span></p>
+                                                <p>Guru Sosial : <span></span></p>
+                                                <p>Bujang Sekolah : <span></span></p>
+                                            </div>
+                                            <div class="col" style="min-width: fit-content;">
+                                                <p>Tenaga Administrasi : <span></span></p>
+                                                <p>Tenaga Perpustakaan : <span></span></p>
+                                                <p>Satpam : <span></span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="form-group">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <b>Total Guru/Pegawai : <span id="total_guru_pegawai"></span></b>
+                                        <input type="text" name="total_guru_pegawai" class="d-none">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-success">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- KEADAAN GEDUNG -->
+                    <div class="card-body collapse" id="body_keadaan_gedung">
+                        <form id="form_gedung">
+                            <div class="card form-group">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Kualitas</label>
+                                            <select class="form-control" name="kualitas_bangunan">
+                                                <option value="permanen">Permanen</option>
+                                                <option value="semi permanen">Semi Permanen</option>
+                                                <option value="darurat">Darurat</option>
+                                            </select>
+                                        </div>
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Dibangun oleh</label>
+                                            <input type="text" class="form-control" name="dibangun_oleh" required>
+                                        </div>
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Thn. dibangun</label>
+                                            <input type="number" min="1900" max="2500" class="form-control"
+                                                name="tahun_dibangun" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card form-group">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Banyak Bilik</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Yang dibutuhkan</label>
+                                            <input type="number" class="form-control" name="bilik_dibutuhkan">
+                                        </div>
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Yang sudah ada</label>
+                                            <input type="number" class="form-control" name="bilik_sudah_ada" required
+                                                min="0">
+                                        </div>
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Kekurangan</label>
+                                            <input type="number" class="form-control" name="bilik_kekurangan" min="0">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card form-group">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Keadaan Ruang/Bilik</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Permanen</label>
+                                            <input min="0" type="number" class="form-control" name="bilik_permanen">
+                                        </div>
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Semi Permanen</label>
+                                            <input min="0" type="number" class="form-control"
+                                                name="bilik_semi_permanen">
+                                        </div>
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Darurat</label>
+                                            <input min="0" type="number" class="form-control" name="bilik_darurat">
+                                        </div>
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Pinjaman</label>
+                                            <input min="0" type="number" class="form-control" name="bilik_pinjaman">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-success">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- ABSENSI MURID -->
+                    <div class="card-body collapse" id="body_absensi_siswa">
+                        <form id="form_absensi_siswa">
+                            <div class="card form-group">
+                                <div class="card-body">
+                                    <p>Jumlah hari sekolah efektif bulan ini</p>
+                                    <input type="number" class="form-control" name="jml_hari_efektif" required>
+                                </div>
+                            </div>
+                            <div class="card form-group">
+                                <div class="card-header">
+                                    <h5>Absen Bulan Ini</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Sakit</label>
+                                            <input min="0" type="number" class="form-control" name="siswa_sakit">
+                                        </div>
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Izin</label>
+                                            <input min="0" type="number" class="form-control" name="siswa_izin">
+                                        </div>
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Alpha</label>
+                                            <input min="0" type="number" class="form-control" name="siswa_alpha">
+                                        </div>
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Jumlah Ke-tidak Hadiran</label>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-success">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- MOBILIER -->
+                    <div class="card-body collapse" id="body_mobilier">
+                        <form id="form_mobilier">
+                            <div class="card form-group">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col" style="min-width: fit-content;">
+                                            <div class="form-group">
+                                                <label>Lemari</label>
+                                                <input type="number" min="0" class="form-control" name="lemari">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Rak Buku</label>
+                                                <input type="number" min="0" class="form-control" name="rak_buku">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Meja Guru</label>
+                                                <input type="number" min="0" class="form-control" name="meja_guru">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Kursi Guru</label>
+                                                <input type="number" min="0" class="form-control" name="kursi_guru">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Bangku Untuk 3 Murid</label>
+                                                <input type="number" min="0" class="form-control" name="bangku_3">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Meja Untuk 3 Murid</label>
+                                                <input type="number" min="0" class="form-control" name="meja_3">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Bangku Untuk 2 Murid</label>
+                                                <input type="number" min="0" class="form-control" name="bangku_2">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Meja Untuk 2 Murid</label>
+                                                <input type="number" min="0" class="form-control" name="meja_2">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Bangku Untuk 4 Murid</label>
+                                                <input type="number" min="0" class="form-control" name="bangku_4">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Meja Untuk 4 Murid</label>
+                                                <input type="number" min="0" class="form-control" name="meja_4">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Papan Tulis</label>
+                                                <input type="number" min="0" class="form-control" name="papan_tulis">
+                                            </div>
+                                        </div>
+                                        <div class="col" style="min-width: fit-content;">
+                                            <div class="form-group">
+                                                <label>Papan Tulis Lipat</label>
+                                                <input type="number" class="form-control" name="papan_tulis_lipat">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Papan Statistik</label>
+                                                <input type="number" class="form-control" name="papan_statistik">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Papan Absen Umum</label>
+                                                <input type="number" class="form-control" name="papan_absen_umum">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Alat Absen Kelas</label>
+                                                <input type="number" class="form-control" name="alat_absen_kelas">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Alat Peraga</label>
+                                                <input type="number" class="form-control" name="alat_peraga">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Alat Olahraga</label>
+                                                <input type="number" class="form-control" name="alat_olahraga">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Alat Pertukangan</label>
+                                                <input type="number" class="form-control" name="alat_pertukangan">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Alat Teknik</label>
+                                                <input type="number" class="form-control" name="alat_teknik">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Kursi Tamu</label>
+                                                <input type="number" class="form-control" name="kursi_tamu">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Mobilier UKS</label>
+                                                <input type="number" class="form-control" name="mobilier_uks">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Mobilier Perpustakaan</label>
+                                                <input type="number" class="form-control" name="mobilier_perpustakaan">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-success">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!------------------------- REKAP --------------------->
+                    <div class="card-body collapse" id="body_rekapitulasi">
+                        <form id="form_rekap">
+                            <div class="accordion" id="body_rekap">
+                                <!-- REKAP SISWA -->
+                                <div>
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-secondary w-100" type="button" data-toggle="collapse"
+                                            data-target="#rekap_keadaan_siswa" aria-expanded="true"
+                                            aria-controls="rekap_keadaan_siswa">
+                                            Keadaan Siswa
+                                        </button>
+                                    </h2>
+                                    <div id="rekap_keadaan_siswa" class="collapse show rekap" data-parent="#body_rekap">
+                                        <table class="table table-hover">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="w-50">Kelas 1</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Kelas 2</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Kelas 3</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Kelas 4</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Kelas 5</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Kelas 6</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- REKAP GURU -->
+                                <div>
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-secondary collapsed w-100" type="button"
+                                            data-toggle="collapse" data-target="#rekap_keadaan_guru"
+                                            aria-expanded="false" aria-controls="rekap_keadaan_guru">
+                                            Keadaaan Guru/Pegawai
+                                        </button>
+                                    </h2>
+                                    <div id="rekap_keadaan_guru" class="collapse rekap" data-parent="#body_rekap">
+                                        <table class="table table-hover">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="w-50">Guru Kelas</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Guru Agama</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Guru PJOK</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Guru Mulok</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Staf Administrasi</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Staf Perpustakaan</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Bujang Sekolah</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PNS</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Honor Daerah</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Sukarela</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- REKAP GEDUNG -->
+                                <div>
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-secondary collapsed w-100" type="button"
+                                            data-toggle="collapse" data-target="#rekap_keadaan_gedung"
+                                            aria-expanded="false" aria-controls="rekap_keadaan_gedung">
+                                            Keadaan Gedung
+                                        </button>
+                                    </h2>
+                                    <div id="rekap_keadaan_gedung" class="collapse rekap" data-parent="#body_rekap">
+                                        <table class="table table-hover">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="w-50">Yang dibutuhkan</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Yang sudah ada</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- REKAP ABSENSI -->
+                                <div>
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-secondary collapsed w-100" type="button"
+                                            data-toggle="collapse" data-target="#rekap_absensi_murid"
+                                            aria-expanded="false" aria-controls="rekap_absensi_murid">
+                                            Absensi Murid
+                                        </button>
+                                    </h2>
+                                    <div id="rekap_absensi_murid" class="collapse rekap" data-parent="#body_rekap">
+                                        <table class="table table-hover">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="w-50">Sakit</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Izin</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Alpha</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- REKAP MOBILIER -->
+                                <div>
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-secondary collapsed w-100" type="button"
+                                            data-toggle="collapse" data-target="#rekap_mobilier" aria-expanded="false"
+                                            aria-controls="rekap_mobilier">
+                                            Mobilier
+                                        </button>
+                                    </h2>
+                                    <div id="rekap_mobilier" class="collapse rekap" data-parent="#body_rekap">
+                                        <table class="table table-hover">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="w-50">Lemari</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Rak Buku</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Meja Guru</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Kursi Guru</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Bangku Untuk 3 Murid</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Meja Untuk 3 Murid</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Bangku Untuk 2 Murid</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Meja Untuk 2 Murid</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Bangku Untuk 4 Murid</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Meja Untuk 4 Murid</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Papan Tulis</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Papan Tulis Lipat</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Papan Statistik</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Papan Absen Umum</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Alat Absen Kelas</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Alat Peraga</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Alat Olahraga</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Alat Pertukangan</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Alat Teknik</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Kursi Tamu</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Mobilier UKS</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Mobilier Perpustakaan</td>
+                                                    <td>:</td>
+                                                    <td>-----</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-group text-right">
+
+                                <button type="submit" class="btn btn-warning" id="verifikasi"
+                                    disabled>Verifikasi</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<div class="modal fade" id="print_out" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl m-0" role="document">
+    <div class="modal-content p-5" style="overflow-x: scroll;width:100vw">
+       <!-- PRINT KEADAAN SISWA -->
+     <div id="tabel_print_keadaan_siswa">
+        <table style="width: 100%;min-width:1253px">
+            <tr>
+                <th colspan="27">
+                    LAPORAN BULANAN SD
+                </th>
+            </tr>
+            <tr>
+                <td colspan="2">NAMA SEKOLAH</td>
+                <td class="text-align:center">:</td>
+                <td colspan="14"></td>
+                <td></td>
+                <th colspan="9">A. KEADAAN GEDUNG</th>
+            </tr>
+            <tr>
+                <td colspan="2">ALAMAT</td>
+                <td class="text-align:center">:</td>
+                <td colspan="14"></td>
+                <td></td>
+                <td style="width: 127px;min-width: 127px;">1. &nbsp;Kualitas</td>
+                <td class="text-center">:</td>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
+                <td colspan="2">KELURAHAN</td>
+                <td class="text-align:center">:</td>
+                <td colspan="14"></td>
+                <td></td>
+                <td>2. &nbsp;Dibangun oleh</td>
+                <td class="text-center">:</td>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
+                <td colspan="2">KECAMATAN</td>
+                <td class="text-align:center">:</td>
+                <td colspan="14"></td>
+                <td></td>
+                <td>3. &nbsp;Tgl./ No.</td>
+                <td class="text-center">:</td>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
+                <td colspan="2">KOTA</td>
+                <td class="text-align:center">:</td>
+                <td colspan="14"></td>
+                <td></td>
+                <td>4. &nbsp;Banyak bilik</td>
+                <td></td>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
+                <td colspan="2">BULAN PELAPORAN</td>
+                <td class="text-align:center">:</td>
+                <td colspan="14"></td>
+                <td></td>
+                <td class="pl-4">a. Dibutuhkan</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td colspan="5">Unit</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td></td>
+                <td colspan="14"></td>
+                <td></td>
+                <td class="pl-4">b. Tersedia</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td colspan="5">Unit</td>
+            </tr>
+            <tr>
+                <th rowspan="3" colspan="2" style="text-align: center;" class="pake-border">KEADAAN SISWA</th>
+                <th colspan="14" style="text-align: center;" class="pake-border">KELAS</th>
+                <th rowspan="3" style="text-align: center;max-width: 10px;" class="pake-border">JUMLAH</th>
+                <td></td>
+                <td class="pl-4">c. Kekurangan</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td colspan="5">Unit</td>
+            </tr>
+            <tr style="text-align: center;">
+                <th colspan=2 class="pake-border">I</th>
+                <th colspan=2 class="pake-border">II</th>
+                <th colspan=2 class="pake-border">III</th>
+                <th colspan=2 class="pake-border">IV</th>
+                <th colspan=2 class="pake-border">V</th>
+                <th colspan=2 class="pake-border">VI</th>
+                <th colspan="2" class="pake-border">JUMLAH</th>
+                <th></th>
+                <td colspan="8" style="text-align: left;">5. &nbsp;Keadaan Ruang/Bilik</td>
+            </tr>
+            <tr style="text-align: center;">
+                <th class="pake-border" style="width: 27px;">L</th>
+                <th class="pake-border" style="width: 27px;">P</th>
+                <th class="pake-border" style="width: 27px;">L</th>
+                <th class="pake-border" style="width: 27px;">P</th>
+                <th class="pake-border" style="width: 27px;">L</th>
+                <th class="pake-border" style="width: 27px;">P</th>
+                <th class="pake-border" style="width: 27px;">L</th>
+                <th class="pake-border" style="width: 27px;">P</th>
+                <th class="pake-border" style="width: 27px;">L</th>
+                <th class="pake-border" style="width: 27px;">P</th>
+                <th class="pake-border" style="width: 27px;">L</th>
+                <th class="pake-border" style="width: 27px;">P</th>
+                <th class="pake-border" style="width: 27px;">L</th>
+                <th class="pake-border" style="width: 27px;">P</th>
+                <th></th>
+                <td class="pl-4" style="width:50px;text-align: left;">a. Permanen</td>
+                <td class="pl-2" style="text-align: center;">:</td>
+                <td></td>
+                <td colspan="5" style="text-align: left;">Unit</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="pake-border">Pada akhir bulan lalu</td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td class="pl-4">b. Semi Permanen</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td colspan="5">Unit</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="pake-border">Masuk pada bulan lalu</td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td class="pl-4">c. Darurat</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td colspan="5">Unit</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="pake-border">Keluar pada bulan lalu</td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td class="pl-4">d. Pinjaman</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td colspan="5">Unit</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="pake-border">Pada akhir bulan ini</td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <th colspan="9">B. KEADAAN GURU/PEGAWAI</th>
+            </tr>
+            <tr>
+                <td colspan="2" class="pake-border">Jumlah murid</td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td>1. Jumlah Guru/Pegawai</td>
+                <td class="text-center">:</td>
+                <td style="width: 50px;min-width: 50px;"></td>
+                <td style="min-width:43px;width:43px">Orang</td>
+                <td style="width: 146px; min-width: 146px;">8. &nbsp; Bujang Sekolah</td>
+                <td class="text-center">:</td>
+                <td style="width:50px;min-width:50px"></td>
+                <td>Orang</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="pake-border">Rombel</td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td>2. Guru Kelas</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td>Orang</td>
+                <td>9. &nbsp; Tenaga Administrasi</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td>Orang</td>
+            </tr>
+            <tr>
+                <td class="text-center; pake-border" style="word-wrap: break-word;width: 18px !important;max-width: 18px;" rowspan="4">
+                    Kewarganegaraan</td>
+                <td style="min-width: 112px;width: 112px;" class="pake-border">: Indonesia</td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td>3. Guru PAI</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td>Orang</td>
+                <td>10. Tenaga Perpustakaan</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td>Orang</td>
+            </tr>
+            <tr>
+                <td class="pake-border">: WNI Keturunan Cina</td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td>4. Guru PJOK</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td>Orang</td>
+                <td>11. Satpam</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td>Orang</td>
+            </tr>
+            <tr>
+                <td class="pake-border">: WNI Keturunan Arab</td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td>5. Guru Bhs. Inggris</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td>Orang</td>
+                <td>12. Jumlah bulan lalu</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td>Orang</td>
+            </tr>
+            <tr>
+                <td class="pake-border">: WNI Asing</td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td>6. Guru Honor Daerah</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td>Orang</td>
+                <td>13. Masuk bulan ini</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td>Orang</td>
+            </tr>
+            <tr>
+                <th class="pake-border" style="text-align: center;" colspan="2">JUMLAH</th>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td>7. Guru Sosial</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td>Orang</td>
+                <td>14. Keluar bulan ini</td>
+                <td class="text-center">:</td>
+                <td></td>
+                <td>Orang</td>
+            </tr>
+            <tr>
+                <td class="text-center; pake-border" rowspan="6">Agama/ Kepercayaan</td>
+                <td class="pake-border">: Islam</td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <th colspan="9">C. ABSENSI MURID</th>
+            </tr>
+            <tr>
+                <td class="pake-border">: Katholik</td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td>1. Hari efektif bulan ini</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td colspan="5">Hari</td>
+            </tr>
+            <tr>
+                <td class="pake-border">: Kristen</td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td>2. Absensi bulan ini (%)</td>
+                <td class="text-center">:</td>
+                <td class="pl-3"><i>Sakit</i></td>
+                <td></td>
+                <td colspan="5"><i>Alpa</i></td>
+            </tr>
+            <tr>
+                <td class="pake-border">: Hindu</td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td></td>
+                <td>:</td>
+                <td class="pl-3"><i>Izin</i></td>
+                <td></td>
+                <td colspan="5"><i>Jumlah</i></td>
+            </tr>
+            <tr>
+                <td class="pake-border">: Budha</td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <th colspan="9">D. MOBILIER</th>
+            </tr>
+            <tr>
+                <td class="pake-border">: Lain-lain</td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td>1. &nbsp; Lemari</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td>Buah</td>
+                <td>12. Papan tulis lipat</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td colspan="2">Buah</td>
+                
+            </tr>
+            <tr>
+                <th class="pake-border" style="text-align: center;" colspan="2">JUMLAH</th>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td>2. &nbsp; Rak buku</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td>Buah</td>
+                <td>13. Papan tulis statistik</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td colspan="2">Buah</td>
+                
+            </tr>
+            <tr>
+                <th class="text-center; pake-border" colspan="2">Rata-rata Absen (%)</th>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td>3. &nbsp; Meja guru</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td>Buah</td>
+                <td>14. Papan absen umum</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td colspan="2">Buah</td>
+            </tr>
+            <tr>
+                <td class="text-center; pake-border" colspan="2">SPP yang seharusnya (Rp)</td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td colspan="2" class="pake-border"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td>4. &nbsp; Kursi guru</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td>Buah</td>
+                <td>15. Alat absen kelas</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td colspan="2">Buah</td>
+            </tr>
+            <tr>
+                <td class="text-center; pake-border" colspan="2">Masuk (Rp)</td>
+                <td class="pake-border" colspan="2"></td>
+                <td class="pake-border" colspan="2"></td>
+                <td class="pake-border" colspan="2"></td>
+                <td class="pake-border" colspan="2"></td>
+                <td class="pake-border" colspan="2"></td>
+                <td class="pake-border" colspan="2"></td>
+                <td class="pake-border" colspan="2"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td>5. &nbsp; Bangku untuk 3 murid</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td>Buah</td>
+                <td>16. Alat peraga</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td colspan="2">Buah</td>
+            </tr>
+            <tr>
+                <td class="text-center; pake-border" colspan="2">Keluar (Rp)</td>
+                <td class="pake-border" colspan="2"></td>
+                <td class="pake-border" colspan="2"></td>
+                <td class="pake-border" colspan="2"></td>
+                <td class="pake-border" colspan="2"></td>
+                <td class="pake-border" colspan="2"></td>
+                <td class="pake-border" colspan="2"></td>
+                <td class="pake-border" colspan="2"></td>
+                <td class="pake-border"></td>
+                <td></td>
+                <td>6. &nbsp; Meja untuk 3 murid</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td>Buah</td>
+                <td>17. Alat olahraga</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td colspan="2">Buah</td>
+            </tr>
+            <tr>
+                <td colspan="17"></td>
+                <td></td>
+                <td>7. &nbsp; Bangku untuk 2 murid</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td>Buah</td>
+                <td>18. Alat pertukangan</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td>Buah</td>
+            </tr>
+            <tr>
+                <th colspan="17">Keterangan :</th>
+                <td></td>
+                <td>8. &nbsp; Meja untuk 2 murid</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td>Buah</td>
+                <td>19. Alat teknik</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td>Buah</td>
+            </tr>
+            <tr>
+                <td colspan="2">1. Dalam perencanaan</td>
+                <td colspan="15">:</td>
+                <td></td>
+                <td>9. &nbsp; Bangku untuk 4 murid</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td>Buah</td>
+                <td>20. Kursi tamu</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td>Buah</td>
+            </tr>
+            <tr>
+                <td colspan="2">2. Telah dilaksanakan tgl.</td>
+                <td colspan="15">:</td>
+                <td></td>
+                <td>10. Meja untuk 4 murid</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td>Buah</td>
+                <td>21. Mobilier UKS</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td>Buah</td>
+            </tr>
+            <tr>
+                <td colspan="2"> 3. Hasil pelaksanaan</td>
+                <td colspan="15">:</td>
+                <td></td>
+                <td>11. Papan tulis</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td>Buah</td>
+                <td>22. Mobilier pustaka</td>
+                <td class="text-center">:</td>
+                <td class="px-2"></td>
+                <td>Buah</td>
+            </tr>
+        </table>
+    </div>
+    <div class="border my-5 w-100"></div>
+     <!-- PRINT KEADAAN GURU DLL -->
+     <div style="word-break: break-word;" id="tabel_print">
+        <table style="width:1164px;max-width:1164px;">
+            <thead>
+                <tr>
+                    <th colspan="5" style="border: none;">
+                        E. KEADAAN GURU
+                    </th>
+                </tr>
+                <tr style="height: 70px;text-align: center;">
+                    <th rowspan="2" style="max-width:10px; width:10px;">NO.</th>
+                    <th rowspan="2" style="width: 50px;max-width: 50px;">NAMA/NIP</th>
+                    <th rowspan="2" style="width: 10px;max-width: 10px;">JK</th>
+                    <th rowspan="2" style="width: 20px;max-width: 20px;">Agama</th>
+                    <th rowspan="2" style="width: 20px;max-width: 20px;">Kawin/B.Kawin/Duda/Jd &amp; J.Kel</th>
+                    <th rowspan="2" style="width: 20px;max-width: 20px;">Tempat, Tgl.Lahir</th>
+                    <th rowspan="2" style="width: 20px;max-width: 20px;">Jabatan</th>
+                    <th rowspan="2" style="width: 20px;max-width: 20px;">Ijasah Tertinggi, Tahun</th>
+                    <th rowspan="2" style="width: 20px;max-width: 20px;">Status</th>
+                    <th rowspan="2" style="width: 20px;max-width: 20px;">Gol. Dan Masa Berlakunya</th>
+                    <th rowspan="2" style="width: 20px;max-width: 20px;">Gaji Pokok</th>
+                    <th rowspan="2" style="width: 20px;max-width: 20px;">Tgl &amp; No. SK Pengangkatan</th>
+                    <th colspan="2">Masa Kerja Golongan</th>
+                    <th colspan="2">Masa Kerja Seluruhnya</th>
+                    <th colspan="3">Mulai Bertugas</th>
+                    <th colspan="4">Absen</th>
+                    <th rowspan="2" style="width: 20px;max-width: 20px">Ket.</th>
+                </tr>
+                <tr style="height: 60px;text-align: center;">
+                    <th style="max-width:10px;width:10px;">Th</th>
+                    <th style="max-width:10px;width:10px;">Bl</th>
+                    <th style="max-width:10px;width:10px;">Th</th>
+                    <th style="max-width:10px;width:10px;">Bl</th>
+                    <th style="width: 20px;max-width: 20px;">Sebagai Guru</th>
+                    <th style="width: 20px;max-width: 20px;">Di Daerah Ini</th>
+                    <th style="width: 20px;max-width: 20px;">Di Sekolah Ini</th>
+                    <th style="max-width: 10px;width: 10px;padding: 0;">S</th>
+                    <th style="max-width: 10px;width: 10px;padding: 0;">I</th>
+                    <th style="max-width: 10px;width: 10px;padding: 0;">A</th>
+                    <th style="max-width: 25px;width: 15px;padding: 0;">Jml</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                    </td>
+                </tr>
+                <tr style="height: 20px;"></tr>
+                <tr class="tanpa-border">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="9">Parepare,</td>
+                </tr>
+                <tr class="tanpa-border">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="9">Kepala Sekolah</td>
+                </tr>
+                <tr class="tanpa-border" style="height: 60px;">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th style="vertical-align:bottom" colspan="9">SYUAIB</th>
+                </tr>
+                <tr class="tanpa-border">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="9">NIP.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+        <button type="button" class="btn btn-primary" id="cetak">Kirim dan Unduh</button>
+    </div>
+    </div>
+  </div>
+</div>
+
+   
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://saravanajd.github.io/YearPicker/yearpicker.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.2/xlsx.full.min.js"></script> -->
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <!-- <script src="https://unpkg.com/jspdf-autotable"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script>
+        jQuery(document).ready(function ($) {
+            const { jsPDF } = window.jspdf;
+            // const {autotable} = window.jspdf-autotable;
+
+            let npsn = document.getElementById("npsn")
+            let pass = document.getElementById("password")
+            let formLaporan = document.getElementById("formLaporan")
+            let divLogin = document.getElementById("divLogin")
+            let modalLogin = document.querySelector("#modalLogin")
+
+            let arrSiswaKeluarMasuk = ['#siswa_masuk_bulan_ini', '#siswa_keluar_bulan_ini']
+            for (let j = 0; j < arrSiswaKeluarMasuk.length; j++) {
+                for (let i = 0; i < $(`${arrSiswaKeluarMasuk[j]} input`).length; i++) {
+                    $(`${arrSiswaKeluarMasuk[j]} input:eq(${i})`).change((e) => {
+                        if ($(`${arrSiswaKeluarMasuk[j]} input:eq(${i})`).val() * 1 > 0) {
+                            $(`.siswa_kewarganegaraan:eq(${j})`).collapse('show')
+                        } else {
+                            $(`.siswa_kewarganegaraan:eq(${j})`).collapse('hide')
+                        }
+                    })
+                }
+            }
+
+            $('#body_keadaan_siswa').collapse('show')
+
+            $('#select_keadaan').change((e) => {
+                switch ($('#select_keadaan').val()) {
+                    case 'keadaan siswa':
+                        collap(('#body_keadaan_siswa'))
+                        break;
+                    case 'keadaan guru':
+                        collap($('#body_keadaan_guru'))
+                        $('#body_keadaan_guru').on('show.bs.collapse', e => {
+                            try {
+                                let jumlahGuru = JSON.parse(localStorage.data_keadaan)['jumlah_guru']
+
+                                $('#body_keadaan_guru input').eq(0).val(jumlahGuru.keluar_bulan_ini_guru)
+                                $('#body_keadaan_guru input').eq(1).val(jumlahGuru.masuk_bulan_ini_guru)
+                            } catch (err) {
+                                console.error(err)
+                            }
+                        })
+
+                        break;
+                    case 'keadaan gedung':
+                        collap($('#body_keadaan_gedung'))
+                        $('#body_keadaan_gedung').on('show.bs.collapse', e => {
+                            try {
+                                let keadaanGedung = JSON.parse(localStorage.data_keadaan)['keadaan_gedung']
+                                Object.keys(keadaanGedung).forEach((item, idx) => {
+                                    $('#body_keadaan_gedung input').filter((idxx, itemm) => {
+                                        if ($(itemm).prop('name') == item) {
+                                            $(itemm).val(keadaanGedung[item])
+                                        }
+                                    })
+                                })
+                            }
+                            catch (err) {
+                                console.log(err)
+                            }
+                        })
+                        break;
+                    case 'absensi siswa':
+                        collap($('#body_absensi_siswa'))
+                        $('#body_absensi_siswa').on('show.bs.collapse', e => {
+                            try{
+                                let absenSiswa = JSON.parse(localStorage.data_keadaan)['absen_siswa'];
+                                $('#body_absensi_siswa input').eq(0).val(absenSiswa.jml_hari_efektif)
+                                $('#body_absensi_siswa input').eq(1).val(absenSiswa.siswa_sakit)
+                                $('#body_absensi_siswa input').eq(2).val(absenSiswa.siswa_izin)
+                                $('#body_absensi_siswa input').eq(3).val(absenSiswa.siswa_alpha)
+                                $('#body_absensi_siswa span').text(absenSiswa.siswa_alpha * 1 + absenSiswa.siswa_sakit * 1 + absenSiswa.siswa_izin * 1)
+                            }
+                            catch(err){
+                                console.log('belum ada data_keadaan')
+                            }
+                        })
+                        break;
+                    case 'mobilier':
+                        collap($('#body_mobilier'))
+                        break;
+                    case 'rekap':
+                        collap($('#body_rekapitulasi'))
+                        ProsesRekap()
+                        break;
+                    default:
+                        $('#div_keadaan').children().each(function (x, el) {
+                            $(el).collapse('hide')
+                        })
+                        break;
+                }
+            })
+
+            function collap(elem) {
+                $('#div_keadaan').children().each(function (x, el) {
+                    $(el).collapse('hide')
+                })
+                $(elem).collapse('show')
+            }
+
+            // let template = "https://disdikbud.pareparekota.go.id/wp-content/uploads/2022/03/template_polos.xlsx";
+            let url = "https://script.google.com/macros/s/AKfycbz26xJ5WLtkniWtiqKxDMqSCoD1FgThsQPi_D9TYePNwZP9FnQ/exec";
+
+            localStorage.clear()
+
+            async function AmbilWb(elemSiswa, elemGuru) {
+                let cvsSiswa = await html2canvas(elemSiswa[0], {
+                    width: elemSiswa[0].scrollWidth,
+                    height: elemSiswa[0].scrollHeight,
+                })
+
+                let cvsGuru = await html2canvas(elemGuru[0], {
+                    width: elemGuru[0].scrollWidth,
+                    height: elemGuru[0].scrollHeight,
+                })
+
+                const doc = new jsPDF({
+                    orientation: "l",
+                    unit: 'mm',
+                    format: [330, 215],
+                    putOnlyUsedFonts: true,
+                });
+
+                doc.addImage({
+                    imageData: cvsSiswa,
+                    x: 10,
+                    y: 5,
+                })
+
+                doc.addPage({
+                    orientation: "l",
+                    unit: 'mm',
+                    format: [330, 215],
+                })
+
+                doc.addImage({
+                    imageData: cvsGuru,
+                    x: 10,
+                    y: 10,
+                })
+
+                doc.save('table.pdf')
+            };
+
+            $('#print_out').on('show.bs.modal', e =>{
+               $('#cetak').click(e => {
+                   AmbilWb($('#tabel_print_keadaan_siswa'), $('#tabel_print'))
+               })
+            })
+
+            $('#login').on('submit', (e) => {
+                e.preventDefault();
+                $('#loading').modal('show')
+                let data = { npsn: npsn.value, password: pass.value, tujuan: 'login' };
+
+                KirimPost(url, data).then((res) => {
+                    $('#loading').modal('hide')
+                    if (res.status == 'berhasil') {
+                        localStorage.setItem('db', JSON.stringify(res.db))
+                        formLaporan.classList.remove('d-none')
+                        divLogin.classList.add('d-none')
+                        $('#formLaporan')[0].scrollIntoView()
+                        ProsesDatabase()
+                    } else {
+                        $('#modalLogin').modal('show');
+                    }
+                }).catch(err => {
+                    $('#loading').modal('hide')
+                    alert(err)
+                })
+            })
+
+            function ProsesDatabase() {
+                let db = JSON.parse(localStorage.getItem('db')).data_sekolah
+
+                $('#nama_sekolah').text(db[2])
+                $('#kecamatan').text(db[3])
+                $('#kelurahan').text(db[4])
+                $('#alamat').text(db[5])
+                $('#status').text(db[1])
+
+                let dbGuru = JSON.parse(localStorage.getItem('db')).data_guru
+
+                $('#jml_guru_bln_lalu').text(dbGuru.length)
+
+                dbGuru.filter((item, ind, arr) => {
+                    $('#edit_guru_collapse tbody').append(listGuru(item[1], item[2], item[15], ind + 1, item[0]))
+                    //$('#rekap_guru_collapse tbody').append(listGuru(item[1], item[2], item[15], ind + 1, item[0]))
+                })
+
+                $('#form_guru input:eq(0)').change(e => {
+                    let total = dbGuru.length + $('#form_guru input:eq(1)').val() * 1 - $(e.target).val() * 1
+                    $('#total_guru_pegawai').text(total)
+                    $('#form_guru input[name=total_guru_pegawai]').val(total)
+                })
+
+                $('#form_guru input:eq(1)').change(e => {
+                    let total = dbGuru.length + $(e.target).val() * 1 - $('#form_guru input:eq(0)').val() * 1
+                    $('#total_guru_pegawai').text(total)
+                    $('#form_guru input[name=total_guru_pegawai]').val(total)
+                })
+
+                $('#form_guru input[name=total_guru_pegawai]').val(dbGuru.length)
+                $('#total_guru_pegawai').text(dbGuru.length)
+
+                $('.list-guru').filter((ind, item, arr) => {
+                    $(item).on('click', (e) => {
+                        let id = $(`.list-guru:eq(${ind})`).parents().eq(1).children().eq(1).text()
+                        if (id == dbGuru[ind][0]) {
+                            $(`#tabel_keadaan_guru input:eq(0)`).val(dbGuru[ind][0])
+                            $(`#tabel_keadaan_guru span:eq(0)`).text(dbGuru[ind][2])
+                            $('#head_nama_guru').html(`<b>${dbGuru[ind][1]}</b>`)
+                            try {
+                                let dataGuru = JSON.parse(localStorage.data_keadaan).data_guru
+                                // console.log(dataGuru[id]['tanggal_lahir_guru'])
+                                // $('#form_edit_guru input').eq(1).val(dataGuru[id]['nama_guru']) //nama
+                                // $('#form_edit_guru input').eq(2).val(dataGuru[id]['tempat_lahir_guru']) //t4 lahir
+                                // $('#form_edit_guru input').eq(3).val(TglLahir(dataGuru[id]['tanggal_lahir_guru'])) //tgl lahir
+                                // $('#form_edit_guru input').eq(9).val(TglLahir(dataGuru[id]['tanggal_sk_pengangkatan_guru'])) //tgl sk pangkat terakhir
+
+                                let arrKeys = Object.keys(dataGuru[id])
+                                let objDataGuru = $('#form_edit_guru').serializeArray()
+                                let tampungArr = []
+
+                                $('#form_edit_guru input, #form_edit_guru select').each((idx, el) => {
+                                    tampungArr.push($(el).prop('name'))
+                                })
+
+                                $.each(objDataGuru, (key, value) => {
+                                    FilterDb('data_guru', id, tampungArr, e.target)
+                                })
+
+                            } catch (err) {
+                                console.error(err)
+                                $('#form_edit_guru input').val("")
+                                $('#form_edit_guru input').eq(0).val(dbGuru[ind][0]) //id
+                                $('#form_edit_guru input').eq(1).val(dbGuru[ind][1]) //nama
+                                $('#form_edit_guru input').eq(2).val(dbGuru[ind][7]) //t4 lahir
+                                $('#form_edit_guru input[type=date]').eq(0).val(TglLahir(dbGuru[ind][8])) //tgl lahir
+                                $('#form_edit_guru input[type=date]').eq(2).val(TglLahir(dbGuru[ind][4])) //tgl sk pangkat terakhir
+                            }
+                        }
+                    })
+                })
+            }
+
+            function TglLahir(e) {
+                let d = new Date(e) //.toLocaleDateString('en-GB').split("/")
+                let tgl = d.getDate().toString()
+                if (tgl.length == 1) {
+                    tgl = '0' + tgl
+                }
+
+                let bln = (d.getMonth() + 1).toString()
+                if (bln.length == 1) {
+                    bln = '0' + bln
+                }
+                let thn = d.getFullYear()
+                return `${thn}-${bln}-${tgl}`
+            }
+
+            let arrFormSiswa = [0, 1, 22, 23, 44, 45]
+
+            arrFormSiswa.map((item, inx, arr) => {
+                $("#form_siswa input").eq(item).change((e) => {
+                    $('#siswa_jml_bln_ini').val(JmlSiswaBlnLalu())
+                })
+            })
+
+            $('#modal_keadaan_guru').on('show.bs.modal', function (e) {
+                // $("select[name='tahun_ijazah_guru']").val("")
+                if ($('#form_edit_guru span').eq(0).text()) {
+                    $('#form_edit_guru select:eq(5) option').eq(1).addClass('d-none')
+                    $('#form_edit_guru select:eq(5) option').eq(2).addClass('d-none')
+                    $('#form_edit_guru select:eq(5) option').eq(0).removeClass('d-none')
+                    $('#form_edit_guru select:eq(5)').val('pns')
+                } else {
+                    $('#form_edit_guru select:eq(5) option').eq(1).removeClass('d-none')
+                    $('#form_edit_guru select:eq(5) option').eq(2).removeClass('d-none')
+                    $('#form_edit_guru select:eq(5)').val('sosial')
+                    $('#form_edit_guru select:eq(5) option').eq(0).addClass('d-none')
+                }
+            })
+
+            function JmlSiswaBlnLalu() {
+                return ($("#form_siswa input:eq(0)").val() * 1 + $("#form_siswa input:eq(1)").val() * 1) + ($("#form_siswa input:eq(22)").val() * 1 + $("#form_siswa input:eq(23)").val() * 1) - ($("#form_siswa input:eq(44)").val() * 1 + $("#form_siswa input:eq(45)").val() * 1)
+            }
+
+            $("select[name='siswa_select_kelas']").on('change', e => {
+                let arrName = ['bulan_lalu_laki', 'bulan_lalu_perempuan', 'jml_siswa_bulan_ini', 'banyak_kelas']
+                FilterDb('keadaan_siswa', e.target.value, arrName, e.target)
+            })
+
+            function FilterDb(keyDb, idDb, arrName, ev) { //key db, element 
+                $(ev.form).find('input').val("")
+
+                if (localStorage.data_keadaan && JSON.parse(localStorage.data_keadaan)[keyDb]) {
+                    let pars = JSON.parse(localStorage.data_keadaan)[keyDb]
+
+                    $.each(Object.keys(pars), (idx, item) => {
+                        if (item == idDb) {
+                            // console.log(arrName)
+                            for (let i = 0; i < arrName.length; i++) {
+                                $(`input[name=${arrName[i]}]`).val(pars[item][arrName[i]])
+                                $(`input[name=${arrName[i]}][type=date]`).val(TglLahir(pars[item][arrName[i]]))
+                                $(`select[name=${arrName[i]}]`).val(pars[item][arrName[i]])
+                            }
+
+                            return false;
+                        }
+                    })
+                }
+            }
+
+            $('#form_siswa').on('submit', (e) => {
+                e.preventDefault()
+                let isi = {}
+                let dataform = new FormData(e.target)
+                let jsn = Object.fromEntries(dataform.entries());
+                isi["keadaan_siswa"] = {}
+                isi["keadaan_siswa"][jsn.siswa_select_kelas] = jsn
+
+                UpdateDb(isi, "keadaan_siswa").then(res => {
+                    if (res != 'new') {
+                        res["keadaan_siswa"][jsn.siswa_select_kelas] = jsn
+                        UpdateDb2(res)
+                    }
+                })
+            })
+
+            $('#form_guru').on('submit', (e) => {
+                e.preventDefault()
+                let isi = {}
+                let dataform = new FormData(e.target)
+                let jsn = Object.fromEntries(dataform.entries());
+
+                isi["jumlah_guru"] = jsn
+
+                UpdateDb(isi, "jumlah_guru").then(res => {
+                    if (res != 'new') {
+                        res["jumlah_guru"] = jsn
+                        UpdateDb2(res)
+                    }
+                })
+            })
+
+            $('#form_edit_guru').on('submit', (e) => {
+                e.preventDefault()
+                let isi = {}
+                let dataform = new FormData(e.target)
+                let jsn = Object.fromEntries(dataform.entries());
+
+                isi["data_guru"] = {}
+                isi["data_guru"][jsn.id] = jsn
+
+                UpdateDb(isi, "data_guru").then(res => {
+                    // console.log(res)
+                    if (res != 'new') {
+                        res["data_guru"][jsn.id] = jsn
+                        UpdateDb2(res)
+                    }
+                }).then(resp => {
+                    $('#edit_guru_collapse td:nth-child(2)').each((idx, item) => {
+                        if (item.innerText == jsn.id) {
+                            $('#edit_guru_collapse td:nth-child(5)').eq(idx).text((JSON.parse(localStorage.data_keadaan).data_guru[jsn.id]['select_jabatan_guru']).toUpperCase())
+                        }
+                    })
+                })
+            })
+
+            $('#form_gedung').submit((e) => {
+                e.preventDefault()
+                let isi = {}
+                let dataform = new FormData(e.target)
+                let jsn = Object.fromEntries(dataform.entries());
+                isi["keadaan_gedung"] = jsn
+
+                UpdateDb(isi, "keadaan_gedung").then(res => {
+                    if (res != 'new') {
+                        res["keadaan_gedung"] = jsn
+                        UpdateDb2(res)
+                    }
+                })
+            })
+
+            $('#form_absensi_siswa').submit((e) => {
+                e.preventDefault()
+                let isi = {}
+                let dataform = new FormData(e.target)
+                let jsn = Object.fromEntries(dataform.entries());
+                isi["absen_siswa"] = jsn
+
+                UpdateDb(isi, "absen_siswa").then(res => {
+                    if (res != 'new') {
+                        res["absen_siswa"] = jsn
+                        UpdateDb2(res)
+                    }
+                })
+            })
+
+            let iSiswaSakit = 0, iSiswaIzin = 0, iSiswaAlpa = 0
+            $('#form_absensi_siswa input[name=siswa_sakit], #form_absensi_siswa input[name=siswa_izin], #form_absensi_siswa input[name=siswa_alpha]').change(e => {
+                // console.log($(e.target).prop('name'))
+                if ($(e.target).prop('name') == 'siswa_sakit') {
+                    iSiswaSakit = $(e.target).val() * 1
+                }
+                if ($(e.target).prop('name') == 'siswa_izin') {
+                    iSiswaIzin = $(e.target).val() * 1
+                }
+                if ($(e.target).prop('name') == 'siswa_alpha') {
+                    iSiswaAlpa = $(e.target).val() * 1
+                }
+
+                $('#form_absensi_siswa span').text(iSiswaAlpa + iSiswaIzin + iSiswaSakit)
+            })
+
+            $('#form_mobilier').submit((e) => {
+                e.preventDefault()
+                let isi = {}
+                let dataform = new FormData(e.target)
+                let jsn = Object.fromEntries(dataform.entries());
+                isi["keadaan_mobilier"] = jsn
+
+                UpdateDb(isi, "keadaan_mobilier").then(res => {
+                    if (res != 'new') {
+                        res["keadaan_mobilier"] = jsn
+                        UpdateDb2(res)
+                    }
+                })
+            })
+
+            $('#form_rekap').submit(e => {
+                e.preventDefault()
+                if (!$('#bulan_laporan').val()) {
+                    $('#bulan_laporan').focus()
+                    return false
+                } else if (!$('#nomor_bulan_laporan').val()) {
+                    $('#nomor_bulan_laporan').focus()
+                    return false
+                }
+
+                let db = JSON.parse(localStorage.db)
+                let periode = $('#bulan_laporan').val()
+                let noDokumen = $('#nomor_bulan_laporan').val()
+
+                try {
+                    // TODO kirim dan unduh untuk print out
+                    // TODO isi tabel print setelah tombol verifikasi dipencet
+                    $('#print_out').modal('show')
+                    $('#print_out button').eq(1).click((e) => {
+                        let dataKeadaan = JSON.parse(localStorage.data_keadaan)
+
+                        let kirimRekap = { tujuan: 'simpan', data_keadaan: dataKeadaan, npsn: db.data_sekolah[1], password: db.data_sekolah[7], bulan: periode, no_dokumen: noDokumen, kurikulum: $('#kurikulum').val() }
+                        KirimPost(url, kirimRekap).then(res => {
+                            console.log(res)
+                            if (res.status == 'ok') {
+                                (async () => {
+                                    const data = await (await fetch(template, { mode: 'no-cors' })).arrayBuffer();
+                                    /* data is an ArrayBuffer */
+                                    const workbook = XLSX.read(data);
+
+                                    console.log(workbook)
+                                    /* DO SOMETHING WITH workbook HERE */
+                                })();
+                                ModalInfo("Laporan bulanan Anda telah kami terima.<br>Terima kasih")
+                            } else {
+                                ModalInfo('<span class="text-danger">Gagal tersimpan, hubungi Admin</span>')
+                            }
+                        }).catch(err => {
+                            ModalInfo(err)
+                        })
+                    })
+                } catch (err) {
+                    console.log(err)
+                }
+            })
+
+            $('#form_akun').submit((e) => {
+                e.preventDefault()
+
+                let dataform = new FormData(e.target)
+                let jsn = Object.fromEntries(dataform.entries());
+
+                localStorage.setItem('data_akun', JSON.stringify(jsn))
+            })
+
+            $('#keluar').click(() => {
+                localStorage.clear()
+                // formLaporan.classList.add('d-none')
+                // divLogin.classList.remove('d-none')
+                location.reload()
+            })
+
+            $("input[name='gapok_guru']").on('keyup', (e) => {
+                let isiGapok = $(e.target).val()
+                let pos = isiGapok.split(".")
+                let hasil = pos.join("")
+                let isiInput = hasil * 1
+                $(e.target).val(isiInput.toLocaleString())
+            })
+
+            $("select[name='select_ijazah_tertinggi_guru']").on('change', (e) => {
+                if (e.target.value == 'lainnya') {
+                    $('#collapse_ijazah_lainnya').collapse('show')
+                } else {
+                    $('#collapse_ijazah_lainnya').collapse('hide')
+                }
+            })
+
+            async function UpdateDb(isidb, namaKey) {
+                if (!localStorage.data_keadaan) {
+                    localStorage.setItem('data_keadaan', JSON.stringify(isidb))
+                    $('#fetch_info').modal('show')
+                    setTimeout(() => $('#fetch_info').modal('hide'), 1500)
+
+                    return 'new'
+                } else if (!JSON.parse(localStorage.data_keadaan)[namaKey]) {
+                    let pars = JSON.parse(localStorage.data_keadaan)
+                    pars[namaKey] = isidb[namaKey]
+                    localStorage.setItem('data_keadaan', JSON.stringify(pars))
+                    $('#fetch_info').modal('show')
+                    setTimeout(() => $('#fetch_info').modal('hide'), 1500)
+                    return 'new'
+                }
+
+                let keys = Object.keys(JSON.parse(localStorage.data_keadaan))
+
+                for (let i = 0; i < keys.length; i++) {
+                    if (keys[i] == namaKey) {
+                        return JSON.parse(localStorage.data_keadaan)
+                    } else if (i == keys.length - 1) {
+                        let ambildb = JSON.parse(localStorage.data_keadaan)
+                        // console.log(isidb)
+                        ambildb[namaKey] = isidb.data_guru
+                        // localStorage.setItem('data_keadaan', JSON.stringify(ambildb))
+                        return ambildb
+                    }
+                }
+            }
+
+            function UpdateDb2(isidb) {
+                localStorage.setItem('data_keadaan', JSON.stringify(isidb))
+                $('#fetch_info').modal('show')
+                setTimeout(() => $('#fetch_info').modal('hide'), 1500)
+
+                try {
+                    let dbKeadaan = JSON.parse(localStorage.data_keadaan)
+                    let absenSiswa = dbKeadaan.absen_siswa
+                    let dataGuru = dbKeadaan.data_guru
+                    let jumlahGuru = dbKeadaan.jumlah_guru
+                    let keadaanGedung = dbKeadaan.keadaan_gedung
+                    let keadaanMobilier = dbKeadaan.keadaan_mobilier
+                    let keadaanSiswa = dbKeadaan.keadaan_siswa
+                    $('#opt_rekap').show()
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+
+            function listGuru(namaGuru, nip, tugas, no, id) {
+                return `<tr>
+                        <td>${no}</td>
+                        <td class="d-none">${id}</td>
+                        <td>${namaGuru}</td>
+                        <td>${nip}</td>
+                        <td>${tugas}</td>
+                        <td>
+                            <button type="button" class="btn btn-info list-guru" data-toggle="modal" data-target="#modal_keadaan_guru">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16"><path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                                </svg>
+                            </button>
+                        </td>
+                        </tr>`
+            }
+
+            function ProsesRekap() {
+                let errCode = ''
+                try {
+                    $('#verifikasi').attr('disabled')
+                    let dbKeadaan = JSON.parse(localStorage.data_keadaan)
+                    let absenSiswa = dbKeadaan.absen_siswa
+                    let dataGuru = dbKeadaan.data_guru
+                    let jumlahGuru = dbKeadaan.jumlah_guru
+                    let keadaanGedung = dbKeadaan.keadaan_gedung
+                    let keadaanMobilier = dbKeadaan.keadaan_mobilier
+                    let keadaanSiswa = dbKeadaan.keadaan_siswa
+
+                    errCode = 'siswa'
+                    let i = 0
+                    let jmlSiswa = 0
+                    $('#rekap_keadaan_siswa td:nth-child(3)').each((idx, item) => {
+                        item.innerText = keadaanSiswa[idx + 1].jml_siswa_bulan_ini
+                        jmlSiswa = jmlSiswa + keadaanSiswa[idx + 1].jml_siswa_bulan_ini
+                    })
+
+                    errCode = 'guru'
+                    let iGuruKelas = 0, iGuruAgama = 0, iGuruPjok = 0, iGuruMulok = 0, iAdm = 0, iPerpus = 0, iBujang = 0, iPns = 0, iHonda = 0, iSosial = 0
+
+                    if (Object.keys(dataGuru).length != jumlahGuru.total_guru_pegawai) {
+                        ModalInfo('Periksa dan simpan semua data guru terlebih dahulu!')
+                        return false
+                    }
+
+                    let arrGuru = Object.keys(dataGuru)
+
+                    arrGuru.filter((value, idx, arr) => {
+                        if (dataGuru[value]['select_jabatan_guru'] == 'guru kelas') {
+                            $('#rekap_keadaan_guru td:nth-child(3)').eq(0).text(++iGuruKelas)
+                        }
+                        if (dataGuru[value]['select_jabatan_guru'] == 'guru agama islam') {
+                            $('#rekap_keadaan_guru td:nth-child(3)').eq(1).text(++iGuruAgama)
+                        }
+                        if (dataGuru[value]['select_jabatan_guru'] == 'guru pjok') {
+                            $('#rekap_keadaan_guru td:nth-child(3)').eq(2).text(++iGuruPjok)
+                        }
+                        if (dataGuru[value]['select_jabatan_guru'] == 'guru mulok') {
+                            $('#rekap_keadaan_guru td:nth-child(3)').eq(3).text(++iGuruMulok)
+                        }
+                        if (dataGuru[value]['select_jabatan_guru'] == 'tenaga administrasi') {
+                            $('#rekap_keadaan_guru td:nth-child(3)').eq(4).text(++iAdm)
+                        }
+                        if (dataGuru[value]['select_jabatan_guru'] == 'tenaga perpustakaan') {
+                            $('#rekap_keadaan_guru td:nth-child(3)').eq(5).text(++iPerpus)
+                        }
+                        if (dataGuru[value]['select_jabatan_guru'] == 'bujang sekolah') {
+                            $('#rekap_keadaan_guru td:nth-child(3)').eq(6).text(++iBujang)
+                        }
+                        if (dataGuru[value]['select_status_guru'] == 'pns') {
+                            $('#rekap_keadaan_guru td:nth-child(3)').eq(7).text(++iPns)
+                        }
+                        if (dataGuru[value]['select_status_guru'] == 'honor daerah') {
+                            $('#rekap_keadaan_guru td:nth-child(3)').eq(8).text(++iHonda)
+                        }
+                        if (dataGuru[value]['select_status_guru'] == 'sosial') {
+                            $('#rekap_keadaan_guru td:nth-child(3)').eq(9).text(++iSosial)
+                        }
+                    })
+
+                    errCode = 'gedung'
+                    $('#rekap_keadaan_gedung td:nth-child(3)').eq(0).text(keadaanGedung.bilik_dibutuhkan)
+                    $('#rekap_keadaan_gedung td:nth-child(3)').eq(1).text(keadaanGedung.bilik_sudah_ada)
+
+                    errCode = 'absen siswa'
+                    let pengali = 100 / (absenSiswa.jml_hari_efektif * jmlSiswa)
+                    let alpha = Number(absenSiswa.siswa_alpha * pengali)
+                    let izin = Number(absenSiswa.siswa_izin * pengali)
+                    let sakit = Number(absenSiswa.siswa_sakit * pengali)
+                    let totalAbstain = Number(alpha + izin + sakit)
+                    let totalHadir = Number(100 - totalAbstain)
+
+                    $('#rekap_absensi_murid td:nth-child(3)').eq(0).text(sakit.toFixed() + " %")
+                    $('#rekap_absensi_murid td:nth-child(3)').eq(1).text(izin.toFixed() + " %")
+                    $('#rekap_absensi_murid td:nth-child(3)').eq(2).text(alpha.toFixed() + " %")
+                    $('#rekap_absensi_murid td:nth-child(3)').eq(3).text(totalAbstain.toFixed() + " %")
+
+                    //TODO
+
+                    errCode = 'mobilier'
+                    let arrMobilier = ['lemari', 'rak_buku', 'meja_guru', 'kursi_guru', 'bangku_3', 'meja_3', 'bangku_2', 'meja_2', 'bangku_4', 'meja_4', 'papan_tulis', 'papan_tulis_lipat', 'papan_statistik', 'papan_absen_umum', 'alat_absen_kelas', 'alat_peraga', 'alat_olahraga', 'alat_pertukangan', 'alat_teknik', 'kursi_tamu', 'mobilier_uks', 'mobilier_perpustakaan']
+
+                    $('#rekap_mobilier td:nth-child(3)').each((idx, elem) => {
+                        elem.innerText = keadaanMobilier[arrMobilier[idx]]
+                    })
+
+                    $('#verifikasi').removeAttr('disabled')
+
+                } catch (err) {
+                    console.log(err)
+                    switch (errCode) {
+                        case 'siswa':
+                            ModalInfo(`Pastikan semua data ${errCode} sudah tersimpan terlebih dahulu!`)
+                            break;
+                        case 'guru':
+                            ModalInfo(`Pastikan semua data ${errCode} sudah tersimpan terlebih dahulu!`)
+                            break;
+                        case 'gedung':
+                            ModalInfo(`Pastikan semua data ${errCode} sudah tersimpan terlebih dahulu!`)
+                            break;
+                        case 'absen siswa':
+                            ModalInfo(`Pastikan semua data ${errCode} sudah tersimpan terlebih dahulu!`)
+                            break;
+                        case 'mobilier':
+                            ModalInfo(`Pastikan semua data ${errCode} sudah tersimpan terlebih dahulu!`)
+                            break;
+                        default:
+                            ModalInfo('Pastikan semua data laporan sudah tersimpan terlebih dahulu!')
+                            break;
+                    }
+                }
+            }
+
+            function ModalInfo(pesan) {
+                $('#body_modal_info').html(pesan)
+                $('#modal_info').modal('show')
+            }
+
+            $(".yearpicker").yearpicker()
+
+        });
+
+
+
+        // JANGAN UPLOAD
+        async function KirimPost(url, data) {
+            let kirimPost = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(data)
+            })
+
+            return kirimPost.json();
+        }
+
+    </script>
+</body>
+
+</html>

@@ -89,6 +89,8 @@
 
         .frozt{
             backdrop-filter: blur(10px) saturate(100%) contrast(50%) brightness(135%);
+            position: relative;
+            z-index: 2;
         }
 
     </style>
@@ -659,7 +661,7 @@
 
     <!-- MAIN FORM -->
     <div id="formLaporan" class="d-none">
-        <svg style="position: fixed;z-index: -1;left:0;top:0" class="w-100" viewBox="0 0 640 1136" version="1.1" id="svg5"
+        <svg style="position: absolute;z-index: 1;left:0;top:0" class="w-100" viewBox="0 0 640 1136" version="1.1" id="svg5"
             inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)" sodipodi:docname="drawing.svg"
             xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
             xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -684,16 +686,20 @@
             </g>
         </svg>
      <!-- Header-->
-      <div class="p-4 mb-5">
+      <div class="p-4 mb-5" style="position: relative;z-index: 2;">
        <div class="text-right">
         <div class="mb-3 btn-group rounded-lg shadow-sm">
-            <button type="button" class="btn btn-secondary" id="akun" data-toggle="modal"
-                data-target="#modal_akun">Akun</button>
-            <button type="button" class="btn btn-danger" id="keluar">Keluar</button>
+            <button type="button" class="btn btn-secondary btn-sm" id="akun" data-toggle="modal"
+                data-target="#modal_akun">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                  </svg>
+                Akun</button>
+            <button type="button" class="btn btn-danger btn-sm" id="keluar">Keluar</button>
         </div>
        </div>
         <div class="text-center">
-            <h1 style="text-shadow:2px 2px #00000033;color:white">Laporan Bulanan Online</h1>
+            <h1 style="text-shadow:2px 2px #00000033;color:white;">Laporan Bulanan Online</h1>
         </div>
       </div>
         <!-- INFORMASI SEKOLAH -->
@@ -2669,9 +2675,7 @@
     <script src="https://saravanajd.github.io/YearPicker/yearpicker.js" crossorigin="anonymous"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.2/xlsx.full.min.js"></script> -->
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-    <!-- <script src="https://unpkg.com/jspdf-autotable"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script>
         jQuery(document).ready(function ($) {
             const { jsPDF } = window.jspdf;

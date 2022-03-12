@@ -86,6 +86,11 @@
         #formLaporan{
           font-family: 'Quicksand', sans-serif;
         }
+
+        .frozt{
+            backdrop-filter: blur(10px) saturate(100%) contrast(50%) brightness(135%);
+        }
+
     </style>
 </head>
 
@@ -654,21 +659,45 @@
 
     <!-- MAIN FORM -->
     <div id="formLaporan" class="d-none">
+        <svg style="position: fixed;z-index: -1;left:0;top:0" class="w-100" viewBox="0 0 640 1136" version="1.1" id="svg5"
+            inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)" sodipodi:docname="drawing.svg"
+            xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+            xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+            <sodipodi:namedview id="namedview7" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0"
+                inkscape:pageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:document-units="px"
+                showgrid="false" inkscape:object-nodes="true" inkscape:zoom="0.93309859" inkscape:cx="165.57736"
+                inkscape:cy="236.30943" inkscape:window-width="1366" inkscape:window-height="715" inkscape:window-x="-8"
+                inkscape:window-y="-8" inkscape:window-maximized="1" inkscape:current-layer="layer1" />
+            <defs id="defs2">
+                <linearGradient inkscape:collect="always" id="linearGradient988">
+                    <stop style="stop-color:#ff9955;stop-opacity:1;" offset="0" id="stop984" />
+                    <stop style="stop-color:#ff9955;stop-opacity:0;" offset="1" id="stop986" />
+                </linearGradient>
+                <linearGradient inkscape:collect="always" xlink:href="#linearGradient988" id="linearGradient990" x1="641.94702"
+                    y1="2.0358706e-07" x2="-152.18114" y2="466.18869" gradientUnits="userSpaceOnUse" />
+            </defs>
+            <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1">
+                <path id="rect31" style="fill:url(#linearGradient990);fill-rule:evenodd;stroke-width:0.875529;fill-opacity:1"
+                    d="M 2.1433964,2.0358706e-7 H 641.94705 L 640.87535,250.77737 c 0,0 -91.93011,-12.32141 -336.51309,120.56604 C 59.77929,504.23087 1.7245397e-7,248.63398 1.7245397e-7,248.63398 Z"
+                    sodipodi:nodetypes="ccczcc" />
+            </g>
+        </svg>
      <!-- Header-->
-      <div class="rounded-lg shadow p-4 mb-5">
+      <div class="p-4 mb-5">
        <div class="text-right">
         <div class="mb-3 btn-group rounded-lg shadow-sm">
-            <button type="button" class="btn btn-outline-secondary" id="akun" data-toggle="modal"
+            <button type="button" class="btn btn-secondary" id="akun" data-toggle="modal"
                 data-target="#modal_akun">Akun</button>
-            <button type="button" class="btn btn-outline-danger" id="keluar">Keluar</button>
+            <button type="button" class="btn btn-danger" id="keluar">Keluar</button>
         </div>
        </div>
         <div class="text-center">
-            <h1>Laporan Bulanan Online</h1>
+            <h1 style="text-shadow:2px 2px #00000033;color:white">Laporan Bulanan Online</h1>
         </div>
       </div>
         <!-- INFORMASI SEKOLAH -->
-        <div class="mb-3 skrol p-4 shadow rounded-lg meluas">
+        <div class="mb-3 skrol p-4 shadow rounded-lg meluas frozt">
             <div class="row mb-2">
                 <div class="col" style="max-width: 143px;">Nama Sekolah</div>
                 <div class="col-1 px-0" style="max-width: 10px;">:</div>
@@ -696,10 +725,10 @@
             </div>
         </div>
     
-        <!-- BODY MAIN FORM -->
+        <!-- body -->
         <div class="pt-3">
             <!-- INFORMASI LAPORAN -->
-            <div class="p-4 mb-5 rounded-lg shadow">
+            <div class="p-4 mb-5 rounded-lg shadow frozt">
                 <div class="form-group w-50 meluas">
                     <label for="bulan_laporan">Untuk Bulan</label><br>
                     <input class="form-control" type="month" name="" id="bulan_laporan">
@@ -718,7 +747,7 @@
                 </div>
             </div>
     
-            <div class="card mb-3 shadow">
+            <div class="card mb-3 shadow frozt" style="background-color: transparent;">
                 <!-- SELECT KEADAAN -->
                 <div class="card-header">
                     <select class="custom-select custom-select-lg bg-warning text-dark" id="select_keadaan">

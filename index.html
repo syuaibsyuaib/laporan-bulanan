@@ -98,11 +98,11 @@
 
 <body class="m-4">
     <!-- Modal Info -->
-    <div class="modal fade" id="modal_info" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" style="z-index: 1051;" id="modal_info" data-backdrop="false" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger">Info</h5>
+                    <h5 class="modal-title" id="header_modal_info">Info</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -114,7 +114,7 @@
         </div>
     </div>
 
-    <!-- Modal info terkirim atau gagal -->
+    <!-- animasi ceklist -->
     <div class="modal" style="z-index: 1051;" data-backdrop="false" id="fetch_info" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -122,7 +122,7 @@
                 style="max-width: 117px; max-height: 117px;margin:auto">
                 <div class="text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" height="80" width="80" fill="currentColor"
-                        class="bi bi-check2-circle <text></text>-success" viewBox="0 0 16 16">
+                        class="bi bi-check2-circle text-success" viewBox="0 0 16 16">
                         <path
                             d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z" />
                         <path
@@ -134,7 +134,7 @@
     </div>
 
     <!-- Modal Loading -->
-    <div class="modal fade" id="loading" data-backdrop="static" tabindex="-1" role="dialog"
+    <div class="modal fade" style="z-index: 1052;" id="loading" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="spinner-border text-white m-auto" style="width: 3rem; height: 3rem;" role="status">
@@ -1812,855 +1812,861 @@
 
 
 
-<div class="modal fade" id="print_out" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl m-0" role="document">
-    <div class="modal-content p-5" style="overflow-x: scroll;width:100vw">
-       <!-- PRINT KEADAAN SISWA -->
-     <div id="tabel_print_keadaan_siswa">
-        <table style="width: 100%;min-width:1253px">
-            <tr>
-                <th colspan="27">
-                    LAPORAN BULANAN SD
-                </th>
-            </tr>
-            <tr>
-                <td colspan="2">NAMA SEKOLAH</td>
-                <td class="text-align:center">:</td>
-                <td colspan="14"></td>
-                <td></td>
-                <th colspan="9">A. KEADAAN GEDUNG</th>
-            </tr>
-            <tr>
-                <td colspan="2">ALAMAT</td>
-                <td class="text-align:center">:</td>
-                <td colspan="14"></td>
-                <td></td>
-                <td style="width: 127px;min-width: 127px;">1. &nbsp;Kualitas</td>
-                <td class="text-center">:</td>
-                <td colspan="6"></td>
-            </tr>
-            <tr>
-                <td colspan="2">KELURAHAN</td>
-                <td class="text-align:center">:</td>
-                <td colspan="14"></td>
-                <td></td>
-                <td>2. &nbsp;Dibangun oleh</td>
-                <td class="text-center">:</td>
-                <td colspan="6"></td>
-            </tr>
-            <tr>
-                <td colspan="2">KECAMATAN</td>
-                <td class="text-align:center">:</td>
-                <td colspan="14"></td>
-                <td></td>
-                <td>3. &nbsp;Tgl./ No.</td>
-                <td class="text-center">:</td>
-                <td colspan="6"></td>
-            </tr>
-            <tr>
-                <td colspan="2">KOTA</td>
-                <td class="text-align:center">:</td>
-                <td colspan="14"></td>
-                <td></td>
-                <td>4. &nbsp;Banyak bilik</td>
-                <td></td>
-                <td colspan="6"></td>
-            </tr>
-            <tr>
-                <td colspan="2">BULAN PELAPORAN</td>
-                <td class="text-align:center">:</td>
-                <td colspan="14"></td>
-                <td></td>
-                <td class="pl-4">a. Dibutuhkan</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td colspan="5">Unit</td>
-            </tr>
-            <tr>
-                <td colspan="2"></td>
-                <td></td>
-                <td colspan="14"></td>
-                <td></td>
-                <td class="pl-4">b. Tersedia</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td colspan="5">Unit</td>
-            </tr>
-            <tr>
-                <th rowspan="3" colspan="2" style="text-align: center;" class="pake-border">KEADAAN SISWA</th>
-                <th colspan="14" style="text-align: center;" class="pake-border">KELAS</th>
-                <th rowspan="3" style="text-align: center;max-width: 10px;" class="pake-border">JUMLAH</th>
-                <td></td>
-                <td class="pl-4">c. Kekurangan</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td colspan="5">Unit</td>
-            </tr>
-            <tr style="text-align: center;">
-                <th colspan=2 class="pake-border">I</th>
-                <th colspan=2 class="pake-border">II</th>
-                <th colspan=2 class="pake-border">III</th>
-                <th colspan=2 class="pake-border">IV</th>
-                <th colspan=2 class="pake-border">V</th>
-                <th colspan=2 class="pake-border">VI</th>
-                <th colspan="2" class="pake-border">JUMLAH</th>
-                <th></th>
-                <td colspan="8" style="text-align: left;">5. &nbsp;Keadaan Ruang/Bilik</td>
-            </tr>
-            <tr style="text-align: center;">
-                <th class="pake-border" style="width: 27px;">L</th>
-                <th class="pake-border" style="width: 27px;">P</th>
-                <th class="pake-border" style="width: 27px;">L</th>
-                <th class="pake-border" style="width: 27px;">P</th>
-                <th class="pake-border" style="width: 27px;">L</th>
-                <th class="pake-border" style="width: 27px;">P</th>
-                <th class="pake-border" style="width: 27px;">L</th>
-                <th class="pake-border" style="width: 27px;">P</th>
-                <th class="pake-border" style="width: 27px;">L</th>
-                <th class="pake-border" style="width: 27px;">P</th>
-                <th class="pake-border" style="width: 27px;">L</th>
-                <th class="pake-border" style="width: 27px;">P</th>
-                <th class="pake-border" style="width: 27px;">L</th>
-                <th class="pake-border" style="width: 27px;">P</th>
-                <th></th>
-                <td class="pl-4" style="width:50px;text-align: left;">a. Permanen</td>
-                <td class="pl-2" style="text-align: center;">:</td>
-                <td></td>
-                <td colspan="5" style="text-align: left;">Unit</td>
-            </tr>
-            <tr>
-                <td colspan="2" class="pake-border">Pada akhir bulan lalu</td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td class="pl-4">b. Semi Permanen</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td colspan="5">Unit</td>
-            </tr>
-            <tr>
-                <td colspan="2" class="pake-border">Masuk pada bulan lalu</td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td class="pl-4">c. Darurat</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td colspan="5">Unit</td>
-            </tr>
-            <tr>
-                <td colspan="2" class="pake-border">Keluar pada bulan lalu</td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td class="pl-4">d. Pinjaman</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td colspan="5">Unit</td>
-            </tr>
-            <tr>
-                <td colspan="2" class="pake-border">Pada akhir bulan ini</td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <th colspan="9">B. KEADAAN GURU/PEGAWAI</th>
-            </tr>
-            <tr>
-                <td colspan="2" class="pake-border">Jumlah murid</td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td>1. Jumlah Guru/Pegawai</td>
-                <td class="text-center">:</td>
-                <td style="width: 50px;min-width: 50px;"></td>
-                <td style="min-width:43px;width:43px">Orang</td>
-                <td style="width: 146px; min-width: 146px;">8. &nbsp; Bujang Sekolah</td>
-                <td class="text-center">:</td>
-                <td style="width:50px;min-width:50px"></td>
-                <td>Orang</td>
-            </tr>
-            <tr>
-                <td colspan="2" class="pake-border">Rombel</td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td>2. Guru Kelas</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td>Orang</td>
-                <td>9. &nbsp; Tenaga Administrasi</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td>Orang</td>
-            </tr>
-            <tr>
-                <td class="text-center; pake-border" style="word-wrap: break-word;width: 18px !important;max-width: 18px;" rowspan="4">
-                    Kewarganegaraan</td>
-                <td style="min-width: 112px;width: 112px;" class="pake-border">: Indonesia</td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td>3. Guru PAI</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td>Orang</td>
-                <td>10. Tenaga Perpustakaan</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td>Orang</td>
-            </tr>
-            <tr>
-                <td class="pake-border">: WNI Keturunan Cina</td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td>4. Guru PJOK</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td>Orang</td>
-                <td>11. Satpam</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td>Orang</td>
-            </tr>
-            <tr>
-                <td class="pake-border">: WNI Keturunan Arab</td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td>5. Guru Bhs. Inggris</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td>Orang</td>
-                <td>12. Jumlah bulan lalu</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td>Orang</td>
-            </tr>
-            <tr>
-                <td class="pake-border">: WNI Asing</td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td>6. Guru Honor Daerah</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td>Orang</td>
-                <td>13. Masuk bulan ini</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td>Orang</td>
-            </tr>
-            <tr>
-                <th class="pake-border" style="text-align: center;" colspan="2">JUMLAH</th>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td>7. Guru Sosial</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td>Orang</td>
-                <td>14. Keluar bulan ini</td>
-                <td class="text-center">:</td>
-                <td></td>
-                <td>Orang</td>
-            </tr>
-            <tr>
-                <td class="text-center; pake-border" rowspan="6">Agama/ Kepercayaan</td>
-                <td class="pake-border">: Islam</td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <th colspan="9">C. ABSENSI MURID</th>
-            </tr>
-            <tr>
-                <td class="pake-border">: Katholik</td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td>1. Hari efektif bulan ini</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td colspan="5">Hari</td>
-            </tr>
-            <tr>
-                <td class="pake-border">: Kristen</td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td>2. Absensi bulan ini (%)</td>
-                <td class="text-center">:</td>
-                <td class="pl-3"><i>Sakit</i></td>
-                <td></td>
-                <td colspan="5"><i>Alpa</i></td>
-            </tr>
-            <tr>
-                <td class="pake-border">: Hindu</td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td></td>
-                <td>:</td>
-                <td class="pl-3"><i>Izin</i></td>
-                <td></td>
-                <td colspan="5"><i>Jumlah</i></td>
-            </tr>
-            <tr>
-                <td class="pake-border">: Budha</td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <th colspan="9">D. MOBILIER</th>
-            </tr>
-            <tr>
-                <td class="pake-border">: Lain-lain</td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td>1. &nbsp; Lemari</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td>Buah</td>
-                <td>12. Papan tulis lipat</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td colspan="2">Buah</td>
-                
-            </tr>
-            <tr>
-                <th class="pake-border" style="text-align: center;" colspan="2">JUMLAH</th>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td>2. &nbsp; Rak buku</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td>Buah</td>
-                <td>13. Papan tulis statistik</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td colspan="2">Buah</td>
-                
-            </tr>
-            <tr>
-                <th class="text-center; pake-border" colspan="2">Rata-rata Absen (%)</th>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td>3. &nbsp; Meja guru</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td>Buah</td>
-                <td>14. Papan absen umum</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td colspan="2">Buah</td>
-            </tr>
-            <tr>
-                <td class="text-center; pake-border" colspan="2">SPP yang seharusnya (Rp)</td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td colspan="2" class="pake-border"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td>4. &nbsp; Kursi guru</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td>Buah</td>
-                <td>15. Alat absen kelas</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td colspan="2">Buah</td>
-            </tr>
-            <tr>
-                <td class="text-center; pake-border" colspan="2">Masuk (Rp)</td>
-                <td class="pake-border" colspan="2"></td>
-                <td class="pake-border" colspan="2"></td>
-                <td class="pake-border" colspan="2"></td>
-                <td class="pake-border" colspan="2"></td>
-                <td class="pake-border" colspan="2"></td>
-                <td class="pake-border" colspan="2"></td>
-                <td class="pake-border" colspan="2"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td>5. &nbsp; Bangku untuk 3 murid</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td>Buah</td>
-                <td>16. Alat peraga</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td colspan="2">Buah</td>
-            </tr>
-            <tr>
-                <td class="text-center; pake-border" colspan="2">Keluar (Rp)</td>
-                <td class="pake-border" colspan="2"></td>
-                <td class="pake-border" colspan="2"></td>
-                <td class="pake-border" colspan="2"></td>
-                <td class="pake-border" colspan="2"></td>
-                <td class="pake-border" colspan="2"></td>
-                <td class="pake-border" colspan="2"></td>
-                <td class="pake-border" colspan="2"></td>
-                <td class="pake-border"></td>
-                <td></td>
-                <td>6. &nbsp; Meja untuk 3 murid</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td>Buah</td>
-                <td>17. Alat olahraga</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td colspan="2">Buah</td>
-            </tr>
-            <tr>
-                <td colspan="17"></td>
-                <td></td>
-                <td>7. &nbsp; Bangku untuk 2 murid</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td>Buah</td>
-                <td>18. Alat pertukangan</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td>Buah</td>
-            </tr>
-            <tr>
-                <th colspan="17">Keterangan :</th>
-                <td></td>
-                <td>8. &nbsp; Meja untuk 2 murid</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td>Buah</td>
-                <td>19. Alat teknik</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td>Buah</td>
-            </tr>
-            <tr>
-                <td colspan="2">1. Dalam perencanaan</td>
-                <td colspan="15">:</td>
-                <td></td>
-                <td>9. &nbsp; Bangku untuk 4 murid</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td>Buah</td>
-                <td>20. Kursi tamu</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td>Buah</td>
-            </tr>
-            <tr>
-                <td colspan="2">2. Telah dilaksanakan tgl.</td>
-                <td colspan="15">:</td>
-                <td></td>
-                <td>10. Meja untuk 4 murid</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td>Buah</td>
-                <td>21. Mobilier UKS</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td>Buah</td>
-            </tr>
-            <tr>
-                <td colspan="2"> 3. Hasil pelaksanaan</td>
-                <td colspan="15">:</td>
-                <td></td>
-                <td>11. Papan tulis</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td>Buah</td>
-                <td>22. Mobilier pustaka</td>
-                <td class="text-center">:</td>
-                <td class="px-2"></td>
-                <td>Buah</td>
-            </tr>
-        </table>
-    </div>
-    <div class="border my-5 w-100"></div>
-     <!-- PRINT KEADAAN GURU DLL -->
-     <div style="word-break: break-word;" id="tabel_print">
-        <table style="width:1164px;max-width:1164px;">
-            <thead>
-                <tr>
-                    <th colspan="5" style="border: none;">
-                        E. KEADAAN GURU
-                    </th>
-                </tr>
-                <tr style="height: 70px;text-align: center;">
-                    <th rowspan="2" style="max-width:10px; width:10px;">NO.</th>
-                    <th rowspan="2" style="width: 50px;max-width: 50px;">NAMA/NIP</th>
-                    <th rowspan="2" style="width: 10px;max-width: 10px;">JK</th>
-                    <th rowspan="2" style="width: 20px;max-width: 20px;">Agama</th>
-                    <th rowspan="2" style="width: 20px;max-width: 20px;">Kawin/B.Kawin/Duda/Jd &amp; J.Kel</th>
-                    <th rowspan="2" style="width: 20px;max-width: 20px;">Tempat, Tgl.Lahir</th>
-                    <th rowspan="2" style="width: 20px;max-width: 20px;">Jabatan</th>
-                    <th rowspan="2" style="width: 20px;max-width: 20px;">Ijasah Tertinggi, Tahun</th>
-                    <th rowspan="2" style="width: 20px;max-width: 20px;">Status</th>
-                    <th rowspan="2" style="width: 20px;max-width: 20px;">Gol. Dan Masa Berlakunya</th>
-                    <th rowspan="2" style="width: 20px;max-width: 20px;">Gaji Pokok</th>
-                    <th rowspan="2" style="width: 20px;max-width: 20px;">Tgl &amp; No. SK Pengangkatan</th>
-                    <th colspan="2">Masa Kerja Golongan</th>
-                    <th colspan="2">Masa Kerja Seluruhnya</th>
-                    <th colspan="3">Mulai Bertugas</th>
-                    <th colspan="4">Absen</th>
-                    <th rowspan="2" style="width: 20px;max-width: 20px">Ket.</th>
-                </tr>
-                <tr style="height: 60px;text-align: center;">
-                    <th style="max-width:10px;width:10px;">Th</th>
-                    <th style="max-width:10px;width:10px;">Bl</th>
-                    <th style="max-width:10px;width:10px;">Th</th>
-                    <th style="max-width:10px;width:10px;">Bl</th>
-                    <th style="width: 20px;max-width: 20px;">Sebagai Guru</th>
-                    <th style="width: 20px;max-width: 20px;">Di Daerah Ini</th>
-                    <th style="width: 20px;max-width: 20px;">Di Sekolah Ini</th>
-                    <th style="max-width: 10px;width: 10px;padding: 0;">S</th>
-                    <th style="max-width: 10px;width: 10px;padding: 0;">I</th>
-                    <th style="max-width: 10px;width: 10px;padding: 0;">A</th>
-                    <th style="max-width: 25px;width: 15px;padding: 0;">Jml</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                    </td>
-                </tr>
-                <tr style="height: 20px;"></tr>
-                <tr class="tanpa-border">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="9">Parepare,</td>
-                </tr>
-                <tr class="tanpa-border">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="9">Kepala Sekolah</td>
-                </tr>
-                <tr class="tanpa-border" style="height: 60px;">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <th style="vertical-align:bottom" colspan="9">SYUAIB</th>
-                </tr>
-                <tr class="tanpa-border">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="9">NIP.</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<div class="modal fade" id="print_out" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl m-auto" role="document">
+        <div class="modal-content p-5">
+            <div style="overflow: scroll;height: 0;" id="print_tabel_temp">
+                <!-- PRINT KEADAAN SISWA -->
+                <div id="tabel_print_keadaan_siswa">
+                    <table style="width: 100%;min-width:1253px">
+                        <tr>
+                            <th colspan="27">
+                                LAPORAN BULANAN SD
+                            </th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">NAMA SEKOLAH</td>
+                            <td class="text-align:center">:</td>
+                            <td colspan="14"></td>
+                            <td></td>
+                            <th colspan="9">A. KEADAAN GEDUNG</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">ALAMAT</td>
+                            <td class="text-align:center">:</td>
+                            <td colspan="14"></td>
+                            <td></td>
+                            <td style="width: 127px;min-width: 127px;">1. &nbsp;Kualitas</td>
+                            <td class="text-center">:</td>
+                            <td colspan="6"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">KELURAHAN</td>
+                            <td class="text-align:center">:</td>
+                            <td colspan="14"></td>
+                            <td></td>
+                            <td>2. &nbsp;Dibangun oleh</td>
+                            <td class="text-center">:</td>
+                            <td colspan="6"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">KECAMATAN</td>
+                            <td class="text-align:center">:</td>
+                            <td colspan="14"></td>
+                            <td></td>
+                            <td>3. &nbsp;Tgl./ No.</td>
+                            <td class="text-center">:</td>
+                            <td colspan="6"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">KOTA</td>
+                            <td class="text-align:center">:</td>
+                            <td colspan="14"></td>
+                            <td></td>
+                            <td>4. &nbsp;Banyak bilik</td>
+                            <td></td>
+                            <td colspan="6"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">BULAN PELAPORAN</td>
+                            <td class="text-align:center">:</td>
+                            <td colspan="14"></td>
+                            <td></td>
+                            <td class="pl-4">a. Dibutuhkan</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td colspan="5">Unit</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td></td>
+                            <td colspan="14"></td>
+                            <td></td>
+                            <td class="pl-4">b. Tersedia</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td colspan="5">Unit</td>
+                        </tr>
+                        <tr>
+                            <th rowspan="3" colspan="2" style="text-align: center;" class="pake-border">KEADAAN SISWA</th>
+                            <th colspan="14" style="text-align: center;" class="pake-border">KELAS</th>
+                            <th rowspan="3" style="text-align: center;max-width: 10px;" class="pake-border">JUMLAH</th>
+                            <td></td>
+                            <td class="pl-4">c. Kekurangan</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td colspan="5">Unit</td>
+                        </tr>
+                        <tr style="text-align: center;">
+                            <th colspan=2 class="pake-border">I</th>
+                            <th colspan=2 class="pake-border">II</th>
+                            <th colspan=2 class="pake-border">III</th>
+                            <th colspan=2 class="pake-border">IV</th>
+                            <th colspan=2 class="pake-border">V</th>
+                            <th colspan=2 class="pake-border">VI</th>
+                            <th colspan="2" class="pake-border">JUMLAH</th>
+                            <th></th>
+                            <td colspan="8" style="text-align: left;">5. &nbsp;Keadaan Ruang/Bilik</td>
+                        </tr>
+                        <tr style="text-align: center;">
+                            <th class="pake-border" style="width: 27px;">L</th>
+                            <th class="pake-border" style="width: 27px;">P</th>
+                            <th class="pake-border" style="width: 27px;">L</th>
+                            <th class="pake-border" style="width: 27px;">P</th>
+                            <th class="pake-border" style="width: 27px;">L</th>
+                            <th class="pake-border" style="width: 27px;">P</th>
+                            <th class="pake-border" style="width: 27px;">L</th>
+                            <th class="pake-border" style="width: 27px;">P</th>
+                            <th class="pake-border" style="width: 27px;">L</th>
+                            <th class="pake-border" style="width: 27px;">P</th>
+                            <th class="pake-border" style="width: 27px;">L</th>
+                            <th class="pake-border" style="width: 27px;">P</th>
+                            <th class="pake-border" style="width: 27px;">L</th>
+                            <th class="pake-border" style="width: 27px;">P</th>
+                            <th></th>
+                            <td class="pl-4" style="width:50px;text-align: left;">a. Permanen</td>
+                            <td class="pl-2" style="text-align: center;">:</td>
+                            <td></td>
+                            <td colspan="5" style="text-align: left;">Unit</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="pake-border">Pada akhir bulan lalu</td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td class="pl-4">b. Semi Permanen</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td colspan="5">Unit</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="pake-border">Masuk pada bulan lalu</td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td class="pl-4">c. Darurat</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td colspan="5">Unit</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="pake-border">Keluar pada bulan lalu</td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td class="pl-4">d. Pinjaman</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td colspan="5">Unit</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="pake-border">Pada akhir bulan ini</td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <th colspan="9">B. KEADAAN GURU/PEGAWAI</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="pake-border">Jumlah murid</td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td>1. Jumlah Guru/Pegawai</td>
+                            <td class="text-center">:</td>
+                            <td style="width: 50px;min-width: 50px;"></td>
+                            <td style="min-width:43px;width:43px">Orang</td>
+                            <td style="width: 146px; min-width: 146px;">8. &nbsp; Bujang Sekolah</td>
+                            <td class="text-center">:</td>
+                            <td style="width:50px;min-width:50px"></td>
+                            <td>Orang</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="pake-border">Rombel</td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td>2. Guru Kelas</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td>Orang</td>
+                            <td>9. &nbsp; Tenaga Administrasi</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td>Orang</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center; pake-border"
+                                style="word-wrap: break-word;width: 18px !important;max-width: 18px;" rowspan="4">
+                                Kewarganegaraan</td>
+                            <td style="min-width: 112px;width: 112px;" class="pake-border">: Indonesia</td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td>3. Guru PAI</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td>Orang</td>
+                            <td>10. Tenaga Perpustakaan</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td>Orang</td>
+                        </tr>
+                        <tr>
+                            <td class="pake-border">: WNI Keturunan Cina</td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td>4. Guru PJOK</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td>Orang</td>
+                            <td>11. Satpam</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td>Orang</td>
+                        </tr>
+                        <tr>
+                            <td class="pake-border">: WNI Keturunan Arab</td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td>5. Guru Bhs. Inggris</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td>Orang</td>
+                            <td>12. Jumlah bulan lalu</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td>Orang</td>
+                        </tr>
+                        <tr>
+                            <td class="pake-border">: WNI Asing</td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td>6. Guru Honor Daerah</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td>Orang</td>
+                            <td>13. Masuk bulan ini</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td>Orang</td>
+                        </tr>
+                        <tr>
+                            <th class="pake-border" style="text-align: center;" colspan="2">JUMLAH</th>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td>7. Guru Sosial</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td>Orang</td>
+                            <td>14. Keluar bulan ini</td>
+                            <td class="text-center">:</td>
+                            <td></td>
+                            <td>Orang</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center; pake-border" rowspan="6">Agama/ Kepercayaan</td>
+                            <td class="pake-border">: Islam</td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <th colspan="9">C. ABSENSI MURID</th>
+                        </tr>
+                        <tr>
+                            <td class="pake-border">: Katholik</td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td>1. Hari efektif bulan ini</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td colspan="5">Hari</td>
+                        </tr>
+                        <tr>
+                            <td class="pake-border">: Kristen</td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td>2. Absensi bulan ini (%)</td>
+                            <td class="text-center">:</td>
+                            <td class="pl-3"><i>Sakit</i></td>
+                            <td></td>
+                            <td colspan="5"><i>Alpa</i></td>
+                        </tr>
+                        <tr>
+                            <td class="pake-border">: Hindu</td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td></td>
+                            <td>:</td>
+                            <td class="pl-3"><i>Izin</i></td>
+                            <td></td>
+                            <td colspan="5"><i>Jumlah</i></td>
+                        </tr>
+                        <tr>
+                            <td class="pake-border">: Budha</td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <th colspan="9">D. MOBILIER</th>
+                        </tr>
+                        <tr>
+                            <td class="pake-border">: Lain-lain</td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td>1. &nbsp; Lemari</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td>Buah</td>
+                            <td>12. Papan tulis lipat</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td colspan="2">Buah</td>
 
-    <div>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-        <button type="button" class="btn btn-primary" id="cetak">Kirim dan Unduh</button>
+                        </tr>
+                        <tr>
+                            <th class="pake-border" style="text-align: center;" colspan="2">JUMLAH</th>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td>2. &nbsp; Rak buku</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td>Buah</td>
+                            <td>13. Papan tulis statistik</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td colspan="2">Buah</td>
+
+                        </tr>
+                        <tr>
+                            <th class="text-center; pake-border" colspan="2">Rata-rata Absen (%)</th>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td>3. &nbsp; Meja guru</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td>Buah</td>
+                            <td>14. Papan absen umum</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td colspan="2">Buah</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center; pake-border" colspan="2">SPP yang seharusnya (Rp)</td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td>4. &nbsp; Kursi guru</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td>Buah</td>
+                            <td>15. Alat absen kelas</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td colspan="2">Buah</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center; pake-border" colspan="2">Masuk (Rp)</td>
+                            <td class="pake-border" colspan="2"></td>
+                            <td class="pake-border" colspan="2"></td>
+                            <td class="pake-border" colspan="2"></td>
+                            <td class="pake-border" colspan="2"></td>
+                            <td class="pake-border" colspan="2"></td>
+                            <td class="pake-border" colspan="2"></td>
+                            <td class="pake-border" colspan="2"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td>5. &nbsp; Bangku untuk 3 murid</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td>Buah</td>
+                            <td>16. Alat peraga</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td colspan="2">Buah</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center; pake-border" colspan="2">Keluar (Rp)</td>
+                            <td class="pake-border" colspan="2"></td>
+                            <td class="pake-border" colspan="2"></td>
+                            <td class="pake-border" colspan="2"></td>
+                            <td class="pake-border" colspan="2"></td>
+                            <td class="pake-border" colspan="2"></td>
+                            <td class="pake-border" colspan="2"></td>
+                            <td class="pake-border" colspan="2"></td>
+                            <td class="pake-border"></td>
+                            <td></td>
+                            <td>6. &nbsp; Meja untuk 3 murid</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td>Buah</td>
+                            <td>17. Alat olahraga</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td colspan="2">Buah</td>
+                        </tr>
+                        <tr>
+                            <td colspan="17"></td>
+                            <td></td>
+                            <td>7. &nbsp; Bangku untuk 2 murid</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td>Buah</td>
+                            <td>18. Alat pertukangan</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td>Buah</td>
+                        </tr>
+                        <tr>
+                            <th colspan="17">Keterangan :</th>
+                            <td></td>
+                            <td>8. &nbsp; Meja untuk 2 murid</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td>Buah</td>
+                            <td>19. Alat teknik</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td>Buah</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">1. Dalam perencanaan</td>
+                            <td colspan="15">:</td>
+                            <td></td>
+                            <td>9. &nbsp; Bangku untuk 4 murid</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td>Buah</td>
+                            <td>20. Kursi tamu</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td>Buah</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">2. Telah dilaksanakan tgl.</td>
+                            <td colspan="15">:</td>
+                            <td></td>
+                            <td>10. Meja untuk 4 murid</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td>Buah</td>
+                            <td>21. Mobilier UKS</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td>Buah</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"> 3. Hasil pelaksanaan</td>
+                            <td colspan="15">:</td>
+                            <td></td>
+                            <td>11. Papan tulis</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td>Buah</td>
+                            <td>22. Mobilier pustaka</td>
+                            <td class="text-center">:</td>
+                            <td class="px-2"></td>
+                            <td>Buah</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="border my-5 w-100"></div>
+                <!-- PRINT KEADAAN GURU DLL -->
+                <div style="word-break: break-word;" id="tabel_print">
+                    <table style="width:1164px;max-width:1164px;">
+                        <thead>
+                            <tr>
+                                <th colspan="5" style="border: none;">
+                                    E. KEADAAN GURU
+                                </th>
+                            </tr>
+                            <tr style="height: 70px;text-align: center;">
+                                <th rowspan="2" style="max-width:10px; width:10px;">NO.</th>
+                                <th rowspan="2" style="width: 50px;max-width: 50px;">NAMA/NIP</th>
+                                <th rowspan="2" style="width: 10px;max-width: 10px;">JK</th>
+                                <th rowspan="2" style="width: 20px;max-width: 20px;">Agama</th>
+                                <th rowspan="2" style="width: 20px;max-width: 20px;">Kawin/B.Kawin/Duda/Jd &amp; J.Kel</th>
+                                <th rowspan="2" style="width: 20px;max-width: 20px;">Tempat, Tgl.Lahir</th>
+                                <th rowspan="2" style="width: 20px;max-width: 20px;">Jabatan</th>
+                                <th rowspan="2" style="width: 20px;max-width: 20px;">Ijasah Tertinggi, Tahun</th>
+                                <th rowspan="2" style="width: 20px;max-width: 20px;">Status</th>
+                                <th rowspan="2" style="width: 20px;max-width: 20px;">Gol. Dan Masa Berlakunya</th>
+                                <th rowspan="2" style="width: 20px;max-width: 20px;">Gaji Pokok</th>
+                                <th rowspan="2" style="width: 20px;max-width: 20px;">Tgl &amp; No. SK Pengangkatan</th>
+                                <th colspan="2">Masa Kerja Golongan</th>
+                                <th colspan="2">Masa Kerja Seluruhnya</th>
+                                <th colspan="3">Mulai Bertugas</th>
+                                <th colspan="4">Absen</th>
+                                <th rowspan="2" style="width: 20px;max-width: 20px">Ket.</th>
+                            </tr>
+                            <tr style="height: 60px;text-align: center;">
+                                <th style="max-width:10px;width:10px;">Th</th>
+                                <th style="max-width:10px;width:10px;">Bl</th>
+                                <th style="max-width:10px;width:10px;">Th</th>
+                                <th style="max-width:10px;width:10px;">Bl</th>
+                                <th style="width: 20px;max-width: 20px;">Sebagai Guru</th>
+                                <th style="width: 20px;max-width: 20px;">Di Daerah Ini</th>
+                                <th style="width: 20px;max-width: 20px;">Di Sekolah Ini</th>
+                                <th style="max-width: 10px;width: 10px;padding: 0;">S</th>
+                                <th style="max-width: 10px;width: 10px;padding: 0;">I</th>
+                                <th style="max-width: 10px;width: 10px;padding: 0;">A</th>
+                                <th style="max-width: 25px;width: 15px;padding: 0;">Jml</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr style="height: 20px;"></tr>
+                            <tr class="tanpa-border">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="9">Parepare,</td>
+                            </tr>
+                            <tr class="tanpa-border">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="9">Kepala Sekolah</td>
+                            </tr>
+                            <tr class="tanpa-border" style="height: 60px;">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <th style="vertical-align:bottom" colspan="9">SYUAIB</th>
+                            </tr>
+                            <tr class="tanpa-border">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="9">NIP.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="height: 77vh;">
+                <iframe id="iframe_print" style="width: 100%; height: 100%" frameborder="0"></iframe>
+            </div>
+            <div class="mt-4">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-primary" id="cetak">Kirim</button>
+            </div>
+        </div>
     </div>
-    </div>
-  </div>
 </div>
 
    
@@ -2757,6 +2763,22 @@
                         break;
                     case 'mobilier':
                         collap($('#body_mobilier'))
+                        try {
+                            $('#body_mobilier').on('show.bs.collapse', e => {
+                                let mobiDb = JSON.parse(localStorage.data_keadaan)['keadaan_mobilier']
+                                let mobiArr = Object.keys(mobiDb)
+                                mobiArr.forEach((item, idx)=>{
+                                    $('#body_mobilier input').each((idx, elem)=>{
+                                        if($(elem).prop('name') == item){
+                                            $(elem).val(mobiDb[item])
+                                        }
+                                    })
+                                })
+                            })
+                        } catch (err) {
+                            console.log(err)
+                        }
+                       
                         break;
                     case 'rekap':
                         collap($('#body_rekapitulasi'))
@@ -2783,6 +2805,7 @@
             localStorage.clear()
 
             async function AmbilWb(elemSiswa, elemGuru) {
+                
                 let cvsSiswa = await html2canvas(elemSiswa[0], {
                     width: elemSiswa[0].scrollWidth,
                     height: elemSiswa[0].scrollHeight,
@@ -2817,14 +2840,58 @@
                     x: 10,
                     y: 10,
                 })
-
-                doc.save('table.pdf')
+                let alamat = await doc.output('bloburl')
+                // console.log(alamat)
+                $('#iframe_print').attr('src', alamat)
+                $('#loading').modal('hide')
+                return doc;
+                // $('#print_tabel_temp').hide()
+                // doc.save('table.pdf')
             };
 
             $('#print_out').on('show.bs.modal', e =>{
-               $('#cetak').click(e => {
-                   AmbilWb($('#tabel_print_keadaan_siswa'), $('#tabel_print'))
-               })
+                $('#loading').modal('show')
+            })
+
+            $('#print_out').on('shown.bs.modal', function(e){
+                let db = JSON.parse(localStorage.db)
+                let periode = $('#bulan_laporan').val()
+                let noDokumen = $('#nomor_bulan_laporan').val()
+                let dataKeadaan = JSON.parse(localStorage.data_keadaan)
+                // let lembar1 = $('#tabel_print_keadaan_siswa table')
+                // let lembar2 = $('#tabel_print table')
+
+                let infoAwalArr = [db.data_sekolah[2], db.data_sekolah[5], db.data_sekolah[4], db.data_sekolah[3], 'Parepare', periode]
+
+                for(let i = 0; i < infoAwalArr.length; i++){
+                    $('#tabel_print_keadaan_siswa table td:nth-child(3)').eq(i).text(infoAwalArr[i])
+                }
+                // TODO input data ke tabel print
+
+                AmbilWb($('#tabel_print_keadaan_siswa'), $('#tabel_print'))
+                .then(doc => {
+                    $('#cetak').click((evt) => {
+                        $('#loading').modal('show')
+
+                        let kirimRekap = { tujuan: 'simpan', data_keadaan: dataKeadaan, npsn: db.data_sekolah[1], password: db.data_sekolah[7], bulan: periode, no_dokumen: noDokumen, kurikulum: $('#kurikulum').val() }
+                        KirimPost(url, kirimRekap).then(function(res){
+                            console.log(res)
+                            $('#loading').modal('hide')
+
+                            if (res.status == 'tersimpan') {
+                                // TODO ganti isi storage db 
+                                ModalInfo("Laporan bulanan Anda telah kami terima.<br>Terima kasih")
+                                doc.save(`laporan bulanan_${db.data_sekolah[1]}_${periode}.pdf`)
+                            } else {
+                                ModalInfo('<span class="text-danger">Gagal tersimpan, hubungi Admin</span>', '<span class="text-danger">Terjadi kesalahan</span>')
+                            }
+                        }).catch((err) => {
+                            ModalInfo(err)
+                            $('#loading').modal('hide')
+                            $('.modal-backdrop').css('z-index', '1040')
+                        })
+                    })
+                })
             })
 
             $('#login').on('submit', (e) => {
@@ -3118,37 +3185,8 @@
                     return false
                 }
 
-                let db = JSON.parse(localStorage.db)
-                let periode = $('#bulan_laporan').val()
-                let noDokumen = $('#nomor_bulan_laporan').val()
-
                 try {
-                    // TODO kirim dan unduh untuk print out
-                    // TODO isi tabel print setelah tombol verifikasi dipencet
                     $('#print_out').modal('show')
-                    $('#print_out button').eq(1).click((e) => {
-                        let dataKeadaan = JSON.parse(localStorage.data_keadaan)
-
-                        let kirimRekap = { tujuan: 'simpan', data_keadaan: dataKeadaan, npsn: db.data_sekolah[1], password: db.data_sekolah[7], bulan: periode, no_dokumen: noDokumen, kurikulum: $('#kurikulum').val() }
-                        KirimPost(url, kirimRekap).then(res => {
-                            console.log(res)
-                            if (res.status == 'ok') {
-                                (async () => {
-                                    const data = await (await fetch(template, { mode: 'no-cors' })).arrayBuffer();
-                                    /* data is an ArrayBuffer */
-                                    const workbook = XLSX.read(data);
-
-                                    console.log(workbook)
-                                    /* DO SOMETHING WITH workbook HERE */
-                                })();
-                                ModalInfo("Laporan bulanan Anda telah kami terima.<br>Terima kasih")
-                            } else {
-                                ModalInfo('<span class="text-danger">Gagal tersimpan, hubungi Admin</span>')
-                            }
-                        }).catch(err => {
-                            ModalInfo(err)
-                        })
-                    })
                 } catch (err) {
                     console.log(err)
                 }
@@ -3368,10 +3406,23 @@
                 }
             }
 
-            function ModalInfo(pesan) {
+            function ModalInfo(pesan, judul) {
+                if(!judul){
+                    judul = '<span class="text-success">Info</span>'
+                }
+
                 $('#body_modal_info').html(pesan)
+                $('#header_modal_info').html(judul)
                 $('#modal_info').modal('show')
             }
+
+            $('#loading').on('shown.bs.modal', ()=>{
+                    $('.modal-backdrop').css('z-index', '1051')
+            })
+
+            $('#loading').on('hide.bs.modal', ()=>{
+                $('.modal-backdrop').css('z-index', '1040')
+            })
 
             $(".yearpicker").yearpicker()
 

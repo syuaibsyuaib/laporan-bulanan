@@ -1811,12 +1811,12 @@
     </div>
 
 
-
+<!-- MODAL PRINT OUT -->
 <div class="modal fade" id="print_out" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl m-auto" role="document">
         <div class="modal-content p-5">
-            <div style="overflow: scroll;height: 0;" id="print_tabel_temp">
+            <div style="overflow: scroll;height: 600;" id="print_tabel_temp">
                 <!-- PRINT KEADAAN SISWA -->
                 <div id="tabel_print_keadaan_siswa">
                     <table style="width: 100%;min-width:1253px">
@@ -1954,7 +1954,7 @@
                             <td colspan="5">Unit</td>
                         </tr>
                         <tr>
-                            <td colspan="2" class="pake-border">Masuk pada bulan lalu</td>
+                            <td colspan="2" class="pake-border">Masuk pada bulan ini</td>
                             <td class="pake-border"></td>
                             <td class="pake-border"></td>
                             <td class="pake-border"></td>
@@ -1977,7 +1977,7 @@
                             <td colspan="5">Unit</td>
                         </tr>
                         <tr>
-                            <td colspan="2" class="pake-border">Keluar pada bulan lalu</td>
+                            <td colspan="2" class="pake-border">Keluar pada bulan ini</td>
                             <td class="pake-border"></td>
                             <td class="pake-border"></td>
                             <td class="pake-border"></td>
@@ -2021,20 +2021,13 @@
                         </tr>
                         <tr>
                             <td colspan="2" class="pake-border">Jumlah murid</td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
                             <td class="pake-border"></td>
                             <td></td>
                             <td>1. Jumlah Guru/Pegawai</td>
@@ -2048,20 +2041,13 @@
                         </tr>
                         <tr>
                             <td colspan="2" class="pake-border">Rombel</td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
-                            <td class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
+                            <td colspan="2" class="pake-border"></td>
                             <td class="pake-border"></td>
                             <td></td>
                             <td>2. Guru Kelas</td>
@@ -2855,18 +2841,61 @@
 
             $('#print_out').on('shown.bs.modal', function(e){
                 let db = JSON.parse(localStorage.db)
+                let dataKeadaan = JSON.parse(localStorage.data_keadaan)
+                let dataSiswa = dataKeadaan.keadaan_siswa
+
                 let periode = $('#bulan_laporan').val()
                 let noDokumen = $('#nomor_bulan_laporan').val()
-                let dataKeadaan = JSON.parse(localStorage.data_keadaan)
                 // let lembar1 = $('#tabel_print_keadaan_siswa table')
                 // let lembar2 = $('#tabel_print table')
 
                 let infoAwalArr = [db.data_sekolah[2], db.data_sekolah[5], db.data_sekolah[4], db.data_sekolah[3], 'Parepare', periode]
 
-                for(let i = 0; i < infoAwalArr.length; i++){
-                    $('#tabel_print_keadaan_siswa table td:nth-child(3)').eq(i).text(infoAwalArr[i])
-                }
                 // TODO input data ke tabel print
+                for(let n = 0; n < infoAwalArr.length; n++){
+                    $('#tabel_print_keadaan_siswa table td:nth-child(3)').eq(n).text(infoAwalArr[n])
+                }
+
+                // akhir bulan lalu, masuk bulan ini, keluar bulan ini
+                let k = 25
+                let l = 0
+                let  m = 0
+                let a, b, c
+
+                let arrKeyKls = Object.keys(dataSiswa)
+                let arrNameBulanSiswa = ['bulan_lalu_','masuk_bulan_ini_','keluar_bulan_ini_']
+                let kl = ['laki', 'perempuan']
+                
+                for (let j = 0; j < arrNameBulanSiswa.length; j++) {
+                    let counter = 0
+                    for (let i = k; i < k + 12; i++) {
+                        l = i
+                        $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text(dataSiswa[arrKeyKls[m]][arrNameBulanSiswa[j] + kl[counter]])
+                        if(i == 57){
+                            a = $(`#tabel_print_keadaan_siswa .pake-border:nth-child(${i - 55}):eq(${i - 54})`).text()
+                            b = $(`#tabel_print_keadaan_siswa .pake-border:nth-child(${i - 55}):eq(${i - 53})`).text()
+                            c = $(`#tabel_print_keadaan_siswa .pake-border:nth-child(${i - 55}):eq(${i - 52})`).text()
+                            
+                            $(`#tabel_print_keadaan_siswa .pake-border:nth-child(${i - 55}):eq(${i - 51})`).text((a*1) + (b*1) - (c*1))
+                        }
+
+                        counter++
+                        if(counter == 2){
+                            m = m + 1
+                            counter = 0
+                        }
+                    }
+                    k = l + 5
+                    m = 0
+                }
+                
+                // pada akhir bulan ini
+                25,38
+                41,54
+                57,70
+                for(let i = 73;i < 86;i++){
+                    $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text()
+                }
 
                 AmbilWb($('#tabel_print_keadaan_siswa'), $('#tabel_print'))
                 .then(doc => {
@@ -3010,6 +3039,8 @@
             arrFormSiswa.map((item, inx, arr) => {
                 $("#form_siswa input").eq(item).change((e) => {
                     $('#siswa_jml_bln_ini').val(JmlSiswaBlnLalu())
+                    $("#form_siswa span:eq(0)").text($("#form_siswa input:eq(0)").val() * 1 + $("#form_siswa input:eq(22)").val() * 1 - $("#form_siswa input:eq(44)").val() * 1)
+                    $("#form_siswa span:eq(1)").text($("#form_siswa input:eq(1)").val() * 1 + $("#form_siswa input:eq(23)").val() * 1 - $("#form_siswa input:eq(45)").val() * 1)
                 })
             })
 
@@ -3051,7 +3082,6 @@
                                 $(`input[name=${arrName[i]}][type=date]`).val(TglLahir(pars[item][arrName[i]]))
                                 $(`select[name=${arrName[i]}]`).val(pars[item][arrName[i]])
                             }
-
                             return false;
                         }
                     })
@@ -3303,7 +3333,7 @@
                     let keadaanSiswa = dbKeadaan.keadaan_siswa
 
                     errCode = 'siswa'
-                    let i = 0
+                    // let i = 0
                     let jmlSiswa = 0
                     $('#rekap_keadaan_siswa td:nth-child(3)').each((idx, item) => {
                         item.innerText = keadaanSiswa[idx + 1].jml_siswa_bulan_ini
@@ -3320,37 +3350,20 @@
 
                     let arrGuru = Object.keys(dataGuru)
 
-                    arrGuru.filter((value, idx, arr) => {
-                        if (dataGuru[value]['select_jabatan_guru'] == 'guru kelas') {
-                            $('#rekap_keadaan_guru td:nth-child(3)').eq(0).text(++iGuruKelas)
-                        }
-                        if (dataGuru[value]['select_jabatan_guru'] == 'guru agama islam') {
-                            $('#rekap_keadaan_guru td:nth-child(3)').eq(1).text(++iGuruAgama)
-                        }
-                        if (dataGuru[value]['select_jabatan_guru'] == 'guru pjok') {
-                            $('#rekap_keadaan_guru td:nth-child(3)').eq(2).text(++iGuruPjok)
-                        }
-                        if (dataGuru[value]['select_jabatan_guru'] == 'guru mulok') {
-                            $('#rekap_keadaan_guru td:nth-child(3)').eq(3).text(++iGuruMulok)
-                        }
-                        if (dataGuru[value]['select_jabatan_guru'] == 'tenaga administrasi') {
-                            $('#rekap_keadaan_guru td:nth-child(3)').eq(4).text(++iAdm)
-                        }
-                        if (dataGuru[value]['select_jabatan_guru'] == 'tenaga perpustakaan') {
-                            $('#rekap_keadaan_guru td:nth-child(3)').eq(5).text(++iPerpus)
-                        }
-                        if (dataGuru[value]['select_jabatan_guru'] == 'bujang sekolah') {
-                            $('#rekap_keadaan_guru td:nth-child(3)').eq(6).text(++iBujang)
-                        }
-                        if (dataGuru[value]['select_status_guru'] == 'pns') {
-                            $('#rekap_keadaan_guru td:nth-child(3)').eq(7).text(++iPns)
-                        }
-                        if (dataGuru[value]['select_status_guru'] == 'honor daerah') {
-                            $('#rekap_keadaan_guru td:nth-child(3)').eq(8).text(++iHonda)
-                        }
-                        if (dataGuru[value]['select_status_guru'] == 'sosial') {
-                            $('#rekap_keadaan_guru td:nth-child(3)').eq(9).text(++iSosial)
-                        }
+                   
+
+                    arrGuru.forEach((value, idx, arr) => {
+                        let arrdx = [['guru kelas', ++iGuruKelas], ['guru agama islam', ++iGuruAgama], ['guru pjok', ++iGuruPjok], ['guru mulok', ++iGuruMulok], ['tenaga administrasi', ++iAdm], ['tenaga perpustakaan', ++iPerpus], ['bujang sekolah', ++iBujang], ['pns', ++iPns], ['honor daerah', ++iHonda], ['sosial', ++iSosial]]
+                        
+                        arrdx.forEach((isi, ix, ar)=>{
+                            if (dataGuru[value]['select_jabatan_guru'] == isi[0]) {
+                                $('#rekap_keadaan_guru td:nth-child(3)').eq(ix).text(isi[1])
+                            }
+
+                            if (dataGuru[value]['select_status_guru'] == isi[0]) {
+                                $('#rekap_keadaan_guru td:nth-child(3)').eq(ix).text(isi[1])
+                            }
+                        })
                     })
 
                     errCode = 'gedung'
@@ -3359,16 +3372,17 @@
 
                     errCode = 'absen siswa'
                     let pengali = 100 / (absenSiswa.jml_hari_efektif * jmlSiswa)
-                    let alpha = Number(absenSiswa.siswa_alpha * pengali)
-                    let izin = Number(absenSiswa.siswa_izin * pengali)
-                    let sakit = Number(absenSiswa.siswa_sakit * pengali)
-                    let totalAbstain = Number(alpha + izin + sakit)
-                    let totalHadir = Number(100 - totalAbstain)
 
-                    $('#rekap_absensi_murid td:nth-child(3)').eq(0).text(sakit.toFixed() + " %")
-                    $('#rekap_absensi_murid td:nth-child(3)').eq(1).text(izin.toFixed() + " %")
-                    $('#rekap_absensi_murid td:nth-child(3)').eq(2).text(alpha.toFixed() + " %")
-                    $('#rekap_absensi_murid td:nth-child(3)').eq(3).text(totalAbstain.toFixed() + " %")
+                    let alpha = (String(absenSiswa.siswa_alpha * pengali)).replace(/e.\d+/, "") * 1
+                    let izin = (String(absenSiswa.siswa_izin * pengali)).replace(/e.\d+/, "") * 1
+                    let sakit = (String(absenSiswa.siswa_sakit * pengali)).replace(/e.\d+/, "") * 1
+                    let totalAbstain = (String(alpha + izin + sakit)).replace(/e.\d+/, "") * 1
+                    let totalHadir = (String(100 - totalAbstain)).replace(/e.\d+/, "") * 1
+
+                    $('#rekap_absensi_murid td:nth-child(3)').eq(0).text(`${sakit.toFixed(2)} %`)
+                    $('#rekap_absensi_murid td:nth-child(3)').eq(1).text(`${izin.toFixed(2)} %`)
+                    $('#rekap_absensi_murid td:nth-child(3)').eq(2).text(`${alpha.toFixed(2)} %`)
+                    $('#rekap_absensi_murid td:nth-child(3)').eq(3).text(`${totalAbstain.toFixed(2)} %`)
 
                     //TODO
 

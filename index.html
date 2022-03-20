@@ -1816,7 +1816,7 @@
     aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl m-auto" role="document">
         <div class="modal-content p-5">
-            <div style="overflow: scroll;height: 600;" id="print_tabel_temp">
+            <div style="overflow: scroll;height: 400px;" id="print_tabel_temp">
                 <!-- PRINT KEADAAN SISWA -->
                 <div id="tabel_print_keadaan_siswa">
                     <table style="width: 100%;min-width:1253px">
@@ -2644,7 +2644,7 @@
                     </table>
                 </div>
             </div>
-            <div style="height: 77vh;">
+            <div style="height: 2vh;">
                 <iframe id="iframe_print" style="width: 100%; height: 100%" frameborder="0"></iframe>
             </div>
             <div class="mt-4">
@@ -2871,12 +2871,13 @@
                     for (let i = k; i < k + 12; i++) {
                         l = i
                         $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text(dataSiswa[arrKeyKls[m]][arrNameBulanSiswa[j] + kl[counter]])
-                        if(i == 57){
-                            a = $(`#tabel_print_keadaan_siswa .pake-border:nth-child(${i - 55}):eq(${i - 54})`).text()
-                            b = $(`#tabel_print_keadaan_siswa .pake-border:nth-child(${i - 55}):eq(${i - 53})`).text()
-                            c = $(`#tabel_print_keadaan_siswa .pake-border:nth-child(${i - 55}):eq(${i - 52})`).text()
+                        if(i >= 57){
+                            // 73 - 84
+                            a = $(`#tabel_print_keadaan_siswa .pake-border:eq(${i-32})`).text()
+                            b = $(`#tabel_print_keadaan_siswa .pake-border:eq(${i-16})`).text()
+                            c = $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text()
                             
-                            $(`#tabel_print_keadaan_siswa .pake-border:nth-child(${i - 55}):eq(${i - 51})`).text((a*1) + (b*1) - (c*1))
+                            $(`#tabel_print_keadaan_siswa .pake-border:eq(${i+16})`).text((a*1) + (b*1) - (c*1))
                         }
 
                         counter++
@@ -2890,9 +2891,9 @@
                 }
                 
                 // pada akhir bulan ini
-                25,38
-                41,54
-                57,70
+                // 25,38
+                // 41,54
+                // 57,70
                 for(let i = 73;i < 86;i++){
                     $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text()
                 }
@@ -3350,8 +3351,6 @@
 
                     let arrGuru = Object.keys(dataGuru)
 
-                   
-
                     arrGuru.forEach((value, idx, arr) => {
                         let arrdx = [['guru kelas', ++iGuruKelas], ['guru agama islam', ++iGuruAgama], ['guru pjok', ++iGuruPjok], ['guru mulok', ++iGuruMulok], ['tenaga administrasi', ++iAdm], ['tenaga perpustakaan', ++iPerpus], ['bujang sekolah', ++iBujang], ['pns', ++iPns], ['honor daerah', ++iHonda], ['sosial', ++iSosial]]
                         
@@ -3383,8 +3382,6 @@
                     $('#rekap_absensi_murid td:nth-child(3)').eq(1).text(`${izin.toFixed(2)} %`)
                     $('#rekap_absensi_murid td:nth-child(3)').eq(2).text(`${alpha.toFixed(2)} %`)
                     $('#rekap_absensi_murid td:nth-child(3)').eq(3).text(`${totalAbstain.toFixed(2)} %`)
-
-                    //TODO
 
                     errCode = 'mobilier'
                     let arrMobilier = ['lemari', 'rak_buku', 'meja_guru', 'kursi_guru', 'bangku_3', 'meja_3', 'bangku_2', 'meja_2', 'bangku_4', 'meja_4', 'papan_tulis', 'papan_tulis_lipat', 'papan_statistik', 'papan_absen_umum', 'alat_absen_kelas', 'alat_peraga', 'alat_olahraga', 'alat_pertukangan', 'alat_teknik', 'kursi_tamu', 'mobilier_uks', 'mobilier_perpustakaan']

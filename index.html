@@ -2775,6 +2775,52 @@
                         $('#body_keadaan_guru').on('show.bs.collapse', e => {
                             try {
                                 let jumlahGuru = JSON.parse(localStorage.data_keadaan)['jumlah_guru']
+                                let dataGuru = JSON.parse(localStorage.data_keadaan)['data_guru']
+                                let dataArr = ['select_jabatan_guru', 'select_status_guru']
+
+                                 let tampungArr = Object.keys(dataGuru).map((idGuru, idx, arr)=>{ //array dari storage data_guru ['guru1', 'guru2', ...]
+                                    return dataArr.map((item, ix, arry)=>{
+                                        return dataGuru[idGuru][item]
+                                    })
+                                })
+                                  
+                                let jabatan = ['kepala sekolah', 'guru kelas', 'guru agama islam', 'guru pjok', 'guru bahasa inggris', 'guru mulok', 'tenaga administrasi', 'tenaga perpustakaan', 'bujang sekolah', 'satpam']
+                                let statusPegawai = ['pns', 'honor daerah', 'sosial']
+
+                                let arrJabatan = [], arrStatus = []
+                                const countJabatan = {}, countStatus = {};
+
+                                tampungArr.map((nama, idx, arr) => {
+                                    return arrJabatan.push(nama[0])
+                                })
+
+                                tampungArr.map((nama, idx, arr) => {
+                                    return arrStatus.push(nama[1])
+                                })
+                                
+                                arrJabatan.forEach(element => {
+                                    countJabatan[element] = (countJabatan[element] || 0) + 1;
+                                });
+                                arrStatus.forEach(element => {
+                                    countStatus[element] = (countStatus[element] || 0) + 1;
+                                });
+                                
+                                console.log(countJabatan)
+                                console.log(arrJabatan)
+                                // 1-12
+                                $('#form_guru span').eq(1).text(countJabatan['guru kelas'])
+                                $('#form_guru span').eq(2).text(countJabatan['guru agama islam'])
+                                // $('#form_guru span').eq(3).text(countJabatan['guru kelas'])
+                                $('#form_guru span').eq(4).text(countJabatan['guru pjok'])
+                                $('#form_guru span').eq(5).text(countJabatan['guru bahasa inggris'])
+                                $('#form_guru span').eq(6).text(countJabatan['guru mulok'])
+
+                                $('#form_guru span').eq(7).text(countStatus['honor daerah'])
+                                $('#form_guru span').eq(8).text(countStatus['sosial'])
+                                $('#form_guru span').eq(9).text(countJabatan['bujang sekolah'])
+                                $('#form_guru span').eq(10).text(countJabatan['tenaga administrasi'])
+                                $('#form_guru span').eq(11).text(countJabatan['tenaga perpustakaan'])
+                                $('#form_guru span').eq(12).text(countJabatan['satpam'])
 
                                 $('#body_keadaan_guru input').eq(0).val(jumlahGuru.keluar_bulan_ini_guru)
                                 $('#body_keadaan_guru input').eq(1).val(jumlahGuru.masuk_bulan_ini_guru)
@@ -3114,6 +3160,7 @@
                         if (id == dbGuru[ind][0]) {
                             $(`#tabel_keadaan_guru input:eq(0)`).val(dbGuru[ind][0])
                             $(`#tabel_keadaan_guru span:eq(0)`).text(dbGuru[ind][2])
+
                             $('#head_nama_guru').html(`<b>${dbGuru[ind][1]}</b>`)
                             try {
                                 let dataGuru = JSON.parse(localStorage.data_keadaan).data_guru
@@ -3124,17 +3171,44 @@
                                 // $('#form_edit_guru input').eq(9).val(TglLahir(dataGuru[id]['tanggal_sk_pengangkatan_guru'])) //tgl sk pangkat terakhir
 
                                 let arrKeys = Object.keys(dataGuru[id])
-                                let objDataGuru = $('#form_edit_guru').serializeArray()
+                                let objDataGuru = $('#form_edit_guru').serializeArray() //ambil name & value
                                 let tampungArr = []
 
                                 $('#form_edit_guru input, #form_edit_guru select').each((idx, el) => {
                                     tampungArr.push($(el).prop('name'))
                                 })
 
-                                $.each(objDataGuru, (key, value) => {
-                                    FilterDb('data_guru', id, tampungArr, e.target)
-                                })
+                                FilterDb('data_guru', id, tampungArr,  $('#modal_keadaan_guru select[name="select_gender_guru"]')[0])
+                                $(`#tabel_keadaan_guru span:eq(0)`).text(dbGuru[ind][2])
+                                $('#modal_keadaan_guru').on('show.bs.modal', function (ev) {
+                                    if ($('#form_edit_guru span').eq(0).text()) {
+                                        $('#form_edit_guru select:eq(5) option').eq(1).addClass('d-none')
+                                        $('#form_edit_guru select:eq(5) option').eq(2).addClass('d-none')
+                                        $('#form_edit_guru select:eq(5) option').eq(0).removeClass('d-none')
+                                        $('#form_edit_guru select:eq(5)').val('pns')
+                                    } else {
+                                        $('#form_edit_guru select:eq(5) option').eq(1).removeClass('d-none')
+                                        $('#form_edit_guru select:eq(5) option').eq(2).removeClass('d-none')
+                                        $('#form_edit_guru select:eq(5)').val('sosial')
+                                        $('#form_edit_guru select:eq(5) option').eq(0).addClass('d-none')
+                                    }
 
+                                    $('#form_edit_guru input[name="izin_guru"], #form_edit_guru input[name="sakit_guru"], #form_edit_guru input[name="alpha_guru"]').change($('#form_edit_guru input[name="izin_guru"], #form_edit_guru input[name="sakit_guru"], #form_edit_guru input[name="alpha_guru"]'), (evt) => {
+                                        let hasil = ([evt.data[0].value * 1, evt.data[1].value * 1, evt.data[2].value * 1]).reduce((total, num) => {
+                                            return total + num
+                                        })
+
+                                        $('#form_edit_guru span').eq(1).text(hasil)
+                                    })
+
+                                    let ht = 0
+                                    $('#form_edit_guru input[name="izin_guru"], #form_edit_guru input[name="sakit_guru"], #form_edit_guru input[name="alpha_guru"]').each((idx, el)=>{
+                                        ht = ht + $(el).val()*1
+                                    })
+                                    
+                                    $('#form_edit_guru span').eq(1).text(ht)
+                                })
+                             
                             } catch (err) {
                                 console.error(err)
                                 $('#form_edit_guru input').val("")
@@ -3164,10 +3238,7 @@
                 return `${thn}-${bln}-${tgl}`
             }
 
-            // let arrFormSiswa = [0, 1, 22, 23, 44, 45]
-
-            // arrFormSiswa.map((item, inx, arr) => {
-                $("#form_siswa input").change((e) => {
+            $("#form_siswa input").change((e) => {
                     let namaInput = $(e.target).prop('name')
                     switch (namaInput) {
                         case 'bulan_lalu_laki':
@@ -3183,43 +3254,33 @@
                     }
                     
                 })
-            // })
 
-            $('#modal_keadaan_guru').on('show.bs.modal', function (e) {
-                // $("select[name='tahun_ijazah_guru']").val("")
-                if ($('#form_edit_guru span').eq(0).text()) {
-                    $('#form_edit_guru select:eq(5) option').eq(1).addClass('d-none')
-                    $('#form_edit_guru select:eq(5) option').eq(2).addClass('d-none')
-                    $('#form_edit_guru select:eq(5) option').eq(0).removeClass('d-none')
-                    $('#form_edit_guru select:eq(5)').val('pns')
-                } else {
-                    $('#form_edit_guru select:eq(5) option').eq(1).removeClass('d-none')
-                    $('#form_edit_guru select:eq(5) option').eq(2).removeClass('d-none')
-                    $('#form_edit_guru select:eq(5)').val('sosial')
-                    $('#form_edit_guru select:eq(5) option').eq(0).addClass('d-none')
-                }
-            })
-
+            
             function JmlSiswaBlnLalu() {
-                return ($("#form_siswa input:eq(0)").val() * 1 + $("#form_siswa input:eq(1)").val() * 1) + ($("#form_siswa input:eq(22)").val() * 1 + $("#form_siswa input:eq(23)").val() * 1) - ($("#form_siswa input:eq(44)").val() * 1 + $("#form_siswa input:eq(45)").val() * 1)
+                return ($("#form_siswa input:eq(0)").val() * 1 + $("#form_siswa input:eq(1)").val() * 1) + ($("#form_siswa input:eq(2)").val() * 1 + $("#form_siswa input:eq(3)").val() * 1) - ($("#form_siswa input:eq(4)").val() * 1 + $("#form_siswa input:eq(5)").val() * 1)
             }
 
             $("select[name='siswa_select_kelas']").on('change', e => {
-                let arrName = ['bulan_lalu_laki', 'bulan_lalu_perempuan', 'jml_siswa_bulan_ini', 'banyak_kelas']
-                FilterDb('keadaan_siswa', e.target.value, arrName, e.target)
+                FilterDb('keadaan_siswa', e.target.value, [], e.target)
+                $("#form_siswa span:eq(0)").text($("#form_siswa input:eq(0)").val() * 1 + $("#form_siswa input:eq(2)").val() * 1 - $("#form_siswa input:eq(4)").val() * 1)
+                $("#form_siswa span:eq(1)").text($("#form_siswa input:eq(1)").val() * 1 + $("#form_siswa input:eq(3)").val() * 1 - $("#form_siswa input:eq(5)").val() * 1)
             })
 
             function FilterDb(keyDb, idDb, arrName, ev) { //key db, element 
+                // console.log(ev.form)
                 $(ev.form).find('input').val("")
+                $(ev.form).find('span').text("")
 
                 if (localStorage.data_keadaan && JSON.parse(localStorage.data_keadaan)[keyDb]) {
                     let pars = JSON.parse(localStorage.data_keadaan)[keyDb]
 
                     $.each(Object.keys(pars), (idx, item) => {
                         if (item == idDb) {
-                            // console.log(arrName)
+                            Object.keys(pars[item]).map((val, idx, arr) => { //[name1, name2, name3, ...]
+                                $(`input[name=${val}]`).val(pars[item][val])
+                            })
+
                             for (let i = 0; i < arrName.length; i++) {
-                                $(`input[name=${arrName[i]}]`).val(pars[item][arrName[i]])
                                 $(`input[name=${arrName[i]}][type=date]`).val(TglLahir(pars[item][arrName[i]]))
                                 $(`select[name=${arrName[i]}]`).val(pars[item][arrName[i]])
                             }
@@ -3234,10 +3295,10 @@
                 // apakah jumlah siswa == jumlah warganegara && jumlah agama
                 let sumWargaArr = [], sumAgamaArr = []
                 for(let i = 6; i <= 13;i++){
-                    sumWargaArr.push($('#form_siswa input').eq(i).val())
+                    sumWargaArr.push($('#form_siswa input').eq(i).val() * 1)
                 }
                 for(let i = 14; i <= 25;i++){
-                    sumAgamaArr.push($('#form_siswa input').eq(i).val())
+                    sumAgamaArr.push($('#form_siswa input').eq(i).val() * 1)
                 }
 
                 let sumWarga = sumWargaArr.reduce((total, num)=>{
@@ -3250,11 +3311,11 @@
                 
                 let sumAll = ($('#form_siswa span').eq(0).text() * 1) + ($('#form_siswa span').eq(1).text() * 1)
                 if(sumWarga != sumAll){
-                    ModalInfo("Jumlah siswa tidak sama dengan jumlah siswa pada kolom Kewarganegaraan", "Peringatan")
+                    ModalInfo("Jumlah siswa tidak sama dengan jumlah siswa pada kolom <span style='color:red'>Kewarganegaraan</span>", "Peringatan")
                     return false
                 }
                 if(sumAgama != sumAll){
-                    ModalInfo("Jumlah siswa tidak sama dengan jumlah siswa pada kolom Agama", "Peringatan")
+                    ModalInfo("Jumlah siswa tidak sama dengan jumlah siswa pada kolom <span style='color:red'>Agama</span>", "Peringatan")
                     return false
                 }
 

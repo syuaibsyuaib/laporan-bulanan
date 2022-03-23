@@ -2752,7 +2752,6 @@
         integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        // FIXME lebar kolom (td) terlalu lebar
         jQuery(document).ready(function ($) {
             const { jsPDF } = window.jspdf;
             // const {autotable} = window.jspdf-autotable;
@@ -3019,7 +3018,7 @@
                             $(`#tabel_print_keadaan_siswa .pake-border:eq(${i + 16})`).text((a * 1) + (b * 1) - (c * 1))
                         }
 
-                        // TODO input data ke tabel print
+                        
 
                         // 37 - 38 jml bln lalu
                         // 53 - 54 jml msk bln ini
@@ -3052,8 +3051,6 @@
                 // 57 - 68 kluar bln ini
                 // 73 - 84 akhir bln ini
 
-                // $(`#tabel_print_keadaan_siswa .pake-border:eq(85)`).text(HitungJmlLakiPerempuan(73, 84)[0])
-                // $(`#tabel_print_keadaan_siswa .pake-border:eq(86)`).text(HitungJmlLakiPerempuan(73, 84)[1])
                 HitungJmlLakiPerempuan(73, 84, 84)
 
                 {
@@ -3070,6 +3067,7 @@
                 }
 
                 {
+                    // TODO input data ke tabel print
                     // 108-119 indo
                     // 124-135 cina
                     // 140-151 arab

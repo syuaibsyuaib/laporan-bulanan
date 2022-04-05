@@ -2978,6 +2978,16 @@
             })
 
             $('#print_out').on('shown.bs.modal', function (e) {
+
+                //kosongkan tabel
+                let arrKosongkan  = [[25, 39], [41, 55], [57, 71], [73, 87], [89, 96], [98, 105], [108, 122], [124, 138], [140, 154], [156, 170], [172, 179], [182, 196], [198, 212], [214, 228], [230, 244], [246, 260], [262, 276], [278, 285], [287, 294], [296, 303], [305, 312], [314, 321]]
+                arrKosongkan.forEach((val, idx, arr)=>{
+                    for(let i = val[0]; i < val[1]; i++){
+                        $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text("")
+                        // console.log($(`#tabel_print_keadaan_siswa .pake-border:eq(${val[i]})`))
+                    }
+                })
+
                 let db = JSON.parse(localStorage.db)
                 let dataKeadaan = JSON.parse(localStorage.data_keadaan)
                 let dataSiswa = dataKeadaan.keadaan_siswa
@@ -2994,64 +3004,36 @@
                 }
 
                 // akhir bulan lalu, masuk bulan ini, keluar bulan ini
-                let k = 25
-                let l = 0
-                let m = 0
+               
+                let arrNameBulanSiswa = [['bulan_lalu_laki', 'bulan_lalu_perempuan'], ['masuk_bulan_ini_laki', 'masuk_bulan_ini_perempuan'], ['keluar_bulan_ini_laki', 'keluar_bulan_ini_perempuan']]
+                let kl = [arrKosongkan[0], arrKosongkan[1], arrKosongkan[2]]
 
-                let a, b, c
+                isiTabel(kl, arrNameBulanSiswa)
+                {
+                let arrAll1 = []
+                kl.map((val, idx, arr)=>{
+                    for(let i = val[0]; i <= val[1]-3; i++){
+                        arrAll1.push(i)
+                    }
+                })
 
-                let arrKeyKls = Object.keys(dataSiswa)
-                let arrNameBulanSiswa = ['bulan_lalu_', 'masuk_bulan_ini_', 'keluar_bulan_ini_']
-                let kl = ['laki', 'perempuan']
-
-                for (let j = 0; j < arrNameBulanSiswa.length; j++) {
-                    let counter = 0
-                    for (let i = k; i < k + 12; i++) {
-                        l = i
-                        $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text(dataSiswa[arrKeyKls[m]][arrNameBulanSiswa[j] + kl[counter]])
-                        if (i >= 57) {
-                            a = $(`#tabel_print_keadaan_siswa .pake-border:eq(${i - 32})`).text()
-                            b = $(`#tabel_print_keadaan_siswa .pake-border:eq(${i - 16})`).text()
-                            c = $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text()
-
-                            // 73 - 84
-                            $(`#tabel_print_keadaan_siswa .pake-border:eq(${i + 16})`).text((a * 1) + (b * 1) - (c * 1))
-                        }
-
-                        
-
-                        // 37 - 38 jml bln lalu
-                        // 53 - 54 jml msk bln ini
-                        // 69 - 70 jml kluar bln ini
-                        // 85 - 86 jml akhir bln ini
-                        switch (i) {
-                            case 36:
-                            HitungJmlLakiPerempuan(25, 36, i)
-                                break;
-                            case 52:
-                            HitungJmlLakiPerempuan(41, 52, i)
-                                break;
-                            case 68:
-                            HitungJmlLakiPerempuan(57, 68, i)
-                                break;
-                        }
-
+                //TODO jumlahkan multidimensi array untuk akhir bulan ini
+                let arr1 = [], counter = 0
+                arrAll1.forEach((val, idx, arr)=>{
+                    if(arr1.length < arr.length/3){
+                        arr1.push([val])
+                    }else{
+                        arr1[counter].push(val)
                         counter++
-                        if (counter == 2) {
-                            m = m + 1
+                        if(counter >= arr.length/3){
                             counter = 0
                         }
                     }
-                    k = l + 5
-                    m = 0
-                }
+                })
 
-                // 25 - 36 bln lalu
-                // 41 - 52 msk bln ini
-                // 57 - 68 kluar bln ini
-                // 73 - 84 akhir bln ini
-
-                HitungJmlLakiPerempuan(73, 84, 84)
+                console.log(arr1)
+            }
+               
 
                 {
                     let q = 89;
@@ -3068,12 +3050,36 @@
 
                 {
                     // TODO input data ke tabel print
-                    // 108-119 indo
-                    // 124-135 cina
-                    // 140-151 arab
-                    // 156-167 asing
+                    let arrWarganegara = [['bulan_ini_indonesia_laki','bulan_ini_indonesia_perempuan'], ['bulan_ini_cina_laki','bulan_ini_cina_perempuan'], ['bulan_ini_arab_laki', 'bulan_ini_arab_perempuan'],['bulan_ini_asing_laki', 'bulan_ini_asing_perempuan']]
+                    let range = [arrKosongkan[6], arrKosongkan[7], arrKosongkan[8], arrKosongkan[9]] //[[108, 119], [124, 135], [140, 151], [156, 167]]
 
+                    isiTabel(range, arrWarganegara)
+                    
+                    let arrAgama = [['bulan_ini_islam_laki', 'bulan_ini_islam_perempuan'], ['bulan_ini_katolik_laki', 'bulan_ini_katolik_perempuan'], ['bulan_ini_konghucu_laki', 'bulan_ini_konghucu_perempuan'], ['bulan_ini_kristen_laki', 'bulan_ini_kristen_perempuan'], ['bulan_ini_budha_laki', 'bulan_ini_budha_perempuan'], ['bulan_ini_hindu_laki', 'bulan_ini_hindu_perempuan']]
+                    let rangeAgama = [arrKosongkan[11], arrKosongkan[12], arrKosongkan[13], arrKosongkan[14], arrKosongkan[15], arrKosongkan[16]]
+                    isiTabel(rangeAgama, arrAgama)
 
+                }
+
+                function isiTabel(rng, namaObj, jumlah = false){
+                    rng.forEach((val, idx, arr) => {
+                        let kls = 1
+                        let j = 0
+                        for (let i = val[0]; i <= val[1] - 3; i++) {
+                            $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text(dataSiswa[kls][namaObj[idx][j]])
+                            
+                            if(jumlah){
+                                
+                                $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text()
+                            }
+                    
+                            j = j + 1
+                            if (j > 1) {
+                                j = 0
+                                kls = kls + 1
+                            }
+                        }
+                    })
                 }
 
                 AmbilWb($('#tabel_print_keadaan_siswa'), $('#tabel_print'))
@@ -3102,33 +3108,12 @@
                     })
             })
 
-            function HitungJmlLakiPerempuan(start, end, i) {
-                let jmlLakiArr = [], jmlPerempuanArr = []
-                let jmlLaki, jmlPerempuan
-
-                for (let o = start; o < end + 1;) {
-                    jmlLakiArr.push($(`#tabel_print_keadaan_siswa .pake-border:eq(${o})`).text() * 1)
-                    o = o + 2
+            function chunk(array, length) {
+                let result = [];
+                for (let i = 0; i < array.length / length; i++) {
+                    result.push(array.slice(i * length, i * length + length));
                 }
-
-                for (let o = start + 1; o < end + 1;) {
-                    jmlPerempuanArr.push($(`#tabel_print_keadaan_siswa .pake-border:eq(${o})`).text() * 1)
-                    o = o + 2
-                }
-
-                jmlLaki = jmlLakiArr.reduce((ttl, num) => {
-                    return ttl + num
-                })
-
-                jmlPerempuan = jmlPerempuanArr.reduce((ttl, num) => {
-                    return ttl + num
-                })
-
-                let total = jmlLaki + jmlPerempuan
-
-                $(`#tabel_print_keadaan_siswa .pake-border:eq(${i + 1})`).text(jmlLaki)
-                $(`#tabel_print_keadaan_siswa .pake-border:eq(${i + 2})`).text(jmlPerempuan)
-                return [jmlLaki, jmlPerempuan, total]
+                return result;
             }
 
             $('#login').on('submit', (e) => {

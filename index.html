@@ -3048,20 +3048,6 @@
                     return arr1
                 }
 
-                {
-                    let q = 89;
-
-                    for (let i = 89; i <= 95; i++) {
-                        $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text(($(`#tabel_print_keadaan_siswa .pake-border:eq(${q - 16})`).text() * 1) + ($(`#tabel_print_keadaan_siswa .pake-border:eq(${q - 15})`).text() * 1))
-                        if (i < 95) {
-                            $(`#tabel_print_keadaan_siswa .pake-border:eq(${i + 9})`).text(dataSiswa[i - 88].banyak_kelas)
-                        }
-
-                        q = q + 2
-                    }
-                }
-
-
 
                 {
                     // TODO input data ke tabel print
@@ -3073,6 +3059,60 @@
                     let arrAgama = [['bulan_ini_islam_laki', 'bulan_ini_islam_perempuan'], ['bulan_ini_katolik_laki', 'bulan_ini_katolik_perempuan'], ['bulan_ini_konghucu_laki', 'bulan_ini_konghucu_perempuan'], ['bulan_ini_kristen_laki', 'bulan_ini_kristen_perempuan'], ['bulan_ini_budha_laki', 'bulan_ini_budha_perempuan'], ['bulan_ini_hindu_laki', 'bulan_ini_hindu_perempuan']]
                     let rangeAgama = [arrKosongkan[11], arrKosongkan[12], arrKosongkan[13], arrKosongkan[14], arrKosongkan[15], arrKosongkan[16]]
                     isiTabel(rangeAgama, arrAgama)
+                }
+
+               
+                {
+                    // jumlah laki perempuan
+                    let arrAll = [arrKosongkan[0], arrKosongkan[1], arrKosongkan[2], arrKosongkan[3], arrKosongkan[6], arrKosongkan[7], arrKosongkan[8], arrKosongkan[9], arrKosongkan[11], arrKosongkan[12], arrKosongkan[13], arrKosongkan[14], arrKosongkan[15], arrKosongkan[16]]
+                    let arrL = []
+                    let arrP = []
+                    arrAll.forEach((val, idx, arr)=>{
+                        for(let l = val[0]; l <= val[1] - 3; l+=2){
+                            arrL.push(l)
+                        }
+
+                        for(let p = val[0] + 1; p <= val[1] - 3; p+=2){
+                            arrP.push(p)
+                        }
+                    })
+
+                    // console.log(arrL)
+                    // console.log(arrP)
+                    
+                    let counterL = chunk(arrL, 6)
+                    let counterP = chunk(arrP, 6)
+                    
+                    counterL.forEach((val, idx, arr)=>{
+                        let jumlahL = 0
+                        for(let i = 0; i < 6; i++){
+                            jumlahL += $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[i]})`).text() * 1 
+                        }
+                        $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[5] + 2})`).text(jumlahL)
+                        // console.log(jumlahL)
+                    })
+
+                    counterP.forEach((val, idx, arr)=>{
+                        let jumlahP = 0
+                        for(let i = 0; i < 6; i++){
+                            jumlahP += $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[i]})`).text() * 1 
+                        }
+                        $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[5] + 2})`).text(jumlahP)
+                        // console.log(jumlahP)
+                    })
+                }
+
+                {
+                    let q = 89;
+
+                    for (let i = 89; i <= 95; i++) {
+                        $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text(($(`#tabel_print_keadaan_siswa .pake-border:eq(${q - 16})`).text() * 1) + ($(`#tabel_print_keadaan_siswa .pake-border:eq(${q - 15})`).text() * 1))
+                        if (i < 95) {
+                            $(`#tabel_print_keadaan_siswa .pake-border:eq(${i + 9})`).text(dataSiswa[i - 88].banyak_kelas)
+                        }
+
+                        q = q + 2
+                    }
                 }
 
                 {
@@ -3134,6 +3174,8 @@
                         $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text(arr6[i - 278])
                     }
                 }
+
+                
 
                 function isiTabel(rng, namaObj, jumlah = false) {
                     rng.forEach((val, idx, arr) => {

@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <title>Hello, world!</title>
     <style>
-        @media (max-width: 421px) {
+        @media (max-width: 900px) {
             .skrol {
                 overflow: scroll;
                 width: 308px;
@@ -22,7 +22,6 @@
             .meluas {
                 width: 100% !important;
             }
-
         }
 
         .anim {
@@ -741,21 +740,34 @@
         <div class="pt-3">
             <!-- INFORMASI LAPORAN -->
             <div class="p-4 mb-5 rounded-lg shadow frozt">
-                <div class="form-group w-50 meluas">
-                    <label for="bulan_laporan">Untuk Bulan</label><br>
-                    <input class="form-control" type="month" name="" id="bulan_laporan">
-                </div>
-                <div class="form-group">
-                    <label for="bulan_laporan">Nomor Dokumen</label><br>
-                    <input class="form-control" type="text" id="nomor_bulan_laporan">
-                </div>
-                <div class="form-group">
-                    <label for="bulan_laporan">Kurikulum yang digunakan</label><br>
-                    <select class="form-control" id="kurikulum">
-                        <option value="kurikulum 2013">Kurikulum 2013</option>
-                        <option value="kurikulum darurat">Kurikulum Darurat</option>
-                        <option value="kurikulum merdeka">Kurikulum Merdeka</option>
-                    </select>
+                <div class="meluas w-25">
+                    <div class="form-group meluas">
+                        <label for="bulan_laporan">Untuk Bulan</label><br>
+                        <input class="form-control" type="month" name="" id="bulan_laporan">
+                    </div>
+
+                    <!-- NO DOKUMEN -->
+                    <div class="form-group">
+                        <label for="bulan_laporan">Nomor Dokumen</label><br>
+                        <input class="form-control" type="text" id="nomor_bulan_laporan">
+                    </div>
+
+                    <!-- KURIKULUM -->
+                    <div class="form-group">
+                        <label for="bulan_laporan">Kurikulum yang digunakan</label><br>
+                        <select class="form-control" id="kurikulum">
+                            <option value="kurikulum 2013">Kurikulum 2013</option>
+                            <option value="kurikulum darurat">Kurikulum Darurat</option>
+                            <option value="kurikulum merdeka">Kurikulum Merdeka</option>
+                        </select>
+                    </div>
+
+                    <!-- HARI EFEKTIF -->
+                    <div class="form-group">
+                        <label for="bulan_laporan">Jumlah hari sekolah efektif bulan ini</label><br>
+                        <input type="number" class="form-control" name="jml_hari_efektif" required>
+                    </div>
+
                 </div>
             </div>
 
@@ -771,9 +783,6 @@
                         </option>
                         <option value="keadaan gedung">
                             Keadaan Gedung
-                        </option>
-                        <option value="absensi siswa">
-                            Absensi Murid
                         </option>
                         <option value="mobilier">
                             Mobilier
@@ -799,6 +808,7 @@
                                     <option value="6">Kelas 6</option>
                                 </select>
                             </div>
+
                             <!-- AKHIR BULAN LALU -->
                             <div class="form-group">
                                 <div class="card">
@@ -819,74 +829,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="card-header">
-                                        <b>Kewarganegaraan</b>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row ">
-                                            <div class="col" style="min-width: fit-content;">
-                                                <label class="font-weight-bold">Laki-laki</label>
-                                                <p>Indonesia : <input name="bulan_lalu_indonesia" min="0" type="number"
-                                                        class="form-control" /></p>
-                                                <p>WNI Keturunan Cina : <input name="bulan_lalu_cina_laki" min="0"
-                                                        type="number" class="form-control" /></p>
-                                                <p>WNI Keturunan Arab : <input name="bulan_lalu_arab_laki" min="0"
-                                                        type="number" class="form-control" /></p>
-                                                <p>WNI Keturunan Asing : <input name="bulan_lalu_asing_laki" min="0"
-                                                        type="number" class="form-control" />
-                                            </div>
-                                            <div class="col" style="min-width: fit-content;">
-                                                <label class="font-weight-bold">Perempuan</label>
-                                                <p>Indonesia : <input name="bulan_lalu_indonesia_perempuan" min="0"
-                                                        type="number" class="form-control" /></p>
-                                                <p>WNI Keturunan Cina : <input name="bulan_lalu_cina_perempuan" min="0"
-                                                        type="number" class="form-control" /></p>
-                                                <p>WNI Keturunan Arab : <input name="bulan_lalu_arab_perempuan" min="0"
-                                                        type="number" class="form-control" /></p>
-                                                <p>WNI Keturunan Asing : <input name="bulan_lalu_asing_perempuan"
-                                                        min="0" type="number" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header">
-                                        <b>Agama/Kepercayaan</b>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col" style="min-width: fit-content;">
-                                                <label class="font-weight-bold">Laki-laki</label>
-                                                <p>Islam : <input name="bulan_lalu_islam_laki" min="0" type="number"
-                                                        class="form-control" /></p>
-                                                <p>Katholik : <input name="bulan_lalu_katolik_laki" min="0"
-                                                        type="number" class="form-control" /></p>
-                                                <p>Kristen : <input name="bulan_lalu_kristen_laki" min="0" type="number"
-                                                        class="form-control" /></p>
-                                                <p>Hindu : <input name="bulan_lalu_hindu_laki" min="0" type="number"
-                                                        class="form-control" /></p>
-                                                <p>Budha : <input name="bulan_lalu_budha_laki" min="0" type="number"
-                                                        class="form-control" /></p>
-                                                <p>Konghucu : <input name="bulan_lalu_konghucu_laki" min="0"
-                                                        type="number" class="form-control" /></p>
-                                            </div>
-                                            <div class="col" style="min-width: fit-content;">
-                                                <label class="font-weight-bold">Perempuan</label>
-                                                <p>Islam : <input name="bulan_lalu_islam_perempuan" min="0"
-                                                        type="number" class="form-control" /></p>
-                                                <p>Katholik : <input name="bulan_lalu_katolik_perempuan" min="0"
-                                                        type="number" class="form-control" /></p>
-                                                <p>Kristen : <input name="bulan_lalu_kristen_perempuan" min="0"
-                                                        type="number" class="form-control" /></p>
-                                                <p>Hindu : <input name="bulan_lalu_hindu_perempuan" min="0"
-                                                        type="number" class="form-control" /></p>
-                                                <p>Budha : <input name="bulan_lalu_budha_perempuan" min="0"
-                                                        type="number" class="form-control" /></p>
-                                                <p>Konghucu : <input name="bulan_lalu_konghucu_perempuan" min="0"
-                                                        type="number" class="form-control" /></p>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
+
                             <!-- MASUK BULAN INI -->
                             <div class="form-group">
                                 <div class="card">
@@ -907,76 +852,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="card mx-3 collapse siswa_kewarganegaraan">
-                                        <div class="card-header">
-                                            <b>Kewarganegaraan</b>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col" style="min-width: fit-content;">
-                                                    <label class="font-weight-bold">Laki-laki</label>
-                                                    <p>Indonesia : <input name="masuk_bulan_ini_indonesia_laki" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>WNI Keturunan Cina : <input name="masuk_bulan_ini_cina_laki"
-                                                            min="0" type="number" class="form-control" /></p>
-                                                    <p>WNI Keturunan Arab : <input name="masuk_bulan_ini_arab_laki"
-                                                            min="0" type="number" class="form-control" /></p>
-                                                    <p>WNI Keturunan Asing : <input name="masuk_bulan_ini_asing_laki"
-                                                            min="0" type="number" class="form-control" /></p>
-                                                </div>
-                                                <div class="col" style="min-width: fit-content;">
-                                                    <label class="font-weight-bold">Perempuan</label>
-                                                    <p>Indonesia : <input name="masuk_bulan_ini_indonesia_perempuan"
-                                                            min="0" type="number" class="form-control" /></p>
-                                                    <p>WNI Keturunan Cina : <input name="masuk_bulan_ini_cina_perempuan"
-                                                            min="0" type="number" class="form-control" /></p>
-                                                    <p>WNI Keturunan Arab : <input name="masuk_bulan_ini_arab_perempuan"
-                                                            min="0" type="number" class="form-control" /></p>
-                                                    <p>WNI Keturunan Asing : <input
-                                                            name="masuk_bulan_ini_asing_perempuan" min="0" type="number"
-                                                            class="form-control" /></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-header">
-                                            <b>Agama/Kepercayaan</b>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col" style="min-width: fit-content;">
-                                                    <label class="font-weight-bold">Laki-laki</label>
-                                                    <p>Islam : <input name="masuk_bulan_ini_islam_laki" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>Katholik : <input name="masuk_bulan_ini_katolik_laki" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>Kristen : <input name="masuk_bulan_ini_kristen_laki" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>Hindu : <input name="masuk_bulan_ini_hindu_laki" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>Budha : <input name="masuk_bulan_ini_budha_laki" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>Konghucu : <input name="masuk_bulan_ini_konghucu_laki" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                </div>
-                                                <div class="col" style="min-width: fit-content;">
-                                                    <label class="font-weight-bold">Perempuan</label>
-                                                    <p>Islam : <input name="masuk_bulan_ini_islam_perempuan" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>Katholik : <input name="masuk_bulan_ini_katolik_perempuan"
-                                                            min="0" type="number" class="form-control" /></p>
-                                                    <p>Kristen : <input name="masuk_bulan_ini_kristen_perempuan" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>Hindu : <input name="masuk_bulan_ini_hindu_perempuan" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>Budha : <input name="masuk_bulan_ini_budha_perempuan" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>Konghucu : <input name="masuk_bulan_ini_konghucu_perempuan"
-                                                            min="0" type="number" class="form-control" /></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                </div>
+                                   </div>
                             </div>
 
                             <!-- KELUAR BULAN INI -->
@@ -999,78 +875,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="card mx-3 collapse siswa_kewarganegaraan">
-                                        <div class="card-header">
-                                            <b>Kewarganegaraan</b>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col" style="min-width: fit-content;">
-                                                    <label class="font-weight-bold">Laki-laki</label>
-                                                    <p>Indonesia : <input name="keluar_bulan_ini_indonesia_laki" min="0"
-                                                            type="number" class="form-control" />
-                                                    <p>WNI Keturunan Cina : <input name="keluar_bulan_ini_cina_laki"
-                                                            min="0" type="number" class="form-control" />
-                                                    <p>WNI Keturunan Arab : <input name="keluar_bulan_ini_arab_laki"
-                                                            min="0" type="number" class="form-control" />
-                                                    <p>WNI Keturunan Asing : <input name="keluar_bulan_ini_asing_laki"
-                                                            min="0" type="number" class="form-control" />
-                                                </div>
-                                                <div class="col" style="min-width: fit-content;">
-                                                    <label class="font-weight-bold">Perempuan</label>
-                                                    <p>Indonesia : <input name="keluar_bulan_ini_indonesia_perempuan"
-                                                            min="0" type="number" class="form-control" />
-                                                    <p>WNI Keturunan Cina : <input
-                                                            name="keluar_bulan_ini_cina_perempuan" min="0" type="number"
-                                                            class="form-control" />
-                                                    <p>WNI Keturunan Arab : <input
-                                                            name="keluar_bulan_ini_arab_perempuan" min="0" type="number"
-                                                            class="form-control" />
-                                                    <p>WNI Keturunan Asing : <input
-                                                            name="keluar_bulan_ini_asing_perempuan" min="0"
-                                                            type="number" class="form-control" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-header">
-                                            <b>Agama/Kepercayaan</b>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col" style="min-width: fit-content;">
-                                                    <label class="font-weight-bold">Laki-laki</label>
-                                                    <p>Islam : <input name="keluar_bulan_ini_islam_laki" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>Katholik : <input name="keluar_bulan_ini_katolik_laki" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>Kristen : <input name="keluar_bulan_ini_kristen_laki" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>Hindu : <input name="keluar_bulan_ini_hindu_laki" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>Budha : <input name="keluar_bulan_ini_budha_laki" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>Konghucu : <input name="keluar_bulan_ini_konghucu_laki" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                </div>
-                                                <div class="col" style="min-width: fit-content;">
-                                                    <label class="font-weight-bold">Perempuan</label>
-                                                    <p>Islam : <input name="keluar_bulan_ini_islam_perempuan" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>Katholik : <input name="keluar_bulan_ini_katolik_perempuan"
-                                                            min="0" type="number" class="form-control" /></p>
-                                                    <p>Kristen : <input name="keluar_bulan_ini_kristen_perempuan"
-                                                            min="0" type="number" class="form-control" /></p>
-                                                    <p>Hindu : <input name="keluar_bulan_ini_hindu_perempuan" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>Budha : <input name="keluar_bulan_ini_budha_perempuan" min="0"
-                                                            type="number" class="form-control" /></p>
-                                                    <p>Konghucu : <input name="keluar_bulan_ini_konghucu_perempuan"
-                                                            min="0" type="number" class="form-control" /></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                </div>
+                                   </div>
                             </div>
 
                             <!-- AKHIR BULAN INI -->
@@ -1091,7 +896,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card mx-3 siswa_kewarganegaraan">
+                                    <div class="card mx-3 mb-3 siswa_kewarganegaraan">
                                         <div class="card-header">
                                             <b>Kewarganegaraan</b>
                                         </div>
@@ -1121,6 +926,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- agama siswa -->
                                         <div class="card-header">
                                             <b>Agama/Kepercayaan</b>
                                         </div>
@@ -1159,69 +965,65 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="card-header">
-                                        <b>Kewarganegaraan</b>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row ">
-                                            <div class="col" style="min-width: fit-content;">
-                                                <label class="font-weight-bold">Laki-laki</label>
-                                                <p>Jumlah : <span></span></p>
-                                                <p>Indonesia : <span></span></p>
-                                                <p>WNI Keturunan Cina : <span></span></p>
-                                                <p>WNI Keturunan Arab : <span></span></p>
-                                                <p>WNI Keturunan Asing : <span></span>
-                                            </div>
-                                            <div class="col" style="min-width: fit-content;">
-                                                <label class="font-weight-bold">Perempuan</label>
-                                                <p>Jumlah : <span></span></p>
-                                                <p>Indonesia : <span></span></p>
-                                                <p>WNI Keturunan Cina : <span></span></p>
-                                                <p>WNI Keturunan Arab : <span></span></p>
-                                                <p>WNI Keturunan Asing : <span></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header">
-                                        <b>Agama/Kepercayaan</b>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col" style="min-width: fit-content;">
-                                                <label class="font-weight-bold">Laki-laki</label>
-                                                <p>Islam : <span></span></p>
-                                                <p>Katholik : <span></span></p>
-                                                <p>Kristen : <span></span></p>
-                                                <p>Hindu : <span></span></p>
-                                                <p>Budha : <span></span></p>
-                                                <p>Konghucu : <span></span></p>
-                                            </div>
-                                            <div class="col" style="min-width: fit-content;">
-                                                <label class="font-weight-bold">Perempuan</label>
-                                                <p>Islam : <span></span></p>
-                                                <p>Katholik : <span></span></p>
-                                                <p>Kristen : <span></span></p>
-                                                <p>Hindu : <span></span></p>
-                                                <p>Budha : <span></span></p>
-                                                <p>Konghucu : <span></span></p>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
 
-                            <div class="form-group border p-3 d-flex align-items-center">
-                                <label for="jml_siswa_bulan_ini" class="font-weight-bold float-left mr-3 mb-0">Jumlah
-                                    siswa bulan ini : </label>
-                                <input readonly name="jml_siswa_bulan_ini" id="siswa_jml_bln_ini"
-                                    class="px-3 form-control-plaintext w-25"></input>
-
-                            </div>
+                            <!-- TOTAL JUMLAH SISWA -->
                             <div class="form-group border p-3">
-                                <label for="siswa_banyak_kelas" class="font-weight-bold mb-0">Banyaknya kelas</label>
-                                <input name="banyak_kelas" type="number" class="form-control" id="siswa_banyak_kelas"
-                                    required min="0" />
+                                <div class="card">
+                                    <div class="card-header">
+                                        <b>Jumlah siswa bulan ini :</b>
+                                    </div>
+                                    <div class="card-body">
+                                        <input readonly name="jml_siswa_bulan_ini" id="siswa_jml_bln_ini"
+                                            class="px-3 form-control-plaintext" />
+                                    </div>
+                                </div>
                             </div>
+
+                            <!-- BANYAK KELAS -->
+                            <div class="form-group border p-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <b>Banyaknya kelas</b>
+                                    </div>
+                                    <div class="card-body">
+                                        <input name="banyak_kelas" type="number" class="form-control"
+                                            id="siswa_banyak_kelas" required min="0" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ABSENSI MURID -->
+                            <!-- <div class="card-body collapse" id="body_absensi_siswa"> -->
+                            <!-- <form id="form_absensi_siswa" > -->
+                            <div class="card form-group" id="form_absensi_siswa">
+                                <div class="card-header">
+                                    <h5>Absen Bulan Ini</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Sakit</label>
+                                            <input min="0" type="number" class="form-control" name="siswa_sakit">
+                                        </div>
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Izin</label>
+                                            <input min="0" type="number" class="form-control" name="siswa_izin">
+                                        </div>
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Alpha</label>
+                                            <input min="0" type="number" class="form-control" name="siswa_alpha">
+                                        </div>
+                                        <div class="col form-group" style="min-width: fit-content;">
+                                            <label>Jumlah Ketidak Hadiran</label> <br>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- </div> -->
+
                             <div class="form-group p-3 text-right">
                                 <button type="submit" class="btn btn-success">Simpan</button>
                             </div>
@@ -1418,46 +1220,7 @@
                         </form>
                     </div>
 
-                    <!-- ABSENSI MURID -->
-                    <div class="card-body collapse" id="body_absensi_siswa">
-                        <form id="form_absensi_siswa">
-                            <div class="card form-group">
-                                <div class="card-body">
-                                    <p>Jumlah hari sekolah efektif bulan ini</p>
-                                    <input type="number" class="form-control" name="jml_hari_efektif" required>
-                                </div>
-                            </div>
-                            <div class="card form-group">
-                                <div class="card-header">
-                                    <h5>Absen Bulan Ini</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col form-group" style="min-width: fit-content;">
-                                            <label>Sakit</label>
-                                            <input min="0" type="number" class="form-control" name="siswa_sakit">
-                                        </div>
-                                        <div class="col form-group" style="min-width: fit-content;">
-                                            <label>Izin</label>
-                                            <input min="0" type="number" class="form-control" name="siswa_izin">
-                                        </div>
-                                        <div class="col form-group" style="min-width: fit-content;">
-                                            <label>Alpha</label>
-                                            <input min="0" type="number" class="form-control" name="siswa_alpha">
-                                        </div>
-                                        <div class="col form-group" style="min-width: fit-content;">
-                                            <label>Jumlah Ke-tidak Hadiran</label>
-                                            <span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-success">Simpan</button>
-                            </div>
-                        </form>
-                    </div>
 
                     <!-- MOBILIER -->
                     <div class="card-body collapse" id="body_mobilier">
@@ -2779,6 +2542,26 @@
                 switch ($('#select_keadaan').val()) {
                     case 'keadaan siswa':
                         collap(('#body_keadaan_siswa'))
+
+                        let kelasAktif = $("select[name='siswa_select_kelas']").val()
+                        FilterDb('keadaan_siswa', kelasAktif, [], $("select[name='siswa_select_kelas']")[0])
+                        $("#form_siswa span:eq(0)").text($("#form_siswa input:eq(0)").val() * 1 + $("#form_siswa input:eq(2)").val() * 1 - $("#form_siswa input:eq(4)").val() * 1)
+                        $("#form_siswa span:eq(1)").text($("#form_siswa input:eq(1)").val() * 1 + $("#form_siswa input:eq(3)").val() * 1 - $("#form_siswa input:eq(5)").val() * 1)
+                       
+                        hitungAbsenSiswa()
+
+                        // try {
+                        //     let absenSiswa = JSON.parse(localStorage.data_keadaan)['keadaan_siswa'];
+                        //     $('#form_absensi_siswa input').eq(0).val(absenSiswa.jml_hari_efektif)
+                        //     $('#form_absensi_siswa input').eq(1).val(absenSiswa.siswa_sakit)
+                        //     $('#form_absensi_siswa input').eq(2).val(absenSiswa.siswa_izin)
+                        //     $('#form_absensi_siswa input').eq(3).val(absenSiswa.siswa_alpha)
+                        //     $('#form_absensi_siswa span').text(absenSiswa.siswa_alpha * 1 + absenSiswa.siswa_sakit * 1 + absenSiswa.siswa_izin * 1)
+                        // }
+                        // catch (err) {
+                        //     console.log('belum ada data_keadaan')
+                        // }
+
                         break;
                     case 'keadaan guru':
                         collap($('#body_keadaan_guru'))
@@ -2855,22 +2638,6 @@
                             }
                             catch (err) {
                                 console.log(err)
-                            }
-                        })
-                        break;
-                    case 'absensi siswa':
-                        collap($('#body_absensi_siswa'))
-                        $('#body_absensi_siswa').on('show.bs.collapse', e => {
-                            try {
-                                let absenSiswa = JSON.parse(localStorage.data_keadaan)['absen_siswa'];
-                                $('#body_absensi_siswa input').eq(0).val(absenSiswa.jml_hari_efektif)
-                                $('#body_absensi_siswa input').eq(1).val(absenSiswa.siswa_sakit)
-                                $('#body_absensi_siswa input').eq(2).val(absenSiswa.siswa_izin)
-                                $('#body_absensi_siswa input').eq(3).val(absenSiswa.siswa_alpha)
-                                $('#body_absensi_siswa span').text(absenSiswa.siswa_alpha * 1 + absenSiswa.siswa_sakit * 1 + absenSiswa.siswa_izin * 1)
-                            }
-                            catch (err) {
-                                console.log('belum ada data_keadaan')
                             }
                         })
                         break;
@@ -2977,7 +2744,7 @@
 
             $('#print_out').on('shown.bs.modal', function (e) {
 
-                //kosongkan tabel
+                //kosongkan tabel------0---------1---------2---------3---------4---------5-----------6-----------7----------8-------------9----------10----------11----------12----------13---------14------------15---------16----------17----------18----------19----------20-----------21-->
                 let arrKosongkan = [[25, 39], [41, 55], [57, 71], [73, 87], [89, 96], [98, 105], [108, 122], [124, 138], [140, 154], [156, 170], [172, 179], [182, 196], [198, 212], [214, 228], [230, 244], [246, 260], [262, 276], [278, 285], [287, 294], [296, 303], [305, 312], [314, 321]]
                 arrKosongkan.forEach((val, idx, arr) => {
                     for (let i = val[0]; i < val[1]; i++) {
@@ -3061,44 +2828,52 @@
                     isiTabel(rangeAgama, arrAgama)
                 }
 
-               
+
                 {
                     // jumlah laki perempuan
                     let arrAll = [arrKosongkan[0], arrKosongkan[1], arrKosongkan[2], arrKosongkan[3], arrKosongkan[6], arrKosongkan[7], arrKosongkan[8], arrKosongkan[9], arrKosongkan[11], arrKosongkan[12], arrKosongkan[13], arrKosongkan[14], arrKosongkan[15], arrKosongkan[16]]
                     let arrL = []
                     let arrP = []
-                    arrAll.forEach((val, idx, arr)=>{
-                        for(let l = val[0]; l <= val[1] - 3; l+=2){
+                    arrAll.forEach((val, idx, arr) => {
+                        for (let l = val[0]; l <= val[1] - 3; l += 2) {
                             arrL.push(l)
                         }
 
-                        for(let p = val[0] + 1; p <= val[1] - 3; p+=2){
+                        for (let p = val[0] + 1; p <= val[1] - 3; p += 2) {
                             arrP.push(p)
                         }
                     })
 
                     // console.log(arrL)
                     // console.log(arrP)
-                    
+
                     let counterL = chunk(arrL, 6)
                     let counterP = chunk(arrP, 6)
-                    
-                    counterL.forEach((val, idx, arr)=>{
+                    let laki = 0, perempuan = 0
+                    counterL.forEach((val, idx, arr) => {
                         let jumlahL = 0
-                        for(let i = 0; i < 6; i++){
-                            jumlahL += $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[i]})`).text() * 1 
+                        for (let i = 0; i < 6; i++) {
+                            jumlahL += $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[i]})`).text() * 1
                         }
                         $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[5] + 2})`).text(jumlahL)
-                        // console.log(jumlahL)
                     })
 
-                    counterP.forEach((val, idx, arr)=>{
+                    counterP.forEach((val, idx, arr) => {
                         let jumlahP = 0
-                        for(let i = 0; i < 6; i++){
-                            jumlahP += $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[i]})`).text() * 1 
+                        for (let i = 0; i < 6; i++) {
+                            jumlahP += $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[i]})`).text() * 1
                         }
                         $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[5] + 2})`).text(jumlahP)
                         // console.log(jumlahP)
+                    })
+
+                    // jumlah total laki perempuan
+                    let jml = [arrKosongkan[0], arrKosongkan[1], arrKosongkan[2], arrKosongkan[3], arrKosongkan[6], arrKosongkan[7], arrKosongkan[8], arrKosongkan[9], arrKosongkan[11], arrKosongkan[12], arrKosongkan[13], arrKosongkan[14], arrKosongkan[15], arrKosongkan[16]]
+
+                    jml.forEach((val, idx, arr) => {
+                        let isiL = $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[1] - 2})`).text() * 1
+                        let isiP = $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[1] - 1})`).text() * 1
+                        $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[1]})`).text(isiL + isiP)
                     })
                 }
 
@@ -3138,9 +2913,9 @@
 
                         arr4.push(a + b + c + d + e + f + g + h)
                     }
-                    
+
                     // 172 - 178
-                    for(let i = 172; i <= 178; i++){
+                    for (let i = 172; i <= 178; i++) {
                         $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text(arr4[i - 172])
                     }
                 }
@@ -3168,14 +2943,14 @@
 
                         arr6.push(a + b + c + d + e + f + g + h)
                     }
-                    
+
                     // 278 - 284
-                    for(let i = 278; i <= 284; i++){
+                    for (let i = 278; i <= 284; i++) {
                         $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text(arr6[i - 278])
                     }
                 }
 
-                
+
 
                 function isiTabel(rng, namaObj, jumlah = false) {
                     rng.forEach((val, idx, arr) => {
@@ -3388,15 +3163,17 @@
 
             })
 
-
             function JmlSiswaBlnLalu() {
                 return ($("#form_siswa input:eq(0)").val() * 1 + $("#form_siswa input:eq(1)").val() * 1) + ($("#form_siswa input:eq(2)").val() * 1 + $("#form_siswa input:eq(3)").val() * 1) - ($("#form_siswa input:eq(4)").val() * 1 + $("#form_siswa input:eq(5)").val() * 1)
             }
 
+            // JIKA SELECT KELAS DIGANTI
             $("select[name='siswa_select_kelas']").on('change', e => {
                 FilterDb('keadaan_siswa', e.target.value, [], e.target)
                 $("#form_siswa span:eq(0)").text($("#form_siswa input:eq(0)").val() * 1 + $("#form_siswa input:eq(2)").val() * 1 - $("#form_siswa input:eq(4)").val() * 1)
                 $("#form_siswa span:eq(1)").text($("#form_siswa input:eq(1)").val() * 1 + $("#form_siswa input:eq(3)").val() * 1 - $("#form_siswa input:eq(5)").val() * 1)
+
+                hitungAbsenSiswa()
             })
 
             function FilterDb(keyDb, idDb, arrName, ev) { //key db, element 
@@ -3521,36 +3298,34 @@
                 })
             })
 
-            $('#form_absensi_siswa').submit((e) => {
-                e.preventDefault()
-                let isi = {}
-                let dataform = new FormData(e.target)
-                let jsn = Object.fromEntries(dataform.entries());
-                isi["absen_siswa"] = jsn
+            // $('#form_absensi_siswa').submit((e) => {
+            //     e.preventDefault()
+            //     let isi = {}
+            //     let dataform = new FormData(e.target)
+            //     let jsn = Object.fromEntries(dataform.entries());
+            //     isi["absen_siswa"] = jsn
 
-                UpdateDb(isi, "absen_siswa").then(res => {
-                    if (res != 'new') {
-                        res["absen_siswa"] = jsn
-                        UpdateDb2(res)
-                    }
-                })
-            })
+            //     UpdateDb(isi, "absen_siswa").then(res => {
+            //         if (res != 'new') {
+            //             res["absen_siswa"] = jsn
+            //             UpdateDb2(res)
+            //         }
+            //     })
+            // })
 
-            let iSiswaSakit = 0, iSiswaIzin = 0, iSiswaAlpa = 0
+            function hitungAbsenSiswa() {
+                let hasil = 0
+                        $('#form_absensi_siswa input').toArray().forEach((val, idx, arr) => {
+                            hasil += val.value * 1
+                        })
+
+                        $('#form_absensi_siswa span').text(hasil)
+            }
+
             $('#form_absensi_siswa input[name=siswa_sakit], #form_absensi_siswa input[name=siswa_izin], #form_absensi_siswa input[name=siswa_alpha]').change(e => {
-                // console.log($(e.target).prop('name'))
-                if ($(e.target).prop('name') == 'siswa_sakit') {
-                    iSiswaSakit = $(e.target).val() * 1
-                }
-                if ($(e.target).prop('name') == 'siswa_izin') {
-                    iSiswaIzin = $(e.target).val() * 1
-                }
-                if ($(e.target).prop('name') == 'siswa_alpha') {
-                    iSiswaAlpa = $(e.target).val() * 1
-                }
-
-                $('#form_absensi_siswa span').text(iSiswaAlpa + iSiswaIzin + iSiswaSakit)
-            })
+                    let iSiswaSakit = 0, iSiswaIzin = 0, iSiswaAlpa = 0       
+                    hitungAbsenSiswa()
+                })
 
             $('#form_mobilier').submit((e) => {
                 e.preventDefault()
@@ -3687,7 +3462,7 @@
                 try {
                     $('#verifikasi').attr('disabled')
                     let dbKeadaan = JSON.parse(localStorage.data_keadaan)
-                    let absenSiswa = dbKeadaan.absen_siswa
+                    // let absenSiswa = dbKeadaan.absen_siswa
                     let dataGuru = dbKeadaan.data_guru
                     let jumlahGuru = dbKeadaan.jumlah_guru
                     let keadaanGedung = dbKeadaan.keadaan_gedung
@@ -3730,6 +3505,7 @@
                     $('#rekap_keadaan_gedung td:nth-child(3)').eq(0).text(keadaanGedung.bilik_dibutuhkan)
                     $('#rekap_keadaan_gedung td:nth-child(3)').eq(1).text(keadaanGedung.bilik_sudah_ada)
 
+                    // FIXME masih menghitung absen siswa dan rekap absen murid perlu di perbaiki, ambil dari keadaan siswa
                     errCode = 'absen siswa'
                     let pengali = 100 / (absenSiswa.jml_hari_efektif * jmlSiswa)
 

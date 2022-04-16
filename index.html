@@ -3113,7 +3113,24 @@
                         }
                     })
                 }
+///////////////////////////// END  PRINT TABEL DATA SISWA ///////////////////////////////
 
+//PRINT TABEL KEADAAN GEDUNG
+let dataGedung = dataKeadaan.keadaan_gedung
+//TODO isi tabel keadaan gedung
+/*
+"kualitas_bangunan": "permanen",
+        "dibangun_oleh": "PEMDA",
+        "tahun_dibangun": "1945",
+        "bilik_dibutuhkan": "",
+        "bilik_sudah_ada": "12",
+        "bilik_kekurangan": "",
+        "bilik_permanen": "",
+        "bilik_semi_permanen": "",
+        "bilik_darurat": "",
+        "bilik_pinjaman": ""
+*/
+/////////////////// END PRINT TABEL KEADAAN GEDUNG //////////////////////
                 AmbilWb($('#tabel_print_keadaan_siswa'), $('#tabel_print'))
                     .then(doc => {
                         $('#cetak').click((evt) => {
@@ -3162,7 +3179,7 @@
                 }
                 return result;
             }
-///////////////////////////// END  PRINT TABEL DATA SISWA ///////////////////////////////
+
             $('#login').on('submit', (e) => {
                 e.preventDefault();
                 $('#loading').modal('show')

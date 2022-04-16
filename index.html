@@ -748,14 +748,14 @@
 
                     <!-- NO DOKUMEN -->
                     <div class="form-group">
-                        <label for="bulan_laporan">Nomor Dokumen</label><br>
-                        <input class="form-control" type="text" id="nomor_bulan_laporan">
+                        <label for="nomor_bulan_laporan">Nomor Dokumen</label><br>
+                        <input class="form-control" type="text" id="nomor_bulan_laporan" name="nomor_bulan_laporan">
                     </div>
 
                     <!-- KURIKULUM -->
                     <div class="form-group">
-                        <label for="bulan_laporan">Kurikulum yang digunakan</label><br>
-                        <select class="form-control" id="kurikulum">
+                        <label for="kurikulum">Kurikulum yang digunakan</label><br>
+                        <select class="form-control" id="kurikulum" name="kurikulum">
                             <option value="kurikulum 2013">Kurikulum 2013</option>
                             <option value="kurikulum darurat">Kurikulum Darurat</option>
                             <option value="kurikulum merdeka">Kurikulum Merdeka</option>
@@ -764,8 +764,8 @@
 
                     <!-- HARI EFEKTIF -->
                     <div class="form-group">
-                        <label for="bulan_laporan">Jumlah hari sekolah efektif bulan ini</label><br>
-                        <input type="number" class="form-control" name="jml_hari_efektif" required>
+                        <label for="jml_hari_efektif">Jumlah hari sekolah efektif bulan ini</label><br>
+                        <input type="number" class="form-control" name="jml_hari_efektif" id="jml_hari_efektif">
                     </div>
 
                 </div>
@@ -852,7 +852,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                   </div>
+                                </div>
                             </div>
 
                             <!-- KELUAR BULAN INI -->
@@ -875,7 +875,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                   </div>
+                                </div>
                             </div>
 
                             <!-- AKHIR BULAN INI -->
@@ -906,23 +906,26 @@
                                                     <label class="font-weight-bold">Laki-laki</label>
                                                     <p>Indonesia : <input name="bulan_ini_indonesia_laki" min="0"
                                                             type="number" class="form-control" />
-                                                    <p>WNI Keturunan Cina : <input name="bulan_ini_cina_laki" min="0"
-                                                            type="number" class="form-control" />
-                                                    <p>WNI Keturunan Arab : <input name="bulan_ini_arab_laki" min="0"
-                                                            type="number" class="form-control" />
-                                                    <p>WNI Keturunan Asing : <input name="bulan_ini_asing_laki" min="0"
-                                                            type="number" class="form-control" />
+                                                        <p>WNI Keturunan Cina : <input name="bulan_ini_cina_laki"
+                                                                min="0" type="number" class="form-control" />
+                                                            <p>WNI Keturunan Arab : <input name="bulan_ini_arab_laki"
+                                                                    min="0" type="number" class="form-control" />
+                                                                <p>WNI Keturunan Asing : <input
+                                                                        name="bulan_ini_asing_laki" min="0"
+                                                                        type="number" class="form-control" />
                                                 </div>
                                                 <div class="col" style="min-width: fit-content;">
                                                     <label class="font-weight-bold">Perempuan</label>
                                                     <p>Indonesia : <input name="bulan_ini_indonesia_perempuan" min="0"
                                                             type="number" class="form-control" />
-                                                    <p>WNI Keturunan Cina : <input name="bulan_ini_cina_perempuan"
-                                                            min="0" type="number" class="form-control" />
-                                                    <p>WNI Keturunan Arab : <input name="bulan_ini_arab_perempuan"
-                                                            min="0" type="number" class="form-control" />
-                                                    <p>WNI Keturunan Asing : <input name="bulan_ini_asing_perempuan"
-                                                            min="0" type="number" class="form-control" />
+                                                        <p>WNI Keturunan Cina : <input name="bulan_ini_cina_perempuan"
+                                                                min="0" type="number" class="form-control" />
+                                                            <p>WNI Keturunan Arab : <input
+                                                                    name="bulan_ini_arab_perempuan" min="0"
+                                                                    type="number" class="form-control" />
+                                                                <p>WNI Keturunan Asing : <input
+                                                                        name="bulan_ini_asing_perempuan" min="0"
+                                                                        type="number" class="form-control" />
                                                 </div>
                                             </div>
                                         </div>
@@ -2501,11 +2504,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
     <script src="https://saravanajd.github.io/YearPicker/yearpicker.js" crossorigin="anonymous"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.2/xlsx.full.min.js"></script> -->
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
@@ -2514,7 +2517,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         jQuery(document).ready(function ($) {
-            const { jsPDF } = window.jspdf;
+            const {
+                jsPDF
+            } = window.jspdf;
             // const {autotable} = window.jspdf-autotable;
 
             let npsn = document.getElementById("npsn")
@@ -2544,10 +2549,15 @@
                         collap(('#body_keadaan_siswa'))
 
                         let kelasAktif = $("select[name='siswa_select_kelas']").val()
-                        FilterDb('keadaan_siswa', kelasAktif, [], $("select[name='siswa_select_kelas']")[0])
-                        $("#form_siswa span:eq(0)").text($("#form_siswa input:eq(0)").val() * 1 + $("#form_siswa input:eq(2)").val() * 1 - $("#form_siswa input:eq(4)").val() * 1)
-                        $("#form_siswa span:eq(1)").text($("#form_siswa input:eq(1)").val() * 1 + $("#form_siswa input:eq(3)").val() * 1 - $("#form_siswa input:eq(5)").val() * 1)
-                       
+                        FilterDb('keadaan_siswa', kelasAktif, [], $(
+                            "select[name='siswa_select_kelas']")[0])
+                        $("#form_siswa span:eq(0)").text($("#form_siswa input:eq(0)").val() * 1 + $(
+                                "#form_siswa input:eq(2)").val() * 1 - $("#form_siswa input:eq(4)")
+                            .val() * 1)
+                        $("#form_siswa span:eq(1)").text($("#form_siswa input:eq(1)").val() * 1 + $(
+                                "#form_siswa input:eq(3)").val() * 1 - $("#form_siswa input:eq(5)")
+                            .val() * 1)
+
                         hitungAbsenSiswa()
 
                         // try {
@@ -2567,21 +2577,30 @@
                         collap($('#body_keadaan_guru'))
                         $('#body_keadaan_guru').on('show.bs.collapse', e => {
                             try {
-                                let jumlahGuru = JSON.parse(localStorage.data_keadaan)['jumlah_guru']
-                                let dataGuru = JSON.parse(localStorage.data_keadaan)['data_guru']
+                                let jumlahGuru = JSON.parse(localStorage.data_keadaan)[
+                                    'jumlah_guru']
+                                let dataGuru = JSON.parse(localStorage.data_keadaan)[
+                                    'data_guru']
                                 let dataArr = ['select_jabatan_guru', 'select_status_guru']
 
-                                let tampungArr = Object.keys(dataGuru).map((idGuru, idx, arr) => { //array dari storage data_guru ['guru1', 'guru2', ...]
+                                let tampungArr = Object.keys(dataGuru).map((idGuru, idx,
+                                arr) => { //array dari storage data_guru ['guru1', 'guru2', ...]
                                     return dataArr.map((item, ix, arry) => {
                                         return dataGuru[idGuru][item]
                                     })
                                 })
 
-                                let jabatan = ['kepala sekolah', 'guru kelas', 'guru agama islam', 'guru pjok', 'guru bahasa inggris', 'guru mulok', 'tenaga administrasi', 'tenaga perpustakaan', 'bujang sekolah', 'satpam']
+                                let jabatan = ['kepala sekolah', 'guru kelas',
+                                    'guru agama islam', 'guru pjok', 'guru bahasa inggris',
+                                    'guru mulok', 'tenaga administrasi',
+                                    'tenaga perpustakaan', 'bujang sekolah', 'satpam'
+                                ]
                                 let statusPegawai = ['pns', 'honor daerah', 'sosial']
 
-                                let arrJabatan = [], arrStatus = []
-                                const countJabatan = {}, countStatus = {};
+                                let arrJabatan = [],
+                                    arrStatus = []
+                                const countJabatan = {},
+                                    countStatus = {};
 
                                 tampungArr.map((nama, idx, arr) => {
                                     return arrJabatan.push(nama[0])
@@ -2592,31 +2611,39 @@
                                 })
 
                                 arrJabatan.forEach(element => {
-                                    countJabatan[element] = (countJabatan[element] || 0) + 1;
+                                    countJabatan[element] = (countJabatan[element] ||
+                                        0) + 1;
                                 });
                                 arrStatus.forEach(element => {
-                                    countStatus[element] = (countStatus[element] || 0) + 1;
+                                    countStatus[element] = (countStatus[element] || 0) +
+                                        1;
                                 });
 
                                 console.log(countJabatan)
                                 console.log(arrJabatan)
                                 // 1-12
                                 $('#form_guru span').eq(1).text(countJabatan['guru kelas'])
-                                $('#form_guru span').eq(2).text(countJabatan['guru agama islam'])
+                                $('#form_guru span').eq(2).text(countJabatan[
+                                    'guru agama islam'])
                                 // $('#form_guru span').eq(3).text(countJabatan['guru kelas'])
                                 $('#form_guru span').eq(4).text(countJabatan['guru pjok'])
-                                $('#form_guru span').eq(5).text(countJabatan['guru bahasa inggris'])
+                                $('#form_guru span').eq(5).text(countJabatan[
+                                    'guru bahasa inggris'])
                                 $('#form_guru span').eq(6).text(countJabatan['guru mulok'])
 
                                 $('#form_guru span').eq(7).text(countStatus['honor daerah'])
                                 $('#form_guru span').eq(8).text(countStatus['sosial'])
                                 $('#form_guru span').eq(9).text(countJabatan['bujang sekolah'])
-                                $('#form_guru span').eq(10).text(countJabatan['tenaga administrasi'])
-                                $('#form_guru span').eq(11).text(countJabatan['tenaga perpustakaan'])
+                                $('#form_guru span').eq(10).text(countJabatan[
+                                    'tenaga administrasi'])
+                                $('#form_guru span').eq(11).text(countJabatan[
+                                    'tenaga perpustakaan'])
                                 $('#form_guru span').eq(12).text(countJabatan['satpam'])
 
-                                $('#body_keadaan_guru input').eq(0).val(jumlahGuru.keluar_bulan_ini_guru)
-                                $('#body_keadaan_guru input').eq(1).val(jumlahGuru.masuk_bulan_ini_guru)
+                                $('#body_keadaan_guru input').eq(0).val(jumlahGuru
+                                    .keluar_bulan_ini_guru)
+                                $('#body_keadaan_guru input').eq(1).val(jumlahGuru
+                                    .masuk_bulan_ini_guru)
                             } catch (err) {
                                 console.error(err)
                             }
@@ -2627,16 +2654,17 @@
                         collap($('#body_keadaan_gedung'))
                         $('#body_keadaan_gedung').on('show.bs.collapse', e => {
                             try {
-                                let keadaanGedung = JSON.parse(localStorage.data_keadaan)['keadaan_gedung']
+                                let keadaanGedung = JSON.parse(localStorage.data_keadaan)[
+                                    'keadaan_gedung']
                                 Object.keys(keadaanGedung).forEach((item, idx) => {
-                                    $('#body_keadaan_gedung input').filter((idxx, itemm) => {
-                                        if ($(itemm).prop('name') == item) {
-                                            $(itemm).val(keadaanGedung[item])
-                                        }
-                                    })
+                                    $('#body_keadaan_gedung input').filter((idxx,
+                                        itemm) => {
+                                            if ($(itemm).prop('name') == item) {
+                                                $(itemm).val(keadaanGedung[item])
+                                            }
+                                        })
                                 })
-                            }
-                            catch (err) {
+                            } catch (err) {
                                 console.log(err)
                             }
                         })
@@ -2645,7 +2673,8 @@
                         collap($('#body_mobilier'))
                         try {
                             $('#body_mobilier').on('show.bs.collapse', e => {
-                                let mobiDb = JSON.parse(localStorage.data_keadaan)['keadaan_mobilier']
+                                let mobiDb = JSON.parse(localStorage.data_keadaan)[
+                                    'keadaan_mobilier']
                                 let mobiArr = Object.keys(mobiDb)
                                 mobiArr.forEach((item, idx) => {
                                     $('#body_mobilier input').each((idx, elem) => {
@@ -2680,7 +2709,8 @@
             }
 
             // let template = "https://disdikbud.pareparekota.go.id/wp-content/uploads/2022/03/template_polos.xlsx";
-            let url = "https://script.google.com/macros/s/AKfycbz26xJ5WLtkniWtiqKxDMqSCoD1FgThsQPi_D9TYePNwZP9FnQ/exec";
+            let url =
+                "https://script.google.com/macros/s/AKfycbz26xJ5WLtkniWtiqKxDMqSCoD1FgThsQPi_D9TYePNwZP9FnQ/exec";
 
             localStorage.clear()
 
@@ -2702,7 +2732,8 @@
                     orientation: "l",
                     unit: 'px',
                     hotfixes: ["px_scaling"],
-                    format: [elemSiswa[0].scrollWidth * 3.3, (elemSiswa[0].scrollWidth * 0.6515151515151515) * 3.3],
+                    format: [elemSiswa[0].scrollWidth * 3.3, (elemSiswa[0].scrollWidth *
+                        0.6515151515151515) * 3.3],
                     putOnlyUsedFonts: true,
                     autoPaging: true
                 });
@@ -2719,7 +2750,8 @@
                     orientation: "l",
                     unit: 'px',
                     hotfixes: ["px_scaling"],
-                    format: [elemSiswa[0].scrollWidth * 3, (elemSiswa[0].scrollWidth * 0.6515151515151515) * 3],
+                    format: [elemSiswa[0].scrollWidth * 3, (elemSiswa[0].scrollWidth *
+                        0.6515151515151515) * 3],
                     autoPaging: true
                 })
 
@@ -2745,14 +2777,37 @@
             $('#print_out').on('shown.bs.modal', function (e) {
 
                 //kosongkan tabel------0---------1---------2---------3---------4---------5-----------6-----------7----------8-------------9----------10----------11----------12----------13---------14------------15---------16----------17----------18----------19----------20-----------21-->
-                let arrKosongkan = [[25, 39], [41, 55], [57, 71], [73, 87], [89, 96], [98, 105], [108, 122], [124, 138], [140, 154], [156, 170], [172, 179], [182, 196], [198, 212], [214, 228], [230, 244], [246, 260], [262, 276], [278, 285], [287, 294], [296, 303], [305, 312], [314, 321]]
+                let arrKosongkan = [
+                    [25, 39],
+                    [41, 55],
+                    [57, 71],
+                    [73, 87],
+                    [89, 96],
+                    [98, 105],
+                    [108, 122],
+                    [124, 138],
+                    [140, 154],
+                    [156, 170],
+                    [172, 179],
+                    [182, 196],
+                    [198, 212],
+                    [214, 228],
+                    [230, 244],
+                    [246, 260],
+                    [262, 276],
+                    [278, 285],
+                    [287, 294],
+                    [296, 303],
+                    [305, 312],
+                    [314, 321]
+                ]
                 arrKosongkan.forEach((val, idx, arr) => {
                     for (let i = val[0]; i < val[1]; i++) {
                         $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text("")
                         // console.log($(`#tabel_print_keadaan_siswa .pake-border:eq(${val[i]})`))
                     }
                 })
-
+//PRINT TABEL DATA SISWA
                 let db = JSON.parse(localStorage.db)
                 let dataKeadaan = JSON.parse(localStorage.data_keadaan)
                 let dataSiswa = dataKeadaan.keadaan_siswa
@@ -2762,7 +2817,9 @@
                 // let lembar1 = $('#tabel_print_keadaan_siswa table')
                 // let lembar2 = $('#tabel_print table')
 
-                let infoAwalArr = [db.data_sekolah[2], db.data_sekolah[5], db.data_sekolah[4], db.data_sekolah[3], 'Parepare', periode]
+                let infoAwalArr = [db.data_sekolah[2], db.data_sekolah[5], db.data_sekolah[4], db
+                    .data_sekolah[3], 'Parepare', periode
+                ]
 
                 for (let n = 0; n < infoAwalArr.length; n++) {
                     $('#tabel_print_keadaan_siswa table td:nth-child(3)').eq(n).text(infoAwalArr[n])
@@ -2770,7 +2827,11 @@
 
                 // akhir bulan lalu, masuk bulan ini, keluar bulan ini
                 {
-                    let arrNameBulanSiswa = [['bulan_lalu_laki', 'bulan_lalu_perempuan'], ['masuk_bulan_ini_laki', 'masuk_bulan_ini_perempuan'], ['keluar_bulan_ini_laki', 'keluar_bulan_ini_perempuan']]
+                    let arrNameBulanSiswa = [
+                        ['bulan_lalu_laki', 'bulan_lalu_perempuan'],
+                        ['masuk_bulan_ini_laki', 'masuk_bulan_ini_perempuan'],
+                        ['keluar_bulan_ini_laki', 'keluar_bulan_ini_perempuan']
+                    ]
                     let kl = [arrKosongkan[0], arrKosongkan[1], arrKosongkan[2]]
 
                     isiTabel(kl, arrNameBulanSiswa)
@@ -2781,9 +2842,12 @@
                     let arr2 = grupArray(kl)
                     //73-84
                     for (let i = 73; i <= 84; i++) {
-                        let a = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr2[i - 73][0]})`).text() * 1
-                        let b = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr2[i - 73][1]})`).text() * 1
-                        let c = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr2[i - 73][2]})`).text() * 1
+                        let a = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr2[i - 73][0]})`)
+                            .text() * 1
+                        let b = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr2[i - 73][1]})`)
+                            .text() * 1
+                        let c = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr2[i - 73][2]})`)
+                            .text() * 1
 
                         $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text(a + b - c)
                     }
@@ -2799,7 +2863,8 @@
                     })
 
                     // mulai mengelompokan array
-                    let arr1 = [], counter = 0
+                    let arr1 = [],
+                        counter = 0
                     arrAll1.forEach((val, idx, arr) => {
                         if (arr1.length < 14) {
                             arr1.push([val])
@@ -2818,20 +2883,39 @@
 
                 {
                     // TODO input data ke tabel print
-                    let arrWarganegara = [['bulan_ini_indonesia_laki', 'bulan_ini_indonesia_perempuan'], ['bulan_ini_cina_laki', 'bulan_ini_cina_perempuan'], ['bulan_ini_arab_laki', 'bulan_ini_arab_perempuan'], ['bulan_ini_asing_laki', 'bulan_ini_asing_perempuan']]
-                    let range = [arrKosongkan[6], arrKosongkan[7], arrKosongkan[8], arrKosongkan[9]] //[[108, 119], [124, 135], [140, 151], [156, 167]]
+                    let arrWarganegara = [
+                        ['bulan_ini_indonesia_laki', 'bulan_ini_indonesia_perempuan'],
+                        ['bulan_ini_cina_laki', 'bulan_ini_cina_perempuan'],
+                        ['bulan_ini_arab_laki', 'bulan_ini_arab_perempuan'],
+                        ['bulan_ini_asing_laki', 'bulan_ini_asing_perempuan']
+                    ]
+                    let range = [arrKosongkan[6], arrKosongkan[7], arrKosongkan[8], arrKosongkan[
+                        9]] //[[108, 119], [124, 135], [140, 151], [156, 167]]
 
                     isiTabel(range, arrWarganegara)
 
-                    let arrAgama = [['bulan_ini_islam_laki', 'bulan_ini_islam_perempuan'], ['bulan_ini_katolik_laki', 'bulan_ini_katolik_perempuan'], ['bulan_ini_konghucu_laki', 'bulan_ini_konghucu_perempuan'], ['bulan_ini_kristen_laki', 'bulan_ini_kristen_perempuan'], ['bulan_ini_budha_laki', 'bulan_ini_budha_perempuan'], ['bulan_ini_hindu_laki', 'bulan_ini_hindu_perempuan']]
-                    let rangeAgama = [arrKosongkan[11], arrKosongkan[12], arrKosongkan[13], arrKosongkan[14], arrKosongkan[15], arrKosongkan[16]]
+                    let arrAgama = [
+                        ['bulan_ini_islam_laki', 'bulan_ini_islam_perempuan'],
+                        ['bulan_ini_katolik_laki', 'bulan_ini_katolik_perempuan'],
+                        ['bulan_ini_konghucu_laki', 'bulan_ini_konghucu_perempuan'],
+                        ['bulan_ini_kristen_laki', 'bulan_ini_kristen_perempuan'],
+                        ['bulan_ini_budha_laki', 'bulan_ini_budha_perempuan'],
+                        ['bulan_ini_hindu_laki', 'bulan_ini_hindu_perempuan']
+                    ]
+                    let rangeAgama = [arrKosongkan[11], arrKosongkan[12], arrKosongkan[13],
+                        arrKosongkan[14], arrKosongkan[15], arrKosongkan[16]
+                    ]
                     isiTabel(rangeAgama, arrAgama)
                 }
 
 
                 {
                     // jumlah laki perempuan
-                    let arrAll = [arrKosongkan[0], arrKosongkan[1], arrKosongkan[2], arrKosongkan[3], arrKosongkan[6], arrKosongkan[7], arrKosongkan[8], arrKosongkan[9], arrKosongkan[11], arrKosongkan[12], arrKosongkan[13], arrKosongkan[14], arrKosongkan[15], arrKosongkan[16]]
+                    let arrAll = [arrKosongkan[0], arrKosongkan[1], arrKosongkan[2], arrKosongkan[3],
+                        arrKosongkan[6], arrKosongkan[7], arrKosongkan[8], arrKosongkan[9],
+                        arrKosongkan[11], arrKosongkan[12], arrKosongkan[13], arrKosongkan[14],
+                        arrKosongkan[15], arrKosongkan[16]
+                    ]
                     let arrL = []
                     let arrP = []
                     arrAll.forEach((val, idx, arr) => {
@@ -2849,31 +2933,47 @@
 
                     let counterL = chunk(arrL, 6)
                     let counterP = chunk(arrP, 6)
-                    let laki = 0, perempuan = 0
+                    let laki = 0,
+                        perempuan = 0
                     counterL.forEach((val, idx, arr) => {
                         let jumlahL = 0
                         for (let i = 0; i < 6; i++) {
-                            jumlahL += $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[i]})`).text() * 1
+                            jumlahL += $(
+                                    `#tabel_print_keadaan_siswa .pake-border:eq(${val[i]})`)
+                                .text() * 1
                         }
-                        $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[5] + 2})`).text(jumlahL)
+                        $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[5] + 2})`).text(
+                            jumlahL)
                     })
 
                     counterP.forEach((val, idx, arr) => {
                         let jumlahP = 0
                         for (let i = 0; i < 6; i++) {
-                            jumlahP += $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[i]})`).text() * 1
+                            jumlahP += $(
+                                    `#tabel_print_keadaan_siswa .pake-border:eq(${val[i]})`)
+                                .text() * 1
                         }
-                        $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[5] + 2})`).text(jumlahP)
+                        $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[5] + 2})`).text(
+                            jumlahP)
                         // console.log(jumlahP)
                     })
 
                     // jumlah total laki perempuan
-                    let jml = [arrKosongkan[0], arrKosongkan[1], arrKosongkan[2], arrKosongkan[3], arrKosongkan[6], arrKosongkan[7], arrKosongkan[8], arrKosongkan[9], arrKosongkan[11], arrKosongkan[12], arrKosongkan[13], arrKosongkan[14], arrKosongkan[15], arrKosongkan[16]]
+                    let jml = [arrKosongkan[0], arrKosongkan[1], arrKosongkan[2], arrKosongkan[3],
+                        arrKosongkan[6], arrKosongkan[7], arrKosongkan[8], arrKosongkan[9],
+                        arrKosongkan[11], arrKosongkan[12], arrKosongkan[13], arrKosongkan[14],
+                        arrKosongkan[15], arrKosongkan[16]
+                    ]
 
                     jml.forEach((val, idx, arr) => {
-                        let isiL = $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[1] - 2})`).text() * 1
-                        let isiP = $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[1] - 1})`).text() * 1
-                        $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[1]})`).text(isiL + isiP)
+                        let isiL = $(
+                                `#tabel_print_keadaan_siswa .pake-border:eq(${val[1] - 2})`)
+                            .text() * 1
+                        let isiP = $(
+                                `#tabel_print_keadaan_siswa .pake-border:eq(${val[1] - 1})`)
+                            .text() * 1
+                        $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[1]})`).text(isiL +
+                            isiP)
                     })
                 }
 
@@ -2881,9 +2981,14 @@
                     let q = 89;
 
                     for (let i = 89; i <= 95; i++) {
-                        $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text(($(`#tabel_print_keadaan_siswa .pake-border:eq(${q - 16})`).text() * 1) + ($(`#tabel_print_keadaan_siswa .pake-border:eq(${q - 15})`).text() * 1))
+                        $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text(($(
+                                `#tabel_print_keadaan_siswa .pake-border:eq(${q - 16})`)
+                        .text() * 1) + ($(
+                                `#tabel_print_keadaan_siswa .pake-border:eq(${q - 15})`)
+                        .text() * 1))
                         if (i < 95) {
-                            $(`#tabel_print_keadaan_siswa .pake-border:eq(${i + 9})`).text(dataSiswa[i - 88].banyak_kelas)
+                            $(`#tabel_print_keadaan_siswa .pake-border:eq(${i + 9})`).text(dataSiswa[i -
+                                88].banyak_kelas)
                         }
 
                         q = q + 2
@@ -2901,15 +3006,23 @@
                     let arr4 = []
                     // let e = 0
                     for (let i = 0; i < arr3.length; i += 2) {
-                        let a = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i][0]})`).text() * 1
-                        let b = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i][1]})`).text() * 1
-                        let c = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i][2]})`).text() * 1
-                        let d = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i][3]})`).text() * 1
+                        let a = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i][0]})`).text() *
+                            1
+                        let b = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i][1]})`).text() *
+                            1
+                        let c = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i][2]})`).text() *
+                            1
+                        let d = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i][3]})`).text() *
+                            1
 
-                        let e = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i + 1][0]})`).text() * 1
-                        let f = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i + 1][1]})`).text() * 1
-                        let g = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i + 1][2]})`).text() * 1
-                        let h = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i + 1][3]})`).text() * 1
+                        let e = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i + 1][0]})`)
+                        .text() * 1
+                        let f = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i + 1][1]})`)
+                        .text() * 1
+                        let g = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i + 1][2]})`)
+                        .text() * 1
+                        let h = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i + 1][3]})`)
+                        .text() * 1
 
                         arr4.push(a + b + c + d + e + f + g + h)
                     }
@@ -2922,8 +3035,10 @@
 
                 {
                     // jumlahkan tiap kelas jumlah agama
-                    //  
-                    let ka = [arrKosongkan[11], arrKosongkan[12], arrKosongkan[13], arrKosongkan[14], arrKosongkan[15], arrKosongkan[16]]
+                    
+                    let ka = [arrKosongkan[11], arrKosongkan[12], arrKosongkan[13], arrKosongkan[14],
+                        arrKosongkan[15], arrKosongkan[16]
+                    ]
 
                     let arr5 = grupArray(ka)
                     console.log(arr5)
@@ -2931,15 +3046,23 @@
                     let arr6 = []
                     // let e = 0
                     for (let i = 0; i < arr5.length; i += 2) {
-                        let a = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i][0]})`).text() * 1
-                        let b = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i][1]})`).text() * 1
-                        let c = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i][2]})`).text() * 1
-                        let d = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i][3]})`).text() * 1
+                        let a = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i][0]})`).text() *
+                            1
+                        let b = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i][1]})`).text() *
+                            1
+                        let c = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i][2]})`).text() *
+                            1
+                        let d = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i][3]})`).text() *
+                            1
 
-                        let e = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i + 1][0]})`).text() * 1
-                        let f = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i + 1][1]})`).text() * 1
-                        let g = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i + 1][2]})`).text() * 1
-                        let h = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i + 1][3]})`).text() * 1
+                        let e = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i + 1][0]})`)
+                        .text() * 1
+                        let f = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i + 1][1]})`)
+                        .text() * 1
+                        let g = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i + 1][2]})`)
+                        .text() * 1
+                        let h = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i + 1][3]})`)
+                        .text() * 1
 
                         arr6.push(a + b + c + d + e + f + g + h)
                     }
@@ -2950,14 +3073,32 @@
                     }
                 }
 
+                const kls = [1,2,3,4,5,6]
+                let jmlSiswa = 0
+                kls.forEach((val, idx, arr)=>{
+                    jmlSiswa += dataSiswa[val].jml_siswa_bulan_ini * 1
+                })
 
+                let hariEfektif = $('#jml_hari_efektif').val()
+                let pengali = 100 / (hariEfektif * jmlSiswa)
+                kls.forEach((val,idx,arr)=>{
+                    // [287, 294]
+                    let sakit = (dataSiswa[val].siswa_sakit * pengali) * 1
+                    let izin = (dataSiswa[val].siswa_izin * pengali) * 1
+                    let alpha = (dataSiswa[val].siswa_alpha * pengali) * 1
+                    let totalAbstain = sakit + izin + alpha
+                    let totalHadir = 100 - totalAbstain
+
+                    $(`#tabel_print_keadaan_siswa .pake-border:eq(${287 + idx})`).text(totalHadir.toFixed(2))
+                })  
 
                 function isiTabel(rng, namaObj, jumlah = false) {
                     rng.forEach((val, idx, arr) => {
                         let kls = 1
                         let j = 0
                         for (let i = val[0]; i <= val[1] - 3; i++) {
-                            $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text(dataSiswa[kls][namaObj[idx][j]])
+                            $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text(
+                                dataSiswa[kls][namaObj[idx][j]])
 
                             if (jumlah) {
 
@@ -2978,17 +3119,32 @@
                         $('#cetak').click((evt) => {
                             $('#loading').modal('show')
 
-                            let kirimRekap = { tujuan: 'simpan', data_keadaan: dataKeadaan, npsn: db.data_sekolah[1], password: db.data_sekolah[7], bulan: periode, no_dokumen: noDokumen, kurikulum: $('#kurikulum').val() }
+                            let kirimRekap = {
+                                tujuan: 'simpan',
+                                data_keadaan: dataKeadaan,
+                                npsn: db.data_sekolah[1],
+                                password: db.data_sekolah[7],
+                                bulan: periode,
+                                no_dokumen: noDokumen,
+                                kurikulum: $('#kurikulum').val()
+                            }
                             KirimPost(url, kirimRekap).then(function (res) {
                                 console.log(res)
                                 $('#loading').modal('hide')
 
                                 if (res.status == 'tersimpan') {
                                     // TODO ganti isi storage db 
-                                    ModalInfo("Laporan bulanan Anda telah kami terima.<br>Terima kasih")
-                                    doc.save(`laporan bulanan_${db.data_sekolah[1]}_${periode}.pdf`)
+                                    ModalInfo(
+                                        "Laporan bulanan Anda telah kami terima.<br>Terima kasih"
+                                        )
+                                    doc.save(
+                                        `laporan bulanan_${db.data_sekolah[1]}_${periode}.pdf`
+                                        )
                                 } else {
-                                    ModalInfo('<span class="text-danger">Gagal tersimpan, hubungi Admin</span>', '<span class="text-danger">Terjadi kesalahan</span>')
+                                    ModalInfo(
+                                        '<span class="text-danger">Gagal tersimpan, hubungi Admin</span>',
+                                        '<span class="text-danger">Terjadi kesalahan</span>'
+                                        )
                                 }
                             }).catch((err) => {
                                 ModalInfo(err)
@@ -3006,11 +3162,15 @@
                 }
                 return result;
             }
-
+///////////////////////////// END  PRINT TABEL DATA SISWA ///////////////////////////////
             $('#login').on('submit', (e) => {
                 e.preventDefault();
                 $('#loading').modal('show')
-                let data = { npsn: npsn.value, password: pass.value, tujuan: 'login' };
+                let data = {
+                    npsn: npsn.value,
+                    password: pass.value,
+                    tujuan: 'login'
+                };
 
                 KirimPost(url, data).then((res) => {
                     $('#loading').modal('hide')
@@ -3043,18 +3203,21 @@
                 $('#jml_guru_bln_lalu').text(dbGuru.length)
 
                 dbGuru.filter((item, ind, arr) => {
-                    $('#edit_guru_collapse tbody').append(listGuru(item[1], item[2], item[15], ind + 1, item[0]))
+                    $('#edit_guru_collapse tbody').append(listGuru(item[1], item[2], item[15], ind + 1,
+                        item[0]))
                     //$('#rekap_guru_collapse tbody').append(listGuru(item[1], item[2], item[15], ind + 1, item[0]))
                 })
 
                 $('#form_guru input:eq(0)').change(e => {
-                    let total = dbGuru.length + $('#form_guru input:eq(1)').val() * 1 - $(e.target).val() * 1
+                    let total = dbGuru.length + $('#form_guru input:eq(1)').val() * 1 - $(e.target)
+                    .val() * 1
                     $('#total_guru_pegawai').text(total)
                     $('#form_guru input[name=total_guru_pegawai]').val(total)
                 })
 
                 $('#form_guru input:eq(1)').change(e => {
-                    let total = dbGuru.length + $(e.target).val() * 1 - $('#form_guru input:eq(0)').val() * 1
+                    let total = dbGuru.length + $(e.target).val() * 1 - $('#form_guru input:eq(0)')
+                    .val() * 1
                     $('#total_guru_pegawai').text(total)
                     $('#form_guru input[name=total_guru_pegawai]').val(total)
                 })
@@ -3064,7 +3227,8 @@
 
                 $('.list-guru').filter((ind, item, arr) => {
                     $(item).on('click', (e) => {
-                        let id = $(`.list-guru:eq(${ind})`).parents().eq(1).children().eq(1).text()
+                        let id = $(`.list-guru:eq(${ind})`).parents().eq(1).children().eq(1)
+                            .text()
                         if (id == dbGuru[ind][0]) {
                             $(`#tabel_keadaan_guru input:eq(0)`).val(dbGuru[ind][0])
                             $(`#tabel_keadaan_guru span:eq(0)`).text(dbGuru[ind][2])
@@ -3079,40 +3243,58 @@
                                 // $('#form_edit_guru input').eq(9).val(TglLahir(dataGuru[id]['tanggal_sk_pengangkatan_guru'])) //tgl sk pangkat terakhir
 
                                 let arrKeys = Object.keys(dataGuru[id])
-                                let objDataGuru = $('#form_edit_guru').serializeArray() //ambil name & value
+                                let objDataGuru = $('#form_edit_guru')
+                                .serializeArray() //ambil name & value
                                 let tampungArr = []
 
-                                $('#form_edit_guru input, #form_edit_guru select').each((idx, el) => {
+                                $('#form_edit_guru input, #form_edit_guru select').each((idx,
+                                    el) => {
                                     tampungArr.push($(el).prop('name'))
                                 })
 
-                                FilterDb('data_guru', id, tampungArr, $('#modal_keadaan_guru select[name="select_gender_guru"]')[0])
+                                FilterDb('data_guru', id, tampungArr, $(
+                                    '#modal_keadaan_guru select[name="select_gender_guru"]'
+                                    )[0])
                                 $(`#tabel_keadaan_guru span:eq(0)`).text(dbGuru[ind][2])
                                 $('#modal_keadaan_guru').on('show.bs.modal', function (ev) {
                                     if ($('#form_edit_guru span').eq(0).text()) {
-                                        $('#form_edit_guru select:eq(5) option').eq(1).addClass('d-none')
-                                        $('#form_edit_guru select:eq(5) option').eq(2).addClass('d-none')
-                                        $('#form_edit_guru select:eq(5) option').eq(0).removeClass('d-none')
+                                        $('#form_edit_guru select:eq(5) option').eq(1)
+                                            .addClass('d-none')
+                                        $('#form_edit_guru select:eq(5) option').eq(2)
+                                            .addClass('d-none')
+                                        $('#form_edit_guru select:eq(5) option').eq(0)
+                                            .removeClass('d-none')
                                         $('#form_edit_guru select:eq(5)').val('pns')
                                     } else {
-                                        $('#form_edit_guru select:eq(5) option').eq(1).removeClass('d-none')
-                                        $('#form_edit_guru select:eq(5) option').eq(2).removeClass('d-none')
+                                        $('#form_edit_guru select:eq(5) option').eq(1)
+                                            .removeClass('d-none')
+                                        $('#form_edit_guru select:eq(5) option').eq(2)
+                                            .removeClass('d-none')
                                         $('#form_edit_guru select:eq(5)').val('sosial')
-                                        $('#form_edit_guru select:eq(5) option').eq(0).addClass('d-none')
+                                        $('#form_edit_guru select:eq(5) option').eq(0)
+                                            .addClass('d-none')
                                     }
 
-                                    $('#form_edit_guru input[name="izin_guru"], #form_edit_guru input[name="sakit_guru"], #form_edit_guru input[name="alpha_guru"]').change($('#form_edit_guru input[name="izin_guru"], #form_edit_guru input[name="sakit_guru"], #form_edit_guru input[name="alpha_guru"]'), (evt) => {
-                                        let hasil = ([evt.data[0].value * 1, evt.data[1].value * 1, evt.data[2].value * 1]).reduce((total, num) => {
-                                            return total + num
+                                    $('#form_edit_guru input[name="izin_guru"], #form_edit_guru input[name="sakit_guru"], #form_edit_guru input[name="alpha_guru"]')
+                                        .change($(
+                                            '#form_edit_guru input[name="izin_guru"], #form_edit_guru input[name="sakit_guru"], #form_edit_guru input[name="alpha_guru"]'
+                                            ), (evt) => {
+                                            let hasil = ([evt.data[0].value * 1, evt
+                                                .data[1].value * 1, evt
+                                                .data[2].value * 1
+                                            ]).reduce((total, num) => {
+                                                return total + num
+                                            })
+
+                                            $('#form_edit_guru span').eq(1).text(
+                                                hasil)
                                         })
 
-                                        $('#form_edit_guru span').eq(1).text(hasil)
-                                    })
-
                                     let ht = 0
-                                    $('#form_edit_guru input[name="izin_guru"], #form_edit_guru input[name="sakit_guru"], #form_edit_guru input[name="alpha_guru"]').each((idx, el) => {
-                                        ht = ht + $(el).val() * 1
-                                    })
+                                    $('#form_edit_guru input[name="izin_guru"], #form_edit_guru input[name="sakit_guru"], #form_edit_guru input[name="alpha_guru"]')
+                                        .each((idx, el) => {
+                                            ht = ht + $(el).val() * 1
+                                        })
 
                                     $('#form_edit_guru span').eq(1).text(ht)
                                 })
@@ -3123,8 +3305,10 @@
                                 $('#form_edit_guru input').eq(0).val(dbGuru[ind][0]) //id
                                 $('#form_edit_guru input').eq(1).val(dbGuru[ind][1]) //nama
                                 $('#form_edit_guru input').eq(2).val(dbGuru[ind][7]) //t4 lahir
-                                $('#form_edit_guru input[type=date]').eq(0).val(TglLahir(dbGuru[ind][8])) //tgl lahir
-                                $('#form_edit_guru input[type=date]').eq(2).val(TglLahir(dbGuru[ind][4])) //tgl sk pangkat terakhir
+                                $('#form_edit_guru input[type=date]').eq(0).val(TglLahir(dbGuru[
+                                    ind][8])) //tgl lahir
+                                $('#form_edit_guru input[type=date]').eq(2).val(TglLahir(dbGuru[
+                                    ind][4])) //tgl sk pangkat terakhir
                             }
                         }
                     })
@@ -3156,22 +3340,32 @@
                     case 'keluar_bulan_ini_laki':
                     case 'keluar_bulan_ini_perempuan':
                         $('#siswa_jml_bln_ini').val(JmlSiswaBlnLalu())
-                        $("#form_siswa span:eq(0)").text($("#form_siswa input:eq(0)").val() * 1 + $("#form_siswa input:eq(2)").val() * 1 - $("#form_siswa input:eq(4)").val() * 1)
-                        $("#form_siswa span:eq(1)").text($("#form_siswa input:eq(1)").val() * 1 + $("#form_siswa input:eq(3)").val() * 1 - $("#form_siswa input:eq(5)").val() * 1)
+                        $("#form_siswa span:eq(0)").text($("#form_siswa input:eq(0)").val() * 1 + $(
+                                "#form_siswa input:eq(2)").val() * 1 - $("#form_siswa input:eq(4)")
+                            .val() * 1)
+                        $("#form_siswa span:eq(1)").text($("#form_siswa input:eq(1)").val() * 1 + $(
+                                "#form_siswa input:eq(3)").val() * 1 - $("#form_siswa input:eq(5)")
+                            .val() * 1)
                         break;
                 }
 
             })
 
             function JmlSiswaBlnLalu() {
-                return ($("#form_siswa input:eq(0)").val() * 1 + $("#form_siswa input:eq(1)").val() * 1) + ($("#form_siswa input:eq(2)").val() * 1 + $("#form_siswa input:eq(3)").val() * 1) - ($("#form_siswa input:eq(4)").val() * 1 + $("#form_siswa input:eq(5)").val() * 1)
+                return ($("#form_siswa input:eq(0)").val() * 1 + $("#form_siswa input:eq(1)").val() * 1) + ($(
+                    "#form_siswa input:eq(2)").val() * 1 + $("#form_siswa input:eq(3)").val() * 1) - ($(
+                    "#form_siswa input:eq(4)").val() * 1 + $("#form_siswa input:eq(5)").val() * 1)
             }
 
             // JIKA SELECT KELAS DIGANTI
             $("select[name='siswa_select_kelas']").on('change', e => {
                 FilterDb('keadaan_siswa', e.target.value, [], e.target)
-                $("#form_siswa span:eq(0)").text($("#form_siswa input:eq(0)").val() * 1 + $("#form_siswa input:eq(2)").val() * 1 - $("#form_siswa input:eq(4)").val() * 1)
-                $("#form_siswa span:eq(1)").text($("#form_siswa input:eq(1)").val() * 1 + $("#form_siswa input:eq(3)").val() * 1 - $("#form_siswa input:eq(5)").val() * 1)
+                $("#form_siswa span:eq(0)").text($("#form_siswa input:eq(0)").val() * 1 + $(
+                        "#form_siswa input:eq(2)").val() * 1 - $("#form_siswa input:eq(4)").val() *
+                    1)
+                $("#form_siswa span:eq(1)").text($("#form_siswa input:eq(1)").val() * 1 + $(
+                        "#form_siswa input:eq(3)").val() * 1 - $("#form_siswa input:eq(5)").val() *
+                    1)
 
                 hitungAbsenSiswa()
             })
@@ -3186,12 +3380,15 @@
 
                     $.each(Object.keys(pars), (idx, item) => {
                         if (item == idDb) {
-                            Object.keys(pars[item]).map((val, idx, arr) => { //[name1, name2, name3, ...]
+                            Object.keys(pars[item]).map((val, idx,
+                            arr) => { //[name1, name2, name3, ...]
                                 $(`input[name=${val}]`).val(pars[item][val])
                             })
 
                             for (let i = 0; i < arrName.length; i++) {
-                                $(`input[name=${arrName[i]}][type=date]`).val(TglLahir(pars[item][arrName[i]]))
+                                $(`input[name=${arrName[i]}][type=date]`).val(TglLahir(pars[item][
+                                    arrName[i]
+                                ]))
                                 $(`select[name=${arrName[i]}]`).val(pars[item][arrName[i]])
                             }
                             return false;
@@ -3203,7 +3400,8 @@
             $('#form_siswa').on('submit', (e) => {
                 e.preventDefault()
                 // apakah jumlah siswa == jumlah warganegara && jumlah agama
-                let sumWargaArr = [], sumAgamaArr = []
+                let sumWargaArr = [],
+                    sumAgamaArr = []
                 for (let i = 6; i <= 13; i++) {
                     sumWargaArr.push($('#form_siswa input').eq(i).val() * 1)
                 }
@@ -3219,13 +3417,18 @@
                     return total + num
                 })
 
-                let sumAll = ($('#form_siswa span').eq(0).text() * 1) + ($('#form_siswa span').eq(1).text() * 1)
+                let sumAll = ($('#form_siswa span').eq(0).text() * 1) + ($('#form_siswa span').eq(1)
+                    .text() * 1)
                 if (sumWarga != sumAll) {
-                    ModalInfo("Jumlah siswa tidak sama dengan jumlah siswa pada kolom <span style='color:red'>Kewarganegaraan</span>", "Peringatan")
+                    ModalInfo(
+                        "Jumlah siswa tidak sama dengan jumlah siswa pada kolom <span style='color:red'>Kewarganegaraan</span>",
+                        "Peringatan")
                     return false
                 }
                 if (sumAgama != sumAll) {
-                    ModalInfo("Jumlah siswa tidak sama dengan jumlah siswa pada kolom <span style='color:red'>Agama</span>", "Peringatan")
+                    ModalInfo(
+                        "Jumlah siswa tidak sama dengan jumlah siswa pada kolom <span style='color:red'>Agama</span>",
+                        "Peringatan")
                     return false
                 }
 
@@ -3277,7 +3480,9 @@
                 }).then(resp => {
                     $('#edit_guru_collapse td:nth-child(2)').each((idx, item) => {
                         if (item.innerText == jsn.id) {
-                            $('#edit_guru_collapse td:nth-child(5)').eq(idx).text((JSON.parse(localStorage.data_keadaan).data_guru[jsn.id]['select_jabatan_guru']).toUpperCase())
+                            $('#edit_guru_collapse td:nth-child(5)').eq(idx).text((JSON
+                                .parse(localStorage.data_keadaan).data_guru[jsn
+                                    .id]['select_jabatan_guru']).toUpperCase())
                         }
                     })
                 })
@@ -3315,15 +3520,18 @@
 
             function hitungAbsenSiswa() {
                 let hasil = 0
-                        $('#form_absensi_siswa input').toArray().forEach((val, idx, arr) => {
-                            hasil += val.value * 1
-                        })
+                $('#form_absensi_siswa input').toArray().forEach((val, idx, arr) => {
+                    hasil += val.value * 1
+                })
 
-                        $('#form_absensi_siswa span').text(hasil)
+                $('#form_absensi_siswa span').text(hasil)
             }
 
-            $('#form_absensi_siswa input[name=siswa_sakit], #form_absensi_siswa input[name=siswa_izin], #form_absensi_siswa input[name=siswa_alpha]').change(e => {
-                    let iSiswaSakit = 0, iSiswaIzin = 0, iSiswaAlpa = 0       
+            $('#form_absensi_siswa input[name=siswa_sakit], #form_absensi_siswa input[name=siswa_izin], #form_absensi_siswa input[name=siswa_alpha]')
+                .change(e => {
+                    let iSiswaSakit = 0,
+                        iSiswaIzin = 0,
+                        iSiswaAlpa = 0
                     hitungAbsenSiswa()
                 })
 
@@ -3350,12 +3558,15 @@
                 } else if (!$('#nomor_bulan_laporan').val()) {
                     $('#nomor_bulan_laporan').focus()
                     return false
-                }
-
-                try {
-                    $('#print_out').modal('show')
-                } catch (err) {
-                    console.log(err)
+                } else if (!$('#jml_hari_efektif').val()) {
+                    $('#jml_hari_efektif').focus()
+                    return false
+                } else {
+                    try {
+                        $('#print_out').modal('show')
+                    } catch (err) {
+                        console.log(err)
+                    }
                 }
             })
 
@@ -3474,11 +3685,20 @@
                     let jmlSiswa = 0
                     $('#rekap_keadaan_siswa td:nth-child(3)').each((idx, item) => {
                         item.innerText = keadaanSiswa[idx + 1].jml_siswa_bulan_ini
-                        jmlSiswa = jmlSiswa + keadaanSiswa[idx + 1].jml_siswa_bulan_ini
+                        jmlSiswa += keadaanSiswa[idx + 1].jml_siswa_bulan_ini
                     })
 
                     errCode = 'guru'
-                    let iGuruKelas = 0, iGuruAgama = 0, iGuruPjok = 0, iGuruMulok = 0, iAdm = 0, iPerpus = 0, iBujang = 0, iPns = 0, iHonda = 0, iSosial = 0
+                    let iGuruKelas = 0,
+                        iGuruAgama = 0,
+                        iGuruPjok = 0,
+                        iGuruMulok = 0,
+                        iAdm = 0,
+                        iPerpus = 0,
+                        iBujang = 0,
+                        iPns = 0,
+                        iHonda = 0,
+                        iSosial = 0
 
                     if (Object.keys(dataGuru).length != jumlahGuru.total_guru_pegawai) {
                         ModalInfo('Periksa dan simpan semua data guru terlebih dahulu!')
@@ -3488,7 +3708,18 @@
                     let arrGuru = Object.keys(dataGuru)
 
                     arrGuru.forEach((value, idx, arr) => {
-                        let arrdx = [['guru kelas', ++iGuruKelas], ['guru agama islam', ++iGuruAgama], ['guru pjok', ++iGuruPjok], ['guru mulok', ++iGuruMulok], ['tenaga administrasi', ++iAdm], ['tenaga perpustakaan', ++iPerpus], ['bujang sekolah', ++iBujang], ['pns', ++iPns], ['honor daerah', ++iHonda], ['sosial', ++iSosial]]
+                        let arrdx = [
+                            ['guru kelas', ++iGuruKelas],
+                            ['guru agama islam', ++iGuruAgama],
+                            ['guru pjok', ++iGuruPjok],
+                            ['guru mulok', ++iGuruMulok],
+                            ['tenaga administrasi', ++iAdm],
+                            ['tenaga perpustakaan', ++iPerpus],
+                            ['bujang sekolah', ++iBujang],
+                            ['pns', ++iPns],
+                            ['honor daerah', ++iHonda],
+                            ['sosial', ++iSosial]
+                        ]
 
                         arrdx.forEach((isi, ix, ar) => {
                             if (dataGuru[value]['select_jabatan_guru'] == isi[0]) {
@@ -3506,22 +3737,27 @@
                     $('#rekap_keadaan_gedung td:nth-child(3)').eq(1).text(keadaanGedung.bilik_sudah_ada)
 
                     // FIXME masih menghitung absen siswa dan rekap absen murid perlu di perbaiki, ambil dari keadaan siswa
-                    errCode = 'absen siswa'
-                    let pengali = 100 / (absenSiswa.jml_hari_efektif * jmlSiswa)
+                    // errCode = 'absen siswa'
+                    // let pengali = 100 / (absenSiswa.jml_hari_efektif * jmlSiswa)
 
-                    let alpha = (String(absenSiswa.siswa_alpha * pengali)).replace(/e.\d+/, "") * 1
-                    let izin = (String(absenSiswa.siswa_izin * pengali)).replace(/e.\d+/, "") * 1
-                    let sakit = (String(absenSiswa.siswa_sakit * pengali)).replace(/e.\d+/, "") * 1
-                    let totalAbstain = (String(alpha + izin + sakit)).replace(/e.\d+/, "") * 1
-                    let totalHadir = (String(100 - totalAbstain)).replace(/e.\d+/, "") * 1
+                    // let alpha = (String(absenSiswa.siswa_alpha * pengali)).replace(/e.\d+/, "") * 1
+                    // let izin = (String(absenSiswa.siswa_izin * pengali)).replace(/e.\d+/, "") * 1
+                    // let sakit = (String(absenSiswa.siswa_sakit * pengali)).replace(/e.\d+/, "") * 1
+                    // let totalAbstain = (String(alpha + izin + sakit)).replace(/e.\d+/, "") * 1
+                    // let totalHadir = (String(100 - totalAbstain)).replace(/e.\d+/, "") * 1
 
-                    $('#rekap_absensi_murid td:nth-child(3)').eq(0).text(`${sakit.toFixed(2)} %`)
-                    $('#rekap_absensi_murid td:nth-child(3)').eq(1).text(`${izin.toFixed(2)} %`)
-                    $('#rekap_absensi_murid td:nth-child(3)').eq(2).text(`${alpha.toFixed(2)} %`)
-                    $('#rekap_absensi_murid td:nth-child(3)').eq(3).text(`${totalAbstain.toFixed(2)} %`)
+                    // $('#rekap_absensi_murid td:nth-child(3)').eq(0).text(`${sakit.toFixed(2)} %`)
+                    // $('#rekap_absensi_murid td:nth-child(3)').eq(1).text(`${izin.toFixed(2)} %`)
+                    // $('#rekap_absensi_murid td:nth-child(3)').eq(2).text(`${alpha.toFixed(2)} %`)
+                    // $('#rekap_absensi_murid td:nth-child(3)').eq(3).text(`${totalAbstain.toFixed(2)} %`)
 
                     errCode = 'mobilier'
-                    let arrMobilier = ['lemari', 'rak_buku', 'meja_guru', 'kursi_guru', 'bangku_3', 'meja_3', 'bangku_2', 'meja_2', 'bangku_4', 'meja_4', 'papan_tulis', 'papan_tulis_lipat', 'papan_statistik', 'papan_absen_umum', 'alat_absen_kelas', 'alat_peraga', 'alat_olahraga', 'alat_pertukangan', 'alat_teknik', 'kursi_tamu', 'mobilier_uks', 'mobilier_perpustakaan']
+                    let arrMobilier = ['lemari', 'rak_buku', 'meja_guru', 'kursi_guru', 'bangku_3', 'meja_3',
+                        'bangku_2', 'meja_2', 'bangku_4', 'meja_4', 'papan_tulis', 'papan_tulis_lipat',
+                        'papan_statistik', 'papan_absen_umum', 'alat_absen_kelas', 'alat_peraga',
+                        'alat_olahraga', 'alat_pertukangan', 'alat_teknik', 'kursi_tamu', 'mobilier_uks',
+                        'mobilier_perpustakaan'
+                    ]
 
                     $('#rekap_mobilier td:nth-child(3)').each((idx, elem) => {
                         elem.innerText = keadaanMobilier[arrMobilier[idx]]
@@ -3587,7 +3823,6 @@
 
             return kirimPost.json();
         }
-
     </script>
 </body>
 

@@ -259,30 +259,30 @@
                                             <td>:</td>
                                             <td>
                                                 <select name="select_jabatan_guru" class="custom-select">
-                                                    <option value="kepala sekolah">Kepala Sekolah
+                                                    <option value="Kepala Sekolah">Kepala Sekolah
                                                     </option>
-                                                    <option value="guru kelas">Guru Kelas
+                                                    <option value="Guru Kelas">Guru Kelas
                                                     </option>
-                                                    <option value="guru agama islam">Guru Agama Islam
+                                                    <option value="Guru Agama Islam">Guru Agama Islam
                                                     </option>
-                                                    <option value="guru pjok">Guru PJOK
+                                                    <option value="Guru PJOK">Guru PJOK
                                                     </option>
-                                                    <option value="guru bahasa inggris">Guru Bahasa Inggris
+                                                    <option value="Guru Bahasa Inggris">Guru Bahasa Inggris
                                                     </option>
-                                                    <option value="guru mulok">Guru Muatan Lokal
+                                                    <option value="Guru Mulok">Guru Muatan Lokal
                                                     </option>
-                                                    <option value="tenaga administrasi">
+                                                    <option value="Tenaga Administrasi">
                                                         Tenaga
                                                         Administrasi
                                                     </option>
-                                                    <option value="tenaga perpustakaan">
+                                                    <option value="Tenaga Perpustakaan">
                                                         Tenaga
                                                         Perpustakaan
                                                     </option>
-                                                    <option value="bujang sekolah">Bujang
+                                                    <option value="Bujang Sekolah">Bujang
                                                         Sekolah
                                                     </option>
-                                                    <option value="satpam">Satpam
+                                                    <option value="Satpam">Satpam
                                                     </option>
                                                 </select>
                                             </td>
@@ -346,11 +346,11 @@
                                             <td>:</td>
                                             <td>
                                                 <select name="select_status_guru" class="custom-select">
-                                                    <option value="pns">PNS</option>
-                                                    <option value="honor daerah">Honor
+                                                    <option value="PNS">PNS</option>
+                                                    <option value="Honor Daerah">Honor
                                                         Daerah
                                                     </option>
-                                                    <option value="sosial">Sosial</option>
+                                                    <option value="Sosial">Sosial</option>
                                                 </select>
                                             </td>
                                         </tr>
@@ -506,9 +506,21 @@
                                             <td>:</td>
                                             <td>
                                                 <select name="status_sekolah" class="custom-select">
-                                                    <option value="induk">Induk</option>
-                                                    <option value="bukan induk">Bukan Induk
+                                                    <option value="Induk">Induk</option>
+                                                    <option value="Bukan Induk">Bukan Induk
                                                     </option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Keaktifan</td>
+                                            <td>:</td>
+                                            <td>
+                                                <select name="keaktifan" class="custom-select">
+                                                    <option value="Aktif" selected>Aktif</option>
+                                                    <option value="Mutasi">Mutasi</option>
+                                                    <option value="Keluar">Keluar</option>
+                                                    <option value="Wafat">Wafat</option>
                                                 </select>
                                             </td>
                                         </tr>
@@ -1149,9 +1161,9 @@
                                         <div class="col form-group" style="min-width: fit-content;">
                                             <label>Kualitas</label>
                                             <select class="form-control" name="kualitas_bangunan">
-                                                <option value="permanen">Permanen</option>
-                                                <option value="semi permanen">Semi Permanen</option>
-                                                <option value="darurat">Darurat</option>
+                                                <option value="Permanen">Permanen</option>
+                                                <option value="Semi Permanen">Semi Permanen</option>
+                                                <option value="Darurat">Darurat</option>
                                             </select>
                                         </div>
                                         <div class="col form-group" style="min-width: fit-content;">
@@ -1159,7 +1171,7 @@
                                             <input type="text" class="form-control" name="dibangun_oleh" required>
                                         </div>
                                         <div class="col form-group" style="min-width: fit-content;">
-                                            <label>Thn. dibangun</label>
+                                            <label>Tgl/no. akta pendirian</label>
                                             <input type="number" min="1900" max="2500" class="form-control"
                                                 name="tahun_dibangun" required>
                                         </div>
@@ -1679,7 +1691,7 @@
                                 <td></td>
                                 <td style="width: 127px;min-width: 127px;">1. &nbsp;Kualitas</td>
                                 <td class="text-center" style="width: 10px;">:</td>
-                                <td colspan="6"></td>
+                                <td colspan="6" class="nda-pake-border"></td>
                             </tr>
                             <tr>
                                 <td colspan="2">KELURAHAN</td>
@@ -1688,7 +1700,7 @@
                                 <td></td>
                                 <td>2. &nbsp;Dibangun oleh</td>
                                 <td class="text-center">:</td>
-                                <td colspan="6"></td>
+                                <td colspan="6" class="nda-pake-border"></td>
                             </tr>
                             <tr>
                                 <td colspan="2">KECAMATAN</td>
@@ -1697,7 +1709,7 @@
                                 <td></td>
                                 <td>3. &nbsp;Tgl./ No.</td>
                                 <td class="text-center">:</td>
-                                <td colspan="6"></td>
+                                <td colspan="6" class="nda-pake-border"></td>
                             </tr>
                             <tr>
                                 <td colspan="2">KOTA</td>
@@ -1715,7 +1727,7 @@
                                 <td></td>
                                 <td class="pl-4">a. Dibutuhkan</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td colspan="5">Unit</td>
                             </tr>
                             <tr>
@@ -1725,7 +1737,7 @@
                                 <td></td>
                                 <td class="pl-4">b. Tersedia</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td colspan="5">Unit</td>
                             </tr>
                             <tr>
@@ -1739,7 +1751,7 @@
                                 <td></td>
                                 <td class="pl-4">c. Kekurangan</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td colspan="5">Unit</td>
                             </tr>
                             <tr style="text-align: center;">
@@ -1771,7 +1783,7 @@
                                 <th></th>
                                 <td class="pl-4" style="width:50px;text-align: left;">a. Permanen</td>
                                 <td style="text-align: center;">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td colspan="5" style="text-align: left;">Unit</td>
                             </tr>
                             <tr>
@@ -1794,7 +1806,7 @@
                                 <td></td>
                                 <td class="pl-4">b. Semi Permanen</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td colspan="5">Unit</td>
                             </tr>
                             <tr>
@@ -1817,7 +1829,7 @@
                                 <td></td>
                                 <td class="pl-4">c. Darurat</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td colspan="5">Unit</td>
                             </tr>
                             <tr>
@@ -1840,7 +1852,7 @@
                                 <td></td>
                                 <td class="pl-4">d. Pinjaman</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td colspan="5">Unit</td>
                             </tr>
                             <tr>
@@ -1876,11 +1888,11 @@
                                 <td></td>
                                 <td>1. Jumlah Guru/Pegawai</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td style="min-width:43px;width:43px">Orang</td>
                                 <td style="width: 117px; max-width: 117px;">8. &nbsp; Bujang Sekolah</td>
                                 <td class="text-center" style="width: 10px;">:</td>
-                                <td style="width:20px"></td>
+                                <td style="width:20px" class="nda-pake-border"></td>
                                 <td>Orang</td>
                             </tr>
                             <tr>
@@ -1896,11 +1908,11 @@
                                 <td></td>
                                 <td>2. Guru Kelas</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Orang</td>
                                 <td>9. &nbsp; Tenaga Administrasi</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Orang</td>
                             </tr>
                             <tr>
@@ -1926,11 +1938,11 @@
                                 <td></td>
                                 <td>3. Guru PAI</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Orang</td>
                                 <td>10. Tenaga Perpustakaan</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Orang</td>
                             </tr>
                             <tr>
@@ -1953,11 +1965,11 @@
                                 <td></td>
                                 <td>4. Guru PJOK</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Orang</td>
                                 <td>11. Satpam</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Orang</td>
                             </tr>
                             <tr>
@@ -1980,11 +1992,11 @@
                                 <td></td>
                                 <td>5. Guru Bhs. Inggris</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Orang</td>
                                 <td>12. Jumlah bulan lalu</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Orang</td>
                             </tr>
                             <tr>
@@ -2007,11 +2019,11 @@
                                 <td></td>
                                 <td>6. Guru Honor Daerah</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Orang</td>
                                 <td>13. Masuk bulan ini</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Orang</td>
                             </tr>
                             <tr>
@@ -2027,11 +2039,11 @@
                                 <td></td>
                                 <td>7. Guru Sosial</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Orang</td>
                                 <td>14. Keluar bulan ini</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Orang</td>
                             </tr>
                             <tr>
@@ -2075,7 +2087,7 @@
                                 <td></td>
                                 <td>1. Hari efektif bulan ini</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td colspan="5">Hari</td>
                             </tr>
                             <tr>
@@ -2099,8 +2111,9 @@
                                 <td>2. Absensi bulan ini (%)</td>
                                 <td class="text-center">:</td>
                                 <td><i>Sakit</i></td>
-                                <td></td>
-                                <td colspan="5"><i>Alpa</i></td>
+                                <td class="nda-pake-border"></td>
+                                <td><i>Alpa</i></td>
+                                <td colspan="4" class="nda-pake-border"></td>
                             </tr>
                             <tr>
                                 <td class="pake-border">: Hindu</td>
@@ -2123,8 +2136,9 @@
                                 <td></td>
                                 <td>:</td>
                                 <td><i>Izin</i></td>
-                                <td></td>
-                                <td colspan="5"><i>Jumlah</i></td>
+                                <td class="nda-pake-border"></td>
+                                <td><i>Jumlah</i></td>
+                                <td colspan="4" class="nda-pake-border"></td>
                             </tr>
                             <tr>
                                 <td class="pake-border">: Budha</td>
@@ -2166,11 +2180,11 @@
                                 <td></td>
                                 <td>1. &nbsp; Lemari</td>
                                 <td class="text-center">:</td>
-                                <td class="px-2"></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Buah</td>
                                 <td>12. Papan tulis lipat</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td colspan="2">Buah</td>
                             </tr>
                             <tr>
@@ -2186,11 +2200,11 @@
                                 <td></td>
                                 <td>2. &nbsp; Rak buku</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Buah</td>
                                 <td>13. Papan tulis statistik</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td colspan="2">Buah</td>
 
                             </tr>
@@ -2207,11 +2221,11 @@
                                 <td></td>
                                 <td>3. &nbsp; Meja guru</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Buah</td>
                                 <td>14. Papan absen umum</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td colspan="2">Buah</td>
                             </tr>
                             <tr>
@@ -2227,11 +2241,11 @@
                                 <td></td>
                                 <td>4. &nbsp; Kursi guru</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Buah</td>
                                 <td>15. Alat absen kelas</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td colspan="2">Buah</td>
                             </tr>
                             <tr>
@@ -2247,11 +2261,11 @@
                                 <td></td>
                                 <td>5. &nbsp; Bangku untuk 3 murid</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Buah</td>
                                 <td>16. Alat peraga</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td colspan="2">Buah</td>
                             </tr>
                             <tr>
@@ -2267,11 +2281,11 @@
                                 <td></td>
                                 <td>6. &nbsp; Meja untuk 3 murid</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Buah</td>
                                 <td>17. Alat olahraga</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td colspan="2">Buah</td>
                             </tr>
                             <tr>
@@ -2279,11 +2293,11 @@
                                 <td></td>
                                 <td>7. &nbsp; Bangku untuk 2 murid</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Buah</td>
                                 <td>18. Alat pertukangan</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Buah</td>
                             </tr>
                             <tr>
@@ -2291,11 +2305,11 @@
                                 <td></td>
                                 <td>8. &nbsp; Meja untuk 2 murid</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Buah</td>
                                 <td>19. Alat teknik</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Buah</td>
                             </tr>
                             <tr>
@@ -2304,11 +2318,11 @@
                                 <td></td>
                                 <td>9. &nbsp; Bangku untuk 4 murid</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Buah</td>
                                 <td>20. Kursi tamu</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Buah</td>
                             </tr>
                             <tr>
@@ -2317,11 +2331,11 @@
                                 <td></td>
                                 <td>10. Meja untuk 4 murid</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Buah</td>
                                 <td>21. Mobilier UKS</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Buah</td>
                             </tr>
                             <tr>
@@ -2330,11 +2344,11 @@
                                 <td></td>
                                 <td>11. Papan tulis</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Buah</td>
                                 <td>22. Mobilier pustaka</td>
                                 <td class="text-center">:</td>
-                                <td></td>
+                                <td class="nda-pake-border"></td>
                                 <td>Buah</td>
                             </tr>
                         </table>
@@ -2590,12 +2604,12 @@
                                     })
                                 })
 
-                                let jabatan = ['kepala sekolah', 'guru kelas',
-                                    'guru agama islam', 'guru pjok', 'guru bahasa inggris',
-                                    'guru mulok', 'tenaga administrasi',
-                                    'tenaga perpustakaan', 'bujang sekolah', 'satpam'
+                                let jabatan = ['Kepala Sekolah', 'Guru Kelas',
+                                    'Guru Agama Islam', 'Guru PJOK', 'Guru Bahasa Inggris',
+                                    'Guru Mulok', 'Tenaga Administrasi',
+                                    'Tenaga Perpustakaan', 'Bujang Sekolah', 'Satpam'
                                 ]
-                                let statusPegawai = ['pns', 'honor daerah', 'sosial']
+                                let statusPegawai = ['PNS', 'Honor Daerah', 'Sosial']
 
                                 let arrJabatan = [],
                                     arrStatus = []
@@ -2622,23 +2636,23 @@
                                 console.log(countJabatan)
                                 console.log(arrJabatan)
                                 // 1-12
-                                $('#form_guru span').eq(1).text(countJabatan['guru kelas'])
+                                $('#form_guru span').eq(1).text(countJabatan['Guru Kelas'])
                                 $('#form_guru span').eq(2).text(countJabatan[
-                                    'guru agama islam'])
-                                // $('#form_guru span').eq(3).text(countJabatan['guru kelas'])
-                                $('#form_guru span').eq(4).text(countJabatan['guru pjok'])
+                                    'Guru Agama Islam'])
+                                // $('#form_guru span').eq(3).text(countJabatan['Guru Kelas'])
+                                $('#form_guru span').eq(4).text(countJabatan['Guru PJOK'])
                                 $('#form_guru span').eq(5).text(countJabatan[
-                                    'guru bahasa inggris'])
-                                $('#form_guru span').eq(6).text(countJabatan['guru mulok'])
+                                    'Guru Bahasa Inggris'])
+                                $('#form_guru span').eq(6).text(countJabatan['Guru Mulok'])
 
-                                $('#form_guru span').eq(7).text(countStatus['honor daerah'])
-                                $('#form_guru span').eq(8).text(countStatus['sosial'])
-                                $('#form_guru span').eq(9).text(countJabatan['bujang sekolah'])
+                                $('#form_guru span').eq(7).text(countStatus['Honor Daerah'])
+                                $('#form_guru span').eq(8).text(countStatus['Sosial'])
+                                $('#form_guru span').eq(9).text(countJabatan['Bujang Sekolah'])
                                 $('#form_guru span').eq(10).text(countJabatan[
-                                    'tenaga administrasi'])
+                                    'Tenaga Administrasi'])
                                 $('#form_guru span').eq(11).text(countJabatan[
-                                    'tenaga perpustakaan'])
-                                $('#form_guru span').eq(12).text(countJabatan['satpam'])
+                                    'Tenaga Perpustakaan'])
+                                $('#form_guru span').eq(12).text(countJabatan['Satpam'])
 
                                 $('#body_keadaan_guru input').eq(0).val(jumlahGuru
                                     .keluar_bulan_ini_guru)
@@ -3130,6 +3144,12 @@ let dataGedung = dataKeadaan.keadaan_gedung
         "bilik_darurat": "",
         "bilik_pinjaman": ""
 */
+let bangunanArr = ['kualitas_bangunan', 'dibangun_oleh', 'tahun_dibangun', 'bilik_dibutuhkan', 'bilik_sudah_ada', 'bilik_kekurangan', 'bilik_permanen', 'bilik_semi_permanen', 'bilik_darurat', 'bilik_pinjaman']
+
+bangunanArr.forEach((val, idx, arr)=>{
+    $(`#tabel_print_keadaan_siswa .nda-pake-border:eq(${idx})`).text(dataGedung[val])
+})
+
 /////////////////// END PRINT TABEL KEADAAN GEDUNG //////////////////////
                 AmbilWb($('#tabel_print_keadaan_siswa'), $('#tabel_print'))
                     .then(doc => {
@@ -3281,13 +3301,13 @@ let dataGedung = dataKeadaan.keadaan_gedung
                                             .addClass('d-none')
                                         $('#form_edit_guru select:eq(5) option').eq(0)
                                             .removeClass('d-none')
-                                        $('#form_edit_guru select:eq(5)').val('pns')
+                                        $('#form_edit_guru select:eq(5)').val('PNS')
                                     } else {
                                         $('#form_edit_guru select:eq(5) option').eq(1)
                                             .removeClass('d-none')
                                         $('#form_edit_guru select:eq(5) option').eq(2)
                                             .removeClass('d-none')
-                                        $('#form_edit_guru select:eq(5)').val('sosial')
+                                        $('#form_edit_guru select:eq(5)').val('Sosial')
                                         $('#form_edit_guru select:eq(5) option').eq(0)
                                             .addClass('d-none')
                                     }
@@ -3726,16 +3746,16 @@ let dataGedung = dataKeadaan.keadaan_gedung
 
                     arrGuru.forEach((value, idx, arr) => {
                         let arrdx = [
-                            ['guru kelas', ++iGuruKelas],
-                            ['guru agama islam', ++iGuruAgama],
-                            ['guru pjok', ++iGuruPjok],
-                            ['guru mulok', ++iGuruMulok],
-                            ['tenaga administrasi', ++iAdm],
-                            ['tenaga perpustakaan', ++iPerpus],
-                            ['bujang sekolah', ++iBujang],
-                            ['pns', ++iPns],
-                            ['honor daerah', ++iHonda],
-                            ['sosial', ++iSosial]
+                            ['Guru Kelas', ++iGuruKelas],
+                            ['Guru Agama Islam', ++iGuruAgama],
+                            ['Guru PJOK', ++iGuruPjok],
+                            ['Guru Mulok', ++iGuruMulok],
+                            ['Tenaga Administrasi', ++iAdm],
+                            ['Tenaga Perpustakaan', ++iPerpus],
+                            ['Bujang Sekolah', ++iBujang],
+                            ['PNS', ++iPns],
+                            ['Honor Daerah', ++iHonda],
+                            ['Sosial', ++iSosial]
                         ]
 
                         arrdx.forEach((isi, ix, ar) => {

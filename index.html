@@ -70,6 +70,10 @@
             border: 0.5px black solid;
         }
 
+        .nda-pake-border {
+            text-align: left;
+        }
+
         /* #tabel_print_keadaan_siswa table td,
         #tabel_print_keadaan_siswa table th */
 
@@ -475,7 +479,7 @@
                                             <td>:</td>
                                             <td>
                                                 <input name="sakit_guru" type="number" min="0" name="sakit_guru"
-                                                    class="form-control">
+                                                    class="form-control" value="0">
                                             </td>
                                         </tr>
                                         <tr>
@@ -483,7 +487,7 @@
                                             <td>:</td>
                                             <td>
                                                 <input name="izin_guru" type="number" min="0" name="izin_guru"
-                                                    class="form-control">
+                                                    class="form-control" value="0">
                                             </td>
                                         </tr>
                                         <tr>
@@ -491,7 +495,7 @@
                                             <td>:</td>
                                             <td>
                                                 <input name="alpha_guru" type="number" min="0" name="alpha_guru"
-                                                    class="form-control">
+                                                    class="form-control" value="0">
                                             </td>
                                         </tr>
                                         <tr>
@@ -918,26 +922,23 @@
                                                     <label class="font-weight-bold">Laki-laki</label>
                                                     <p>Indonesia : <input name="bulan_ini_indonesia_laki" min="0"
                                                             type="number" class="form-control" />
-                                                        <p>WNI Keturunan Cina : <input name="bulan_ini_cina_laki"
-                                                                min="0" type="number" class="form-control" />
-                                                            <p>WNI Keturunan Arab : <input name="bulan_ini_arab_laki"
-                                                                    min="0" type="number" class="form-control" />
-                                                                <p>WNI Keturunan Asing : <input
-                                                                        name="bulan_ini_asing_laki" min="0"
-                                                                        type="number" class="form-control" />
+                                                    <p>WNI Keturunan Cina : <input name="bulan_ini_cina_laki" min="0"
+                                                            type="number" class="form-control" />
+                                                    <p>WNI Keturunan Arab : <input name="bulan_ini_arab_laki" min="0"
+                                                            type="number" class="form-control" />
+                                                    <p>WNI Keturunan Asing : <input name="bulan_ini_asing_laki" min="0"
+                                                            type="number" class="form-control" />
                                                 </div>
                                                 <div class="col" style="min-width: fit-content;">
                                                     <label class="font-weight-bold">Perempuan</label>
                                                     <p>Indonesia : <input name="bulan_ini_indonesia_perempuan" min="0"
                                                             type="number" class="form-control" />
-                                                        <p>WNI Keturunan Cina : <input name="bulan_ini_cina_perempuan"
-                                                                min="0" type="number" class="form-control" />
-                                                            <p>WNI Keturunan Arab : <input
-                                                                    name="bulan_ini_arab_perempuan" min="0"
-                                                                    type="number" class="form-control" />
-                                                                <p>WNI Keturunan Asing : <input
-                                                                        name="bulan_ini_asing_perempuan" min="0"
-                                                                        type="number" class="form-control" />
+                                                    <p>WNI Keturunan Cina : <input name="bulan_ini_cina_perempuan"
+                                                            min="0" type="number" class="form-control" />
+                                                    <p>WNI Keturunan Arab : <input name="bulan_ini_arab_perempuan"
+                                                            min="0" type="number" class="form-control" />
+                                                    <p>WNI Keturunan Asing : <input name="bulan_ini_asing_perempuan"
+                                                            min="0" type="number" class="form-control" />
                                                 </div>
                                             </div>
                                         </div>
@@ -1172,8 +1173,7 @@
                                         </div>
                                         <div class="col form-group" style="min-width: fit-content;">
                                             <label>Tgl/no. akta pendirian</label>
-                                            <input type="number" min="1900" max="2500" class="form-control"
-                                                name="tahun_dibangun" required>
+                                            <input type="text" class="form-control" name="tahun_dibangun" required>
                                         </div>
                                     </div>
                                 </div>
@@ -1187,7 +1187,7 @@
                                     <div class="row">
                                         <div class="col form-group" style="min-width: fit-content;">
                                             <label>Yang dibutuhkan</label>
-                                            <input type="number" class="form-control" name="bilik_dibutuhkan">
+                                            <input type="number" class="form-control" name="bilik_dibutuhkan" value="0">
                                         </div>
                                         <div class="col form-group" style="min-width: fit-content;">
                                             <label>Yang sudah ada</label>
@@ -1196,7 +1196,8 @@
                                         </div>
                                         <div class="col form-group" style="min-width: fit-content;">
                                             <label>Kekurangan</label>
-                                            <input type="number" class="form-control" name="bilik_kekurangan" min="0">
+                                            <input value="0" type="number" class="form-control" name="bilik_kekurangan"
+                                                min="0">
                                         </div>
                                     </div>
                                 </div>
@@ -1210,20 +1211,23 @@
                                     <div class="row">
                                         <div class="col form-group" style="min-width: fit-content;">
                                             <label>Permanen</label>
-                                            <input min="0" type="number" class="form-control" name="bilik_permanen">
+                                            <input min="0" type="number" class="form-control" name="bilik_permanen"
+                                                value="0">
                                         </div>
                                         <div class="col form-group" style="min-width: fit-content;">
                                             <label>Semi Permanen</label>
-                                            <input min="0" type="number" class="form-control"
-                                                name="bilik_semi_permanen">
+                                            <input min="0" type="number" class="form-control" name="bilik_semi_permanen"
+                                                value="0">
                                         </div>
                                         <div class="col form-group" style="min-width: fit-content;">
                                             <label>Darurat</label>
-                                            <input min="0" type="number" class="form-control" name="bilik_darurat">
+                                            <input min="0" type="number" class="form-control" name="bilik_darurat"
+                                                value="0">
                                         </div>
                                         <div class="col form-group" style="min-width: fit-content;">
                                             <label>Pinjaman</label>
-                                            <input min="0" type="number" class="form-control" name="bilik_pinjaman">
+                                            <input min="0" type="number" class="form-control" name="bilik_pinjaman"
+                                                value="0">
                                         </div>
                                     </div>
                                 </div>
@@ -1235,8 +1239,6 @@
                         </form>
                     </div>
 
-
-
                     <!-- MOBILIER -->
                     <div class="card-body collapse" id="body_mobilier">
                         <form id="form_mobilier">
@@ -1246,93 +1248,111 @@
                                         <div class="col" style="min-width: fit-content;">
                                             <div class="form-group">
                                                 <label>Lemari</label>
-                                                <input type="number" min="0" class="form-control" name="lemari">
+                                                <input type="number" value="0" min="0" class="form-control"
+                                                    name="lemari">
                                             </div>
                                             <div class="form-group">
                                                 <label>Rak Buku</label>
-                                                <input type="number" min="0" class="form-control" name="rak_buku">
+                                                <input type="number" value="0" min="0" class="form-control"
+                                                    name="rak_buku">
                                             </div>
                                             <div class="form-group">
                                                 <label>Meja Guru</label>
-                                                <input type="number" min="0" class="form-control" name="meja_guru">
+                                                <input type="number" value="0" min="0" class="form-control"
+                                                    name="meja_guru">
                                             </div>
                                             <div class="form-group">
                                                 <label>Kursi Guru</label>
-                                                <input type="number" min="0" class="form-control" name="kursi_guru">
+                                                <input type="number" value="0" min="0" class="form-control"
+                                                    name="kursi_guru">
                                             </div>
                                             <div class="form-group">
                                                 <label>Bangku Untuk 3 Murid</label>
-                                                <input type="number" min="0" class="form-control" name="bangku_3">
+                                                <input type="number" value="0" min="0" class="form-control"
+                                                    name="bangku_3">
                                             </div>
                                             <div class="form-group">
                                                 <label>Meja Untuk 3 Murid</label>
-                                                <input type="number" min="0" class="form-control" name="meja_3">
+                                                <input type="number" value="0" min="0" class="form-control"
+                                                    name="meja_3">
                                             </div>
                                             <div class="form-group">
                                                 <label>Bangku Untuk 2 Murid</label>
-                                                <input type="number" min="0" class="form-control" name="bangku_2">
+                                                <input type="number" value="0" min="0" class="form-control"
+                                                    name="bangku_2">
                                             </div>
                                             <div class="form-group">
                                                 <label>Meja Untuk 2 Murid</label>
-                                                <input type="number" min="0" class="form-control" name="meja_2">
+                                                <input type="number" value="0" min="0" class="form-control"
+                                                    name="meja_2">
                                             </div>
                                             <div class="form-group">
                                                 <label>Bangku Untuk 4 Murid</label>
-                                                <input type="number" min="0" class="form-control" name="bangku_4">
+                                                <input type="number" value="0" min="0" class="form-control"
+                                                    name="bangku_4">
                                             </div>
                                             <div class="form-group">
                                                 <label>Meja Untuk 4 Murid</label>
-                                                <input type="number" min="0" class="form-control" name="meja_4">
+                                                <input type="number" value="0" min="0" class="form-control"
+                                                    name="meja_4">
                                             </div>
                                             <div class="form-group">
                                                 <label>Papan Tulis</label>
-                                                <input type="number" min="0" class="form-control" name="papan_tulis">
+                                                <input type="number" value="0" min="0" class="form-control"
+                                                    name="papan_tulis">
                                             </div>
                                         </div>
                                         <div class="col" style="min-width: fit-content;">
                                             <div class="form-group">
                                                 <label>Papan Tulis Lipat</label>
-                                                <input type="number" class="form-control" name="papan_tulis_lipat">
+                                                <input type="number" value="0" class="form-control"
+                                                    name="papan_tulis_lipat">
                                             </div>
                                             <div class="form-group">
                                                 <label>Papan Statistik</label>
-                                                <input type="number" class="form-control" name="papan_statistik">
+                                                <input type="number" value="0" class="form-control"
+                                                    name="papan_statistik">
                                             </div>
                                             <div class="form-group">
                                                 <label>Papan Absen Umum</label>
-                                                <input type="number" class="form-control" name="papan_absen_umum">
+                                                <input type="number" value="0" class="form-control"
+                                                    name="papan_absen_umum">
                                             </div>
                                             <div class="form-group">
                                                 <label>Alat Absen Kelas</label>
-                                                <input type="number" class="form-control" name="alat_absen_kelas">
+                                                <input type="number" value="0" class="form-control"
+                                                    name="alat_absen_kelas">
                                             </div>
                                             <div class="form-group">
                                                 <label>Alat Peraga</label>
-                                                <input type="number" class="form-control" name="alat_peraga">
+                                                <input type="number" value="0" class="form-control" name="alat_peraga">
                                             </div>
                                             <div class="form-group">
                                                 <label>Alat Olahraga</label>
-                                                <input type="number" class="form-control" name="alat_olahraga">
+                                                <input type="number" value="0" class="form-control"
+                                                    name="alat_olahraga">
                                             </div>
                                             <div class="form-group">
                                                 <label>Alat Pertukangan</label>
-                                                <input type="number" class="form-control" name="alat_pertukangan">
+                                                <input type="number" value="0" class="form-control"
+                                                    name="alat_pertukangan">
                                             </div>
                                             <div class="form-group">
                                                 <label>Alat Teknik</label>
-                                                <input type="number" class="form-control" name="alat_teknik">
+                                                <input type="number" value="0" class="form-control" name="alat_teknik">
                                             </div>
                                             <div class="form-group">
                                                 <label>Kursi Tamu</label>
-                                                <input type="number" class="form-control" name="kursi_tamu">
+                                                <input type="number" value="0" class="form-control" name="kursi_tamu">
                                             </div>
                                             <div class="form-group">
                                                 <label>Mobilier UKS</label>
-                                                <input type="number" class="form-control" name="mobilier_uks">
+                                                <input type="number" value="0" class="form-control" name="mobilier_uks">
                                             </div>
                                             <div class="form-group">
                                                 <label>Mobilier Perpustakaan</label>
-                                                <input type="number" class="form-control" name="mobilier_perpustakaan">
+                                                <input type="number" value="0" class="form-control"
+                                                    name="mobilier_perpustakaan">
                                             </div>
                                         </div>
                                     </div>
@@ -1487,7 +1507,7 @@
                                     </div>
                                 </div>
                                 <!-- REKAP ABSENSI -->
-                                <div>
+                                <!-- <div>
                                     <h2 class="mb-0">
                                         <button class="btn btn-secondary collapsed w-100" type="button"
                                             data-toggle="collapse" data-target="#rekap_absensi_murid"
@@ -1521,7 +1541,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- REKAP MOBILIER -->
                                 <div>
                                     <h2 class="mb-0">
@@ -1651,7 +1671,6 @@
                             </div>
                             <hr>
                             <div class="form-group text-right">
-
                                 <button type="submit" class="btn btn-warning" id="verifikasi"
                                     disabled>Verifikasi</button>
                             </div>
@@ -2519,10 +2538,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://saravanajd.github.io/YearPicker/yearpicker.js" crossorigin="anonymous"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.2/xlsx.full.min.js"></script> -->
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
@@ -2566,11 +2585,11 @@
                         FilterDb('keadaan_siswa', kelasAktif, [], $(
                             "select[name='siswa_select_kelas']")[0])
                         $("#form_siswa span:eq(0)").text($("#form_siswa input:eq(0)").val() * 1 + $(
-                                "#form_siswa input:eq(2)").val() * 1 - $("#form_siswa input:eq(4)")
-                            .val() * 1)
+                            "#form_siswa input:eq(2)").val() * 1 - $("#form_siswa input:eq(4)")
+                                .val() * 1)
                         $("#form_siswa span:eq(1)").text($("#form_siswa input:eq(1)").val() * 1 + $(
-                                "#form_siswa input:eq(3)").val() * 1 - $("#form_siswa input:eq(5)")
-                            .val() * 1)
+                            "#form_siswa input:eq(3)").val() * 1 - $("#form_siswa input:eq(5)")
+                                .val() * 1)
 
                         hitungAbsenSiswa()
 
@@ -2598,7 +2617,7 @@
                                 let dataArr = ['select_jabatan_guru', 'select_status_guru']
 
                                 let tampungArr = Object.keys(dataGuru).map((idGuru, idx,
-                                arr) => { //array dari storage data_guru ['guru1', 'guru2', ...]
+                                    arr) => { //array dari storage data_guru ['guru1', 'guru2', ...]
                                     return dataArr.map((item, ix, arry) => {
                                         return dataGuru[idGuru][item]
                                     })
@@ -2673,10 +2692,10 @@
                                 Object.keys(keadaanGedung).forEach((item, idx) => {
                                     $('#body_keadaan_gedung input').filter((idxx,
                                         itemm) => {
-                                            if ($(itemm).prop('name') == item) {
-                                                $(itemm).val(keadaanGedung[item])
-                                            }
-                                        })
+                                        if ($(itemm).prop('name') == item) {
+                                            $(itemm).val(keadaanGedung[item])
+                                        }
+                                    })
                                 })
                             } catch (err) {
                                 console.log(err)
@@ -2821,7 +2840,7 @@
                         // console.log($(`#tabel_print_keadaan_siswa .pake-border:eq(${val[i]})`))
                     }
                 })
-//PRINT TABEL DATA SISWA
+                //PRINT TABEL DATA SISWA
                 let db = JSON.parse(localStorage.db)
                 let dataKeadaan = JSON.parse(localStorage.data_keadaan)
                 let dataSiswa = dataKeadaan.keadaan_siswa
@@ -2894,7 +2913,6 @@
                     return arr1
                 }
 
-
                 {
                     // TODO input data ke tabel print
                     let arrWarganegara = [
@@ -2917,18 +2935,17 @@
                         ['bulan_ini_hindu_laki', 'bulan_ini_hindu_perempuan']
                     ]
                     let rangeAgama = [arrKosongkan[11], arrKosongkan[12], arrKosongkan[13],
-                        arrKosongkan[14], arrKosongkan[15], arrKosongkan[16]
+                    arrKosongkan[14], arrKosongkan[15], arrKosongkan[16]
                     ]
                     isiTabel(rangeAgama, arrAgama)
                 }
 
-
                 {
                     // jumlah laki perempuan
                     let arrAll = [arrKosongkan[0], arrKosongkan[1], arrKosongkan[2], arrKosongkan[3],
-                        arrKosongkan[6], arrKosongkan[7], arrKosongkan[8], arrKosongkan[9],
-                        arrKosongkan[11], arrKosongkan[12], arrKosongkan[13], arrKosongkan[14],
-                        arrKosongkan[15], arrKosongkan[16]
+                    arrKosongkan[6], arrKosongkan[7], arrKosongkan[8], arrKosongkan[9],
+                    arrKosongkan[11], arrKosongkan[12], arrKosongkan[13], arrKosongkan[14],
+                    arrKosongkan[15], arrKosongkan[16]
                     ]
                     let arrL = []
                     let arrP = []
@@ -2953,7 +2970,7 @@
                         let jumlahL = 0
                         for (let i = 0; i < 6; i++) {
                             jumlahL += $(
-                                    `#tabel_print_keadaan_siswa .pake-border:eq(${val[i]})`)
+                                `#tabel_print_keadaan_siswa .pake-border:eq(${val[i]})`)
                                 .text() * 1
                         }
                         $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[5] + 2})`).text(
@@ -2964,7 +2981,7 @@
                         let jumlahP = 0
                         for (let i = 0; i < 6; i++) {
                             jumlahP += $(
-                                    `#tabel_print_keadaan_siswa .pake-border:eq(${val[i]})`)
+                                `#tabel_print_keadaan_siswa .pake-border:eq(${val[i]})`)
                                 .text() * 1
                         }
                         $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[5] + 2})`).text(
@@ -2974,17 +2991,17 @@
 
                     // jumlah total laki perempuan
                     let jml = [arrKosongkan[0], arrKosongkan[1], arrKosongkan[2], arrKosongkan[3],
-                        arrKosongkan[6], arrKosongkan[7], arrKosongkan[8], arrKosongkan[9],
-                        arrKosongkan[11], arrKosongkan[12], arrKosongkan[13], arrKosongkan[14],
-                        arrKosongkan[15], arrKosongkan[16]
+                    arrKosongkan[6], arrKosongkan[7], arrKosongkan[8], arrKosongkan[9],
+                    arrKosongkan[11], arrKosongkan[12], arrKosongkan[13], arrKosongkan[14],
+                    arrKosongkan[15], arrKosongkan[16]
                     ]
 
                     jml.forEach((val, idx, arr) => {
                         let isiL = $(
-                                `#tabel_print_keadaan_siswa .pake-border:eq(${val[1] - 2})`)
+                            `#tabel_print_keadaan_siswa .pake-border:eq(${val[1] - 2})`)
                             .text() * 1
                         let isiP = $(
-                                `#tabel_print_keadaan_siswa .pake-border:eq(${val[1] - 1})`)
+                            `#tabel_print_keadaan_siswa .pake-border:eq(${val[1] - 1})`)
                             .text() * 1
                         $(`#tabel_print_keadaan_siswa .pake-border:eq(${val[1]})`).text(isiL +
                             isiP)
@@ -2996,10 +3013,10 @@
 
                     for (let i = 89; i <= 95; i++) {
                         $(`#tabel_print_keadaan_siswa .pake-border:eq(${i})`).text(($(
-                                `#tabel_print_keadaan_siswa .pake-border:eq(${q - 16})`)
-                        .text() * 1) + ($(
+                            `#tabel_print_keadaan_siswa .pake-border:eq(${q - 16})`)
+                            .text() * 1) + ($(
                                 `#tabel_print_keadaan_siswa .pake-border:eq(${q - 15})`)
-                        .text() * 1))
+                                .text() * 1))
                         if (i < 95) {
                             $(`#tabel_print_keadaan_siswa .pake-border:eq(${i + 9})`).text(dataSiswa[i -
                                 88].banyak_kelas)
@@ -3030,13 +3047,13 @@
                             1
 
                         let e = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i + 1][0]})`)
-                        .text() * 1
+                            .text() * 1
                         let f = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i + 1][1]})`)
-                        .text() * 1
+                            .text() * 1
                         let g = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i + 1][2]})`)
-                        .text() * 1
+                            .text() * 1
                         let h = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr3[i + 1][3]})`)
-                        .text() * 1
+                            .text() * 1
 
                         arr4.push(a + b + c + d + e + f + g + h)
                     }
@@ -3049,9 +3066,9 @@
 
                 {
                     // jumlahkan tiap kelas jumlah agama
-                    
+
                     let ka = [arrKosongkan[11], arrKosongkan[12], arrKosongkan[13], arrKosongkan[14],
-                        arrKosongkan[15], arrKosongkan[16]
+                    arrKosongkan[15], arrKosongkan[16]
                     ]
 
                     let arr5 = grupArray(ka)
@@ -3070,13 +3087,13 @@
                             1
 
                         let e = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i + 1][0]})`)
-                        .text() * 1
+                            .text() * 1
                         let f = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i + 1][1]})`)
-                        .text() * 1
+                            .text() * 1
                         let g = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i + 1][2]})`)
-                        .text() * 1
+                            .text() * 1
                         let h = $(`#tabel_print_keadaan_siswa .pake-border:eq(${arr5[i + 1][3]})`)
-                        .text() * 1
+                            .text() * 1
 
                         arr6.push(a + b + c + d + e + f + g + h)
                     }
@@ -3087,15 +3104,15 @@
                     }
                 }
 
-                const kls = [1,2,3,4,5,6]
+                const kls = [1, 2, 3, 4, 5, 6]
                 let jmlSiswa = 0
-                kls.forEach((val, idx, arr)=>{
+                kls.forEach((val, idx, arr) => {
                     jmlSiswa += dataSiswa[val].jml_siswa_bulan_ini * 1
                 })
 
                 let hariEfektif = $('#jml_hari_efektif').val()
                 let pengali = 100 / (hariEfektif * jmlSiswa)
-                kls.forEach((val,idx,arr)=>{
+                kls.forEach((val, idx, arr) => {
                     // [287, 294]
                     let sakit = (dataSiswa[val].siswa_sakit * pengali) * 1
                     let izin = (dataSiswa[val].siswa_izin * pengali) * 1
@@ -3104,7 +3121,7 @@
                     let totalHadir = 100 - totalAbstain
 
                     $(`#tabel_print_keadaan_siswa .pake-border:eq(${287 + idx})`).text(totalHadir.toFixed(2))
-                })  
+                })
 
                 function isiTabel(rng, namaObj, jumlah = false) {
                     rng.forEach((val, idx, arr) => {
@@ -3127,30 +3144,77 @@
                         }
                     })
                 }
-///////////////////////////// END  PRINT TABEL DATA SISWA ///////////////////////////////
+                ///////////////////////////// END  PRINT TABEL DATA SISWA ///////////////////////////////
+                $(`#tabel_print_keadaan_siswa .nda-pake-border`).filter((idx, el) => {
+                    el.innerText = ""
+                })
+                //PRINT TABEL KEADAAN GEDUNG
+                let dataGedung = dataKeadaan.keadaan_gedung
 
-//PRINT TABEL KEADAAN GEDUNG
-let dataGedung = dataKeadaan.keadaan_gedung
-//TODO isi tabel keadaan gedung
-/*
-"kualitas_bangunan": "permanen",
-        "dibangun_oleh": "PEMDA",
-        "tahun_dibangun": "1945",
-        "bilik_dibutuhkan": "",
-        "bilik_sudah_ada": "12",
-        "bilik_kekurangan": "",
-        "bilik_permanen": "",
-        "bilik_semi_permanen": "",
-        "bilik_darurat": "",
-        "bilik_pinjaman": ""
-*/
-let bangunanArr = ['kualitas_bangunan', 'dibangun_oleh', 'tahun_dibangun', 'bilik_dibutuhkan', 'bilik_sudah_ada', 'bilik_kekurangan', 'bilik_permanen', 'bilik_semi_permanen', 'bilik_darurat', 'bilik_pinjaman']
+                let bangunanArr = ['kualitas_bangunan', 'dibangun_oleh', 'tahun_dibangun', 'bilik_dibutuhkan', 'bilik_sudah_ada', 'bilik_kekurangan', 'bilik_permanen', 'bilik_semi_permanen', 'bilik_darurat', 'bilik_pinjaman']
 
-bangunanArr.forEach((val, idx, arr)=>{
-    $(`#tabel_print_keadaan_siswa .nda-pake-border:eq(${idx})`).text(dataGedung[val])
-})
+                bangunanArr.forEach((val, idx, arr) => {
+                    $(`#tabel_print_keadaan_siswa .nda-pake-border:eq(${idx})`).text(dataGedung[val])
+                })
 
-/////////////////// END PRINT TABEL KEADAAN GEDUNG //////////////////////
+                //status guru
+                //TODO isi tabel status guru
+                //10-23
+                let dataGuru = dataKeadaan.data_guru
+                let stor = {
+                    jml_guru_aktif: 0, bujang: 0, guru_kelas: 0,  administrasi: 0, guru_pai: 0, perpustakaan: 0, guru_pjok: 0, satpam: 0,  guru_inggris: 0,  jml_bln_lalu: 0, honda: 0, msk_bln_ini: 0, sosial:
+                        0, klr_bln_ini: 0, pns : 0, guru_mulok : 0
+                }
+
+                Object.keys(dataGuru).forEach((val, idx, arr) => {
+                    if (dataGuru[val]["keaktifan"] == "Aktif") {
+                        stor.jml_guru_aktif++
+                        switch (dataGuru[val]["select_status_guru"]) {
+                            case "PNS":
+                                stor.pns++
+                                break;
+                            case "Honor Daerah":
+                                stor.honda++
+                                break;
+                            case "Sosial":
+                                stor.sosial++
+                                break;
+                        }
+
+                        switch (dataGuru[val]["select_jabatan_guru"]) {
+                            case "Guru Kelas":
+                                stor.guru_kelas++
+                                break;
+                            case "Guru Agama Islam":
+                                stor.guru_pai++
+                                break;
+                            case "Guru PJOK":
+                                stor.guru_pjok++
+                                break;
+                            case "Guru Bahasa Inggris":
+                                stor.guru_inggris++
+                                break;
+                            case "Guru Mulok":
+                                stor.guru_mulok++
+                                break;
+                            case "Tenaga Administrasi":
+                                stor.administrasi++
+                                break;
+                            case "Satpam":
+                                stor.satpam++
+                                break;
+                        }
+                    }
+                })
+
+                SimpanRekap(stor)
+
+                let arrStor = Object.keys(stor)
+                for (let i = 10; i <= 23; i++) {
+                    $(`#tabel_print_keadaan_siswa .nda-pake-border:eq(${i})`).text(stor[arrStor[i - 10]])
+                } 
+
+                /////////////////// END PRINT TABEL KEADAAN GEDUNG //////////////////////
                 AmbilWb($('#tabel_print_keadaan_siswa'), $('#tabel_print'))
                     .then(doc => {
                         $('#cetak').click((evt) => {
@@ -3173,15 +3237,15 @@ bangunanArr.forEach((val, idx, arr)=>{
                                     // TODO ganti isi storage db 
                                     ModalInfo(
                                         "Laporan bulanan Anda telah kami terima.<br>Terima kasih"
-                                        )
+                                    )
                                     doc.save(
                                         `laporan bulanan_${db.data_sekolah[1]}_${periode}.pdf`
-                                        )
+                                    )
                                 } else {
                                     ModalInfo(
                                         '<span class="text-danger">Gagal tersimpan, hubungi Admin</span>',
                                         '<span class="text-danger">Terjadi kesalahan</span>'
-                                        )
+                                    )
                                 }
                             }).catch((err) => {
                                 ModalInfo(err)
@@ -3191,6 +3255,14 @@ bangunanArr.forEach((val, idx, arr)=>{
                         })
                     })
             })
+
+
+            //SIMPAN TABEL PRINT OUT KE STORAGE
+            function SimpanRekap(isiRekap){
+                let isi = JSON.parse(localStorage.data_keadaan)
+                isi["rekap"] = isiRekap
+                localStorage.data_keadaan = JSON.stringify(isi)
+            }
 
             function chunk(array, length) {
                 let result = [];
@@ -3247,14 +3319,14 @@ bangunanArr.forEach((val, idx, arr)=>{
 
                 $('#form_guru input:eq(0)').change(e => {
                     let total = dbGuru.length + $('#form_guru input:eq(1)').val() * 1 - $(e.target)
-                    .val() * 1
+                        .val() * 1
                     $('#total_guru_pegawai').text(total)
                     $('#form_guru input[name=total_guru_pegawai]').val(total)
                 })
 
                 $('#form_guru input:eq(1)').change(e => {
                     let total = dbGuru.length + $(e.target).val() * 1 - $('#form_guru input:eq(0)')
-                    .val() * 1
+                        .val() * 1
                     $('#total_guru_pegawai').text(total)
                     $('#form_guru input[name=total_guru_pegawai]').val(total)
                 })
@@ -3281,7 +3353,7 @@ bangunanArr.forEach((val, idx, arr)=>{
 
                                 let arrKeys = Object.keys(dataGuru[id])
                                 let objDataGuru = $('#form_edit_guru')
-                                .serializeArray() //ambil name & value
+                                    .serializeArray() //ambil name & value
                                 let tampungArr = []
 
                                 $('#form_edit_guru input, #form_edit_guru select').each((idx,
@@ -3291,7 +3363,7 @@ bangunanArr.forEach((val, idx, arr)=>{
 
                                 FilterDb('data_guru', id, tampungArr, $(
                                     '#modal_keadaan_guru select[name="select_gender_guru"]'
-                                    )[0])
+                                )[0])
                                 $(`#tabel_keadaan_guru span:eq(0)`).text(dbGuru[ind][2])
                                 $('#modal_keadaan_guru').on('show.bs.modal', function (ev) {
                                     if ($('#form_edit_guru span').eq(0).text()) {
@@ -3315,10 +3387,10 @@ bangunanArr.forEach((val, idx, arr)=>{
                                     $('#form_edit_guru input[name="izin_guru"], #form_edit_guru input[name="sakit_guru"], #form_edit_guru input[name="alpha_guru"]')
                                         .change($(
                                             '#form_edit_guru input[name="izin_guru"], #form_edit_guru input[name="sakit_guru"], #form_edit_guru input[name="alpha_guru"]'
-                                            ), (evt) => {
+                                        ), (evt) => {
                                             let hasil = ([evt.data[0].value * 1, evt
                                                 .data[1].value * 1, evt
-                                                .data[2].value * 1
+                                                    .data[2].value * 1
                                             ]).reduce((total, num) => {
                                                 return total + num
                                             })
@@ -3378,11 +3450,11 @@ bangunanArr.forEach((val, idx, arr)=>{
                     case 'keluar_bulan_ini_perempuan':
                         $('#siswa_jml_bln_ini').val(JmlSiswaBlnLalu())
                         $("#form_siswa span:eq(0)").text($("#form_siswa input:eq(0)").val() * 1 + $(
-                                "#form_siswa input:eq(2)").val() * 1 - $("#form_siswa input:eq(4)")
-                            .val() * 1)
+                            "#form_siswa input:eq(2)").val() * 1 - $("#form_siswa input:eq(4)")
+                                .val() * 1)
                         $("#form_siswa span:eq(1)").text($("#form_siswa input:eq(1)").val() * 1 + $(
-                                "#form_siswa input:eq(3)").val() * 1 - $("#form_siswa input:eq(5)")
-                            .val() * 1)
+                            "#form_siswa input:eq(3)").val() * 1 - $("#form_siswa input:eq(5)")
+                                .val() * 1)
                         break;
                 }
 
@@ -3391,17 +3463,17 @@ bangunanArr.forEach((val, idx, arr)=>{
             function JmlSiswaBlnLalu() {
                 return ($("#form_siswa input:eq(0)").val() * 1 + $("#form_siswa input:eq(1)").val() * 1) + ($(
                     "#form_siswa input:eq(2)").val() * 1 + $("#form_siswa input:eq(3)").val() * 1) - ($(
-                    "#form_siswa input:eq(4)").val() * 1 + $("#form_siswa input:eq(5)").val() * 1)
+                        "#form_siswa input:eq(4)").val() * 1 + $("#form_siswa input:eq(5)").val() * 1)
             }
 
             // JIKA SELECT KELAS DIGANTI
             $("select[name='siswa_select_kelas']").on('change', e => {
                 FilterDb('keadaan_siswa', e.target.value, [], e.target)
                 $("#form_siswa span:eq(0)").text($("#form_siswa input:eq(0)").val() * 1 + $(
-                        "#form_siswa input:eq(2)").val() * 1 - $("#form_siswa input:eq(4)").val() *
+                    "#form_siswa input:eq(2)").val() * 1 - $("#form_siswa input:eq(4)").val() *
                     1)
                 $("#form_siswa span:eq(1)").text($("#form_siswa input:eq(1)").val() * 1 + $(
-                        "#form_siswa input:eq(3)").val() * 1 - $("#form_siswa input:eq(5)").val() *
+                    "#form_siswa input:eq(3)").val() * 1 - $("#form_siswa input:eq(5)").val() *
                     1)
 
                 hitungAbsenSiswa()
@@ -3418,7 +3490,7 @@ bangunanArr.forEach((val, idx, arr)=>{
                     $.each(Object.keys(pars), (idx, item) => {
                         if (item == idDb) {
                             Object.keys(pars[item]).map((val, idx,
-                            arr) => { //[name1, name2, name3, ...]
+                                arr) => { //[name1, name2, name3, ...]
                                 $(`input[name=${val}]`).val(pars[item][val])
                             })
 

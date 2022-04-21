@@ -196,7 +196,9 @@
                                         <tr>
                                             <td>NIP</td>
                                             <td>:</td>
-                                            <td><span></span></td>
+                                            <td><span></span>
+                                            <input type="hidden" name="nip">
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Gender</td>
@@ -758,8 +760,11 @@
             <div class="p-4 mb-5 rounded-lg shadow frozt">
                 <div class="meluas w-25">
                     <div class="form-group meluas">
-                        <label for="bulan_laporan">Untuk Bulan</label><br>
-                        <input class="form-control" type="month" name="" id="bulan_laporan">
+                        <label for="bulan_laporan">Untuk Bulan</label>
+                        <div style="height: 15px;">
+                            <b class="ml-3" id="bulan_laporan"></b>
+                        </div>
+                        <!-- <input class="form-control" type="month" name="" id="bulan_laporan"> -->
                     </div>
 
                     <!-- NO DOKUMEN -->
@@ -781,7 +786,10 @@
                     <!-- HARI EFEKTIF -->
                     <div class="form-group">
                         <label for="jml_hari_efektif">Jumlah hari sekolah efektif bulan ini</label><br>
-                        <input type="number" class="form-control" name="jml_hari_efektif" id="jml_hari_efektif">
+                        <div style="height: 15px;">
+                            <b class="ml-3" id="jml_hari_efektif"></b>
+                        </div>
+                        <!-- <input type="number" class="form-control" name="jml_hari_efektif" id="jml_hari_efektif"> -->
                     </div>
 
                 </div>
@@ -1681,7 +1689,6 @@
         </div>
     </div>
 
-
     <!-- MODAL PRINT OUT -->
     <div class="modal fade" id="print_out" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -2131,8 +2138,8 @@
                                 <td class="text-center">:</td>
                                 <td><i>Sakit</i></td>
                                 <td class="nda-pake-border"></td>
-                                <td><i>Alpa</i></td>
-                                <td colspan="4" class="nda-pake-border"></td>
+                                <td><i class="nda-pake-border">Alpa</i></td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td class="pake-border">: Hindu</td>
@@ -2156,8 +2163,8 @@
                                 <td>:</td>
                                 <td><i>Izin</i></td>
                                 <td class="nda-pake-border"></td>
-                                <td><i>Jumlah</i></td>
-                                <td colspan="4" class="nda-pake-border"></td>
+                                <td><i class="nda-pake-border">Jumlah</i></td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td class="pake-border">: Budha</td>
@@ -2417,34 +2424,8 @@
                                     <th style="max-width: 25px;width: 15px;padding: 0;">Jml</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                    </td>
-                                </tr>
+                            <tbody id="body_tabel_guru">
+                               
                                 <tr style="height: 20px;"></tr>
                                 <tr class="tanpa-border">
                                     <td></td>
@@ -2533,8 +2514,6 @@
         </div>
     </div>
 
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
@@ -2573,6 +2552,10 @@
             //         })
             //     }
             // }
+            function bulanId(val){
+                let arrBln = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober','November', 'Desember']
+                return arrBln[val]
+            }
 
             $('#body_keadaan_siswa').collapse('show')
 
@@ -2681,7 +2664,6 @@
                                 console.error(err)
                             }
                         })
-
                         break;
                     case 'keadaan gedung':
                         collap($('#body_keadaan_gedung'))
@@ -2746,9 +2728,8 @@
                 "https://script.google.com/macros/s/AKfycbz26xJ5WLtkniWtiqKxDMqSCoD1FgThsQPi_D9TYePNwZP9FnQ/exec";
 
             localStorage.clear()
-
+//FIXME jika tabel guru sudah lewat F4, tambah 1 halaman lagi lalu lanjutkan sisanya di halaman baru itu
             async function AmbilWb(elemSiswa, elemGuru) {
-
                 let cvsSiswa = await html2canvas(elemSiswa[0], {
                     width: elemSiswa[0].scrollWidth,
                     height: elemSiswa[0].scrollheight,
@@ -2845,7 +2826,7 @@
                 let dataKeadaan = JSON.parse(localStorage.data_keadaan)
                 let dataSiswa = dataKeadaan.keadaan_siswa
 
-                let periode = $('#bulan_laporan').val()
+                let periode = $('#bulan_laporan').text()
                 let noDokumen = $('#nomor_bulan_laporan').val()
                 // let lembar1 = $('#tabel_print_keadaan_siswa table')
                 // let lembar2 = $('#tabel_print table')
@@ -3110,7 +3091,7 @@
                     jmlSiswa += dataSiswa[val].jml_siswa_bulan_ini * 1
                 })
 
-                let hariEfektif = $('#jml_hari_efektif').val()
+                let hariEfektif = $('#jml_hari_efektif').text() * 1
                 let pengali = 100 / (hariEfektif * jmlSiswa)
                 kls.forEach((val, idx, arr) => {
                     // [287, 294]
@@ -3163,7 +3144,7 @@
                 let dataGuru = dataKeadaan.data_guru
                 let stor = {
                     jml_guru_aktif: 0, bujang: 0, guru_kelas: 0,  administrasi: 0, guru_pai: 0, perpustakaan: 0, guru_pjok: 0, satpam: 0,  guru_inggris: 0,  jml_bln_lalu: 0, honda: 0, msk_bln_ini: 0, sosial:
-                        0, klr_bln_ini: 0, pns : 0, guru_mulok : 0
+                        0, klr_bln_ini: 0, pns : 0, guru_mulok : 0, sakit_guru : 0, izin_guru : 0, alpha_guru : 0
                 }
 
                 Object.keys(dataGuru).forEach((val, idx, arr) => {
@@ -3204,8 +3185,22 @@
                                 stor.satpam++
                                 break;
                         }
+
+                        stor.sakit_guru += dataGuru[val].sakit_guru * 1
+                        stor.izin_guru += dataGuru[val].izin_guru * 1
+                        stor.alpha_guru += dataGuru[val].alpha_guru * 1
                     }
                 })
+
+                let pengaliGuru = 100 / (hariEfektif * stor.jml_guru_aktif)
+                let guruSakit = (stor.sakit_guru * pengali).toFixed(1)
+                let guruIzin = (stor.izin_guru * pengali).toFixed(1)
+                let guruAlpha = (stor.alpha_guru * pengali).toFixed(1)
+                let jumlahAbsenGuru = ((guruSakit * 1) + (guruIzin * 1) + (guruAlpha * 1)).toFixed(1)
+                $(`#tabel_print_keadaan_siswa .nda-pake-border:eq(25)`).html(`: ${guruSakit}%`)
+                $(`#tabel_print_keadaan_siswa .nda-pake-border:eq(27)`).html(`: ${guruIzin}%`)
+                $(`#tabel_print_keadaan_siswa .nda-pake-border:eq(26)`).html(`Alpha &nbsp : ${guruAlpha}%`)
+                $(`#tabel_print_keadaan_siswa .nda-pake-border:eq(28)`).html(`Jumlah : ${jumlahAbsenGuru}%`)
 
                 SimpanRekap(stor)
 
@@ -3214,8 +3209,61 @@
                     $(`#tabel_print_keadaan_siswa .nda-pake-border:eq(${i})`).text(stor[arrStor[i - 10]])
                 } 
 
-                /////////////////// END PRINT TABEL KEADAAN GEDUNG //////////////////////
-                AmbilWb($('#tabel_print_keadaan_siswa'), $('#tabel_print'))
+                $(`#tabel_print_keadaan_siswa .nda-pake-border:eq(24)`).text($('#jml_hari_efektif').text())
+
+                {
+                    // 29-50
+                    let dataMobilier = JSON.parse(localStorage.data_keadaan).keadaan_mobilier
+                    let arrMobilier = ['lemari', 'papan_tulis_lipat', 'rak_buku', 'papan_statistik', 'meja_guru', 'papan_absen_umum', 'kursi_guru', 'alat_absen_kelas', 'bangku_3', 'alat_peraga', 'meja_3', 'alat_olahraga', 'bangku_2', 'alat_pertukangan', 'meja_2', 'alat_teknik', 'bangku_4', 'kursi_tamu', 'meja_4', 'mobilier_uks', 'papan_tulis', 'mobilier_perpustakaan']
+                    arrMobilier.forEach((val, idx, arr)=>{
+                        $(`#tabel_print_keadaan_siswa .nda-pake-border:eq(${29 + idx})`).text(dataMobilier[arrMobilier[idx]])
+                    })
+                }
+
+            /////////////////// END PRINT TABEL KEADAAN GEDUNG //////////////////////
+            
+            //////////////// START PRINT TABEL GURU ////////////////
+            {//TODO isi tabel keadaan guru
+               function templateGuru(nama, nip, jk, agama, kawin, tempatLahir, tglLahir, jabatan, ijazahTertinggi, tahunIjazah, status, gol, 
+               masaBerlakuGolongan, gapok, tglSkPengangkatan, noSkPengangkatan, golThn, golBln, seluruhnyaThn, seluruhnyaBln, sebagaiGuru, didaerahIni, disekolahIni, sakit, izin, alpha, jml, ket){
+                return ` <tr>
+                                    <td>1</td>
+                                    <td>${nama}\n${nip}</td>
+                                    <td>${jk}</td>
+                                    <td>${agama}</td>
+                                    <td>${kawin}</td>
+                                    <td>${tempatLahir}\n${tglLahir}</td>
+                                    <td>${jabatan}</td>
+                                    <td>${ijazahTertinggi}\n${tahunIjazah}</td>
+                                    <td>${status}</td>
+                                    <td>${gol}\n${masaBerlakuGolongan}</td>
+                                    <td>${gapok}</td>
+                                    <td>${tglSkPengangkatan}\n${noSkPengangkatan}</td>
+                                    <td>${golThn}</td>
+                                    <td>${golBln}</td>
+                                    <td>${seluruhnyaThn}</td>
+                                    <td>${seluruhnyaBln}</td>
+                                    <td>${sebagaiGuru}</td>
+                                    <td>${didaerahIni}</td>
+                                    <td>${disekolahIni}</td>
+                                    <td>${sakit}</td>
+                                    <td>${izin}</td>
+                                    <td>${alpha}</td>
+                                    <td>${jml}</td>
+                                    <td>${ket}</td>
+                                </tr>`
+                
+               }
+                
+
+                Object.keys(dataGuru).forEach((val, idx, arr)=>{
+                    $('#body_tabel_guru').prepend(templateGuru(dataGuru[val].nama_guru, dataGuru[val].nip, dataGuru[val].select_gender_guru, dataGuru[val].select_agama_guru, dataGuru[val].select_perkawinan_guru, dataGuru[val].tempat_lahir_guru, dataGuru[val].tanggal_lahir_guru, dataGuru[val].select_jabatan_guru, dataGuru[val].select_ijazah_tertinggi_guru, dataGuru[val].tahun_ijazah_guru, dataGuru[val].select_status_guru, dataGuru[val].select_golru_guru, dataGuru[val].tmt_golru_guru, dataGuru[val].gapok_guru, dataGuru[val].tanggal_sk_pengangkatan_guru, dataGuru[val].nomor_sk_pengangkatan_guru, dataGuru[val].mkg_tahun_guru, dataGuru[val].mkg_bulan_guru, dataGuru[val].mkg_cpns_tahun_guru, dataGuru[val].mkg_cpns_bulan_guru, dataGuru[val].sebagai_guru, dataGuru[val].didaerah_ini_guru, dataGuru[val].disekolah_ini_guru, dataGuru[val].sakit_guru, dataGuru[val].izin_guru, dataGuru[val].alpha_guru, (dataGuru[val].sakit_guru * 1 + dataGuru[val].izin_guru * 1 + dataGuru[val].alpha_guru * 1), "" ))
+                    
+                })
+            }
+          
+
+            AmbilWb($('#tabel_print_keadaan_siswa'), $('#tabel_print'))
                     .then(doc => {
                         $('#cetak').click((evt) => {
                             $('#loading').modal('show')
@@ -3300,6 +3348,16 @@
 
             function ProsesDatabase() {
                 let db = JSON.parse(localStorage.getItem('db')).data_sekolah
+                try {
+                    $('#jml_hari_efektif').text(JSON.parse(localStorage.db).hari_efektif)
+                    let wkt = new Date()
+                    let bln = wkt.getMonth() - 1 == -1 ? bulanId(11) : bulanId(wkt.getMonth() - 1)
+                    let thn = wkt.getFullYear()
+
+                    $('#bulan_laporan').text(`${bln} ${thn}`)
+                } catch (err) {
+                    console.log(err)
+                }
 
                 $('#nama_sekolah').text(db[2])
                 $('#kecamatan').text(db[3])
@@ -3365,6 +3423,7 @@
                                     '#modal_keadaan_guru select[name="select_gender_guru"]'
                                 )[0])
                                 $(`#tabel_keadaan_guru span:eq(0)`).text(dbGuru[ind][2])
+                                $(`#tabel_keadaan_guru input:eq(2)`).val(dbGuru[ind][2])
                                 $('#modal_keadaan_guru').on('show.bs.modal', function (ev) {
                                     if ($('#form_edit_guru span').eq(0).text()) {
                                         $('#form_edit_guru select:eq(5) option').eq(1)
@@ -3661,15 +3720,16 @@
 
             $('#form_rekap').submit(e => {
                 e.preventDefault()
-                if (!$('#bulan_laporan').val()) {
-                    $('#bulan_laporan').focus()
-                    return false
-                } else if (!$('#nomor_bulan_laporan').val()) {
+                // if (!$('#bulan_laporan').text()) {
+                //     $('#bulan_laporan').focus()
+                //     return false
+                // } else 
+                if (!$('#nomor_bulan_laporan').val()) {
                     $('#nomor_bulan_laporan').focus()
                     return false
-                } else if (!$('#jml_hari_efektif').val()) {
-                    $('#jml_hari_efektif').focus()
-                    return false
+                //} else if (!$('#jml_hari_efektif').val()) {
+                //     $('#jml_hari_efektif').focus()
+                //     return false
                 } else {
                     try {
                         $('#print_out').modal('show')

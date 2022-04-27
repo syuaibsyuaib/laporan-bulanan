@@ -58,14 +58,14 @@
             }
         }
 
-        .tabel_print,
+        #tabel_print,
         #tabel_print_keadaan_siswa {
             font-family: "Arial Narrow", Arial, sans-serif;
             font-size: 8pt;
         }
 
-        .tabel_print table th,
-        .tabel_print table td {
+        #tabel_print table th,
+        #tabel_print table td {
             padding: 3px;
             border: 0.5px black solid;
         }
@@ -198,7 +198,7 @@
                                             <td>NIP</td>
                                             <td>:</td>
                                             <td><span></span>
-                                                <input type="hidden" name="nip">
+                                            <input type="hidden" name="nip">
                                             </td>
                                         </tr>
                                         <tr>
@@ -1695,7 +1695,7 @@
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl m-auto" role="document">
             <div class="modal-content p-5">
-                <div style="overflow: scroll;height: 77px;" id="print_tabel_temp">
+                <div style="overflow: scroll;height: 4px;" id="print_tabel_temp">
                     <!-- PRINT KEADAAN SISWA -->
                     <div id="tabel_print_keadaan_siswa" style="padding: 30px;">
                         <table style="width: 938px;max-width:938px">
@@ -2382,10 +2382,127 @@
                     </div>
                     <div class="border my-5 w-100"></div>
                     <!-- PRINT KEADAAN GURU DLL -->
-                    <div id="tabel_print_guru">
-
+                    <div style="word-break: break-word;padding: 20px;" id="tabel_print">
+                        <table style="width:973px;max-width:973px;">
+                            <thead>
+                                <tr>
+                                    <th colspan="5" style="border: none;">
+                                        E. KEADAAN GURU
+                                    </th>
+                                </tr>
+                                <tr style="height: 70px;text-align: center;">
+                                    <th rowspan="2" style="max-width:10px; width:10px;">NO.</th>
+                                    <th rowspan="2" style="width: 50px;max-width: 50px;">NAMA/NIP</th>
+                                    <th rowspan="2" style="width: 10px;max-width: 10px;">JK</th>
+                                    <th rowspan="2" style="width: 20px;max-width: 20px;">Agama</th>
+                                    <th rowspan="2" style="width: 20px;max-width: 20px;">Kawin/B.Kawin/Duda/Jd &amp;
+                                        J.Kel</th>
+                                    <th rowspan="2" style="width: 20px;max-width: 20px;">Tempat, Tgl.Lahir</th>
+                                    <th rowspan="2" style="width: 20px;max-width: 20px;">Jabatan</th>
+                                    <th rowspan="2" style="width: 20px;max-width: 20px;">Ijasah Tertinggi, Tahun</th>
+                                    <th rowspan="2" style="width: 20px;max-width: 20px;">Status</th>
+                                    <th rowspan="2" style="width: 24px;max-width: 24px;">Gol. Dan Masa Berlakunya</th>
+                                    <th rowspan="2" style="width: 23px;max-width: 23px;">Gaji Pokok</th>
+                                    <th rowspan="2" style="width: 32px;max-width: 32px;">Tgl &amp; No. SK Pengangkatan
+                                    </th>
+                                    <th colspan="2" style="width: 22px;max-width: 22px;">Masa Kerja Golongan</th>
+                                    <th colspan="2" style="width: 20px;max-width: 20px;">Masa Kerja Seluruhnya</th>
+                                    <th colspan="3">Mulai Bertugas</th>
+                                    <th colspan="4">Absen</th>
+                                    <th rowspan="2" style="width: 20px;max-width: 20px">Ket.</th>
+                                </tr>
+                                <tr style="height: 60px;text-align: center;">
+                                    <th style="max-width:10px;width:10px;">Th</th>
+                                    <th style="max-width:10px;width:10px;">Bl</th>
+                                    <th style="max-width:10px;width:10px;">Th</th>
+                                    <th style="max-width:10px;width:10px;">Bl</th>
+                                    <th style="width: 20px;max-width: 20px;">Sebagai Guru</th>
+                                    <th style="width: 20px;max-width: 20px;">Di Daerah Ini</th>
+                                    <th style="width: 20px;max-width: 20px;">Di Sekolah Ini</th>
+                                    <th style="max-width: 10px;width: 10px;padding: 0;">S</th>
+                                    <th style="max-width: 10px;width: 10px;padding: 0;">I</th>
+                                    <th style="max-width: 10px;width: 10px;padding: 0;">A</th>
+                                    <th style="max-width: 25px;width: 15px;padding: 0;">Jml</th>
+                                </tr>
+                            </thead>
+                            <tbody id="body_tabel_guru">
+                               
+                                <!-- <tr style="height: 20px;"></tr>
+                                <tr class="tanpa-border">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="9">Parepare,</td>
+                                </tr>
+                                <tr class="tanpa-border">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="9">Kepala Sekolah</td>
+                                </tr>
+                                <tr class="tanpa-border" style="height: 60px;">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <th style="vertical-align:bottom" colspan="9">SYUAIB</th>
+                                </tr>
+                                <tr class="tanpa-border">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="9">NIP.</td>
+                                </tr> -->
+                            </tbody>
+                        </table>
                     </div>
-
                 </div>
                 <div style="height: 78vh;">
                     <iframe id="iframe_print" style="width: 100%; height: 100%" frameborder="0"></iframe>
@@ -2436,8 +2553,8 @@
             //         })
             //     }
             // }
-            function bulanId(val) {
-                let arrBln = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+            function bulanId(val){
+                let arrBln = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober','November', 'Desember']
                 return arrBln[val]
             }
 
@@ -2616,12 +2733,18 @@
             async function AmbilWb(elemSiswa, elemGuru) {
                 let marginAtas = 5
                 let marginKiriSiswa = 10, marginKiriGuru = 5
-                let tinggiKertasSiswa = 215, lebarKertasSiswa = (330 / 215) * tinggiKertasSiswa
-                let lebarKertas = 330, tinggiKertas = 215
+                let tinggiKertasSiswa = 215, lebarKertasSiswa = (330/215) * tinggiKertasSiswa
+                let lebarKertasGuru = 330, tinggiKertasGuru = 215
 
                 let cvsSiswa = await html2canvas(elemSiswa[0], {
                     width: elemSiswa[0].scrollWidth,
                     height: elemSiswa[0].scrollheight,
+                    scale: 3
+                })
+
+                let cvsGuru = await html2canvas(elemGuru[0], {
+                    width: elemGuru[0].scrollWidth,
+                    height: elemGuru[0].scrollHeight,
                     scale: 3
                 })
 
@@ -2637,47 +2760,32 @@
 
                 doc.addImage({
                     imageData: cvsSiswa,
+                    // x: marginKiriSiswa,
+                    // y: marginAtas,
                     width: lebarKertasSiswa,
                     height: tinggiKertasSiswa
                 })
 
-                let templateTtd = function (tglTtd, namaKepsek, nipKepsek) {
-                    return ``
-                }
-                //KHUSUS PAGE GURU
-                let toMm = 0.2645833333
-                let pengaliKertas = 215/elemGuru[0].offsetHeight
+                // console.log(doc.getImageProperties(cvsGuru).height)
 
-                for (let i = 0; i < elemGuru.length; i++) {
-                    let tinggiTabel = elemGuru[i].offsetHeight
+                doc.addPage({
+                    orientation: "landscape",
+                    unit: 'mm',
+                    // hotfixes: ["px_scaling"],
+                    format: [215, 330],//[elemSiswa[0].scrollWidth * 3, (elemSiswa[0].scrollWidth * 0.6515151515151515) * 3],
+                    autoPaging: true
+                })
 
-                    let cvsGuru = await html2canvas(elemGuru[i], {
-                        width: elemGuru[i].scrollWidth,
-                        height: elemGuru[i].scrollHeight,
-                        scale: 3
-                    })
-
-                    doc.addPage({
-                        orientation: "landscape",
-                        unit: 'mm',
-                        format: [tinggiKertas, lebarKertas],//[elemSiswa[0].scrollWidth * 3, (elemSiswa[0].scrollWidth * 0.6515151515151515) * 3],
-                        // autoPaging: true
-                    })
-
-                    if(i == elemGuru.length - 1){
-                        tinggiKertas = tinggiTabel * pengaliKertas
-                    }
-
-                    doc.addImage({
-                        imageData: cvsGuru,
-                        width: lebarKertas,
-                        height: tinggiKertas 
-                        //FIXME TABEL JADI MEMANJANG, DAN TAMBAHKAN TTD
-                    })
-                }
-
+                doc.addImage({
+                    imageData: cvsGuru,
+                    // x: marginKiriGuru,
+                    // y: marginAtas,
+                    width: lebarKertasGuru,
+                    height: elemGuru[0].scrollHeight * 0.2645833333
+                })
 
                 let alamat = await doc.output('bloburl')
+                // console.log(alamat)
                 $('#iframe_print').attr('src', alamat)
                 $('#loading').modal('hide')
                 return doc;
@@ -2731,6 +2839,8 @@
 
                 let periode = $('#bulan_laporan').text()
                 let noDokumen = $('#nomor_bulan_laporan').val()
+                // let lembar1 = $('#tabel_print_keadaan_siswa table')
+                // let lembar2 = $('#tabel_print table')
 
                 let infoAwalArr = [db.data_sekolah[2], db.data_sekolah[5], db.data_sekolah[4], db
                     .data_sekolah[3], 'Parepare', periode
@@ -3042,8 +3152,8 @@
                 //10-23
                 let dataGuru = dataKeadaan.data_guru
                 let stor = {
-                    jml_guru_aktif: 0, bujang: 0, guru_kelas: 0, administrasi: 0, guru_pai: 0, perpustakaan: 0, guru_pjok: 0, satpam: 0, guru_inggris: 0, jml_bln_lalu: 0, honda: 0, msk_bln_ini: 0, sosial:
-                        0, klr_bln_ini: 0, pns: 0, guru_mulok: 0, sakit_guru: 0, izin_guru: 0, alpha_guru: 0
+                    jml_guru_aktif: 0, bujang: 0, guru_kelas: 0,  administrasi: 0, guru_pai: 0, perpustakaan: 0, guru_pjok: 0, satpam: 0,  guru_inggris: 0,  jml_bln_lalu: 0, honda: 0, msk_bln_ini: 0, sosial:
+                        0, klr_bln_ini: 0, pns : 0, guru_mulok : 0, sakit_guru : 0, izin_guru : 0, alpha_guru : 0
                 }
 
                 Object.keys(dataGuru).forEach((val, idx, arr) => {
@@ -3106,7 +3216,7 @@
                 let arrStor = Object.keys(stor)
                 for (let i = 10; i <= 23; i++) {
                     $(`#tabel_print_keadaan_siswa .nda-pake-border:eq(${i})`).text(stor[arrStor[i - 10]])
-                }
+                } 
 
                 $(`#tabel_print_keadaan_siswa .nda-pake-border:eq(24)`).text($('#jml_hari_efektif').text())
 
@@ -3114,18 +3224,18 @@
                     // 29-50
                     let dataMobilier = JSON.parse(localStorage.data_keadaan).keadaan_mobilier
                     let arrMobilier = ['lemari', 'papan_tulis_lipat', 'rak_buku', 'papan_statistik', 'meja_guru', 'papan_absen_umum', 'kursi_guru', 'alat_absen_kelas', 'bangku_3', 'alat_peraga', 'meja_3', 'alat_olahraga', 'bangku_2', 'alat_pertukangan', 'meja_2', 'alat_teknik', 'bangku_4', 'kursi_tamu', 'meja_4', 'mobilier_uks', 'papan_tulis', 'mobilier_perpustakaan']
-                    arrMobilier.forEach((val, idx, arr) => {
+                    arrMobilier.forEach((val, idx, arr)=>{
                         $(`#tabel_print_keadaan_siswa .nda-pake-border:eq(${29 + idx})`).text(dataMobilier[arrMobilier[idx]])
                     })
                 }
 
-                /////////////////// END PRINT TABEL KEADAAN GEDUNG //////////////////////
-
-                //////////////// START PRINT TABEL GURU ////////////////
-                {//TODO isi tabel keadaan guru
-                    function TemplateGuru(no, nama, nip, jk, agama, kawin, tempatLahir, tglLahir, jabatan, ijazahTertinggi, tahunIjazah, status, gol,
-                        masaBerlakuGolongan, gapok, tglSkPengangkatan, noSkPengangkatan, golThn, golBln, seluruhnyaThn, seluruhnyaBln, sebagaiGuru, didaerahIni, disekolahIni, sakit, izin, alpha, jml, ket) {
-                        return ` <tr>
+            /////////////////// END PRINT TABEL KEADAAN GEDUNG //////////////////////
+            
+            //////////////// START PRINT TABEL GURU ////////////////
+            {//TODO isi tabel keadaan guru
+               function TemplateGuru(no, nama, nip, jk, agama, kawin, tempatLahir, tglLahir, jabatan, ijazahTertinggi, tahunIjazah, status, gol, 
+               masaBerlakuGolongan, gapok, tglSkPengangkatan, noSkPengangkatan, golThn, golBln, seluruhnyaThn, seluruhnyaBln, sebagaiGuru, didaerahIni, disekolahIni, sakit, izin, alpha, jml, ket){
+                return ` <tr>
                             <td class="text-center">${no}</td>
                             <td>${nama}\n${nip}</td>
                             <td class="text-center">${jk}</td>
@@ -3151,83 +3261,18 @@
                             <td class="text-center">${jml}</td>
                             <td>${ket}</td>
                         </tr>`
+                
+               }
+                
 
-                    }
+                Object.keys(dataGuru).forEach((val, idx, arr)=>{
+                    $('#body_tabel_guru').append(TemplateGuru(idx + 1, dataGuru[val].nama_guru, dataGuru[val].nip, dataGuru[val].select_gender_guru == "laki-laki" ? "L" : "P", dataGuru[val].select_agama_guru, dataGuru[val].select_perkawinan_guru, dataGuru[val].tempat_lahir_guru, dataGuru[val].tanggal_lahir_guru, dataGuru[val].select_jabatan_guru, dataGuru[val].select_ijazah_tertinggi_guru, dataGuru[val].tahun_ijazah_guru, dataGuru[val].select_status_guru, dataGuru[val].select_golru_guru, dataGuru[val].tmt_golru_guru, dataGuru[val].gapok_guru, dataGuru[val].tanggal_sk_pengangkatan_guru, dataGuru[val].nomor_sk_pengangkatan_guru, dataGuru[val].mkg_tahun_guru, dataGuru[val].mkg_bulan_guru, dataGuru[val].mkg_cpns_tahun_guru, dataGuru[val].mkg_cpns_bulan_guru, dataGuru[val].sebagai_guru, dataGuru[val].didaerah_ini_guru, dataGuru[val].disekolah_ini_guru, dataGuru[val].sakit_guru, dataGuru[val].izin_guru, dataGuru[val].alpha_guru, (dataGuru[val].sakit_guru * 1 + dataGuru[val].izin_guru * 1 + dataGuru[val].alpha_guru * 1), "" ))
+                    
+                })
+            }
+          
 
-                    let templatePrintGuru = function (keadaanGuru = false) {
-                        let kd = ""
-                        if (keadaanGuru) {
-                            kd = "E. KEADAAN GURU"
-                        }
-                        return `<div style="word-break: break-word;padding: 20px;" class="tabel_print">
-               <table style="width:973px;max-width:973px;">
-                                <thead>
-                                    <tr>
-                                        <th style="border:none" colspan="5">
-                                            ${kd}
-                                        </th>
-                                    </tr>
-                                    <tr style="height: 70px;text-align: center;">
-                                        <th rowspan="2" style="max-width:10px; width:10px;">NO.</th>
-                                        <th rowspan="2" style="width: 50px;max-width: 50px;">NAMA/NIP</th>
-                                        <th rowspan="2" style="width: 10px;max-width: 10px;">JK</th>
-                                        <th rowspan="2" style="width: 20px;max-width: 20px;">Agama</th>
-                                        <th rowspan="2" style="width: 20px;max-width: 20px;">Kawin/B.Kawin/Duda/Jd &amp;
-                                            J.Kel</th>
-                                        <th rowspan="2" style="width: 20px;max-width: 20px;">Tempat, Tgl.Lahir</th>
-                                        <th rowspan="2" style="width: 20px;max-width: 20px;">Jabatan</th>
-                                        <th rowspan="2" style="width: 20px;max-width: 20px;">Ijasah Tertinggi, Tahun</th>
-                                        <th rowspan="2" style="width: 20px;max-width: 20px;">Status</th>
-                                        <th rowspan="2" style="width: 24px;max-width: 24px;">Gol. Dan Masa Berlakunya</th>
-                                        <th rowspan="2" style="width: 23px;max-width: 23px;">Gaji Pokok</th>
-                                        <th rowspan="2" style="width: 32px;max-width: 32px;">Tgl &amp; No. SK Pengangkatan
-                                        </th>
-                                        <th colspan="2" style="width: 22px;max-width: 22px;">Masa Kerja Golongan</th>
-                                        <th colspan="2" style="width: 20px;max-width: 20px;">Masa Kerja Seluruhnya</th>
-                                        <th colspan="3">Mulai Bertugas</th>
-                                        <th colspan="4">Absen</th>
-                                        <th rowspan="2" style="width: 20px;max-width: 20px">Ket.</th>
-                                    </tr>
-                                    <tr style="height: 60px;text-align: center;">
-                                        <th style="max-width:10px;width:10px;">Th</th>
-                                        <th style="max-width:10px;width:10px;">Bl</th>
-                                        <th style="max-width:10px;width:10px;">Th</th>
-                                        <th style="max-width:10px;width:10px;">Bl</th>
-                                        <th style="width: 20px;max-width: 20px;">Sebagai Guru</th>
-                                        <th style="width: 20px;max-width: 20px;">Di Daerah Ini</th>
-                                        <th style="width: 20px;max-width: 20px;">Di Sekolah Ini</th>
-                                        <th style="max-width: 10px;width: 10px;padding: 0;">S</th>
-                                        <th style="max-width: 10px;width: 10px;padding: 0;">I</th>
-                                        <th style="max-width: 10px;width: 10px;padding: 0;">A</th>
-                                        <th style="max-width: 25px;width: 15px;padding: 0;">Jml</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="body_tabel_guru">
-                                   
-                                </tbody>
-                            </table>
-                        </div>`
-                    }
-
-                    //jika jumlah guru lebih dari 8 makan tambah tabel baru di dalam #tabel_print_guru
-                    let banyakLembarGuru = Object.keys(dataGuru).length / 8
-                    let teksKeadaanGuru = true
-                    for (let i = 0; i < Math.ceil(banyakLembarGuru); i++) {
-                        if (i > 0) {
-                            teksKeadaanGuru = false
-                        }
-                        $('#tabel_print_guru').append(templatePrintGuru(teksKeadaanGuru))
-                    }
-
-
-                    Object.keys(dataGuru).forEach((val, idx, arr) => {
-                        let ix = Math.floor(idx / 8)
-                        $('.body_tabel_guru').eq(ix).append(TemplateGuru(idx + 1, dataGuru[val].nama_guru, dataGuru[val].nip, dataGuru[val].select_gender_guru == "laki-laki" ? "L" : "P", dataGuru[val].select_agama_guru, dataGuru[val].select_perkawinan_guru, dataGuru[val].tempat_lahir_guru, dataGuru[val].tanggal_lahir_guru, dataGuru[val].select_jabatan_guru, dataGuru[val].select_ijazah_tertinggi_guru, dataGuru[val].tahun_ijazah_guru, dataGuru[val].select_status_guru, dataGuru[val].select_golru_guru, dataGuru[val].tmt_golru_guru, dataGuru[val].gapok_guru, dataGuru[val].tanggal_sk_pengangkatan_guru, dataGuru[val].nomor_sk_pengangkatan_guru, dataGuru[val].mkg_tahun_guru, dataGuru[val].mkg_bulan_guru, dataGuru[val].mkg_cpns_tahun_guru, dataGuru[val].mkg_cpns_bulan_guru, dataGuru[val].sebagai_guru, dataGuru[val].didaerah_ini_guru, dataGuru[val].disekolah_ini_guru, dataGuru[val].sakit_guru, dataGuru[val].izin_guru, dataGuru[val].alpha_guru, (dataGuru[val].sakit_guru * 1 + dataGuru[val].izin_guru * 1 + dataGuru[val].alpha_guru * 1), ""))
-                    })
-                }
-
-
-                AmbilWb($('#tabel_print_keadaan_siswa'), $('.tabel_print'))
+            AmbilWb($('#tabel_print_keadaan_siswa'), $('#tabel_print'))
                     .then(doc => {
                         $('#cetak').click((evt) => {
                             $('#loading').modal('show')
@@ -3270,7 +3315,7 @@
 
 
             //SIMPAN TABEL PRINT OUT KE STORAGE
-            function SimpanRekap(isiRekap) {
+            function SimpanRekap(isiRekap){
                 let isi = JSON.parse(localStorage.data_keadaan)
                 isi["rekap"] = isiRekap
                 localStorage.data_keadaan = JSON.stringify(isi)
@@ -3691,9 +3736,9 @@
                 if (!$('#nomor_bulan_laporan').val()) {
                     $('#nomor_bulan_laporan').focus()
                     return false
-                    //} else if (!$('#jml_hari_efektif').val()) {
-                    //     $('#jml_hari_efektif').focus()
-                    //     return false
+                //} else if (!$('#jml_hari_efektif').val()) {
+                //     $('#jml_hari_efektif').focus()
+                //     return false
                 } else {
                     try {
                         $('#print_out').modal('show')
@@ -3869,7 +3914,7 @@
                     $('#rekap_keadaan_gedung td:nth-child(3)').eq(0).text(keadaanGedung.bilik_dibutuhkan)
                     $('#rekap_keadaan_gedung td:nth-child(3)').eq(1).text(keadaanGedung.bilik_sudah_ada)
 
-
+                   
                     // errCode = 'absen siswa'
                     // let pengali = 100 / (absenSiswa.jml_hari_efektif * jmlSiswa)
 

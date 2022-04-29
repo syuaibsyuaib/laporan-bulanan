@@ -2387,7 +2387,7 @@
                     </div>
 
                 </div>
-                <div style="height: 78vh;">
+                <div style="height: 61vh;">
                     <iframe id="iframe_print" style="width: 100%; height: 100%" frameborder="0"></iframe>
                 </div>
                 <div class="mt-4">
@@ -2612,14 +2612,15 @@
                 "https://script.google.com/macros/s/AKfycbz26xJ5WLtkniWtiqKxDMqSCoD1FgThsQPi_D9TYePNwZP9FnQ/exec";
 
             localStorage.clear()
-            //FIXME jika tabel guru sudah lewat F4, tambah 1 halaman lagi lalu lanjutkan sisanya di halaman baru itu
+           
             async function AmbilWb(elemSiswa, elemGuru) {
                 let marginAtas = 5
                 let marginKiriSiswa = 10, marginKiriGuru = 5
                 let tinggiKertasSiswa = 215, lebarKertasSiswa = (330 / 215) * tinggiKertasSiswa
                 let lebarKertas = 330, tinggiKertas = 215
+                // let cvsSiswa = "", cvsGuru = "", doc = "", alamat = ""
 
-                let cvsSiswa = await html2canvas(elemSiswa[0], {
+                const cvsSiswa = await html2canvas(elemSiswa[0], {
                     width: elemSiswa[0].scrollWidth,
                     height: elemSiswa[0].scrollheight,
                     scale: 3
@@ -2641,17 +2642,14 @@
                     height: tinggiKertasSiswa
                 })
 
-                let templateTtd = function (tglTtd, namaKepsek, nipKepsek) {
-                    return ``
-                }
-                //KHUSUS PAGE GURU
+               //KHUSUS PAGE GURU
                 let toMm = 0.2645833333
                 let pengaliKertas = 215/elemGuru[0].offsetHeight
 
                 for (let i = 0; i < elemGuru.length; i++) {
                     let tinggiTabel = elemGuru[i].offsetHeight
 
-                    let cvsGuru = await html2canvas(elemGuru[i], {
+                    const cvsGuru = await html2canvas(elemGuru[i], {
                         width: elemGuru[i].scrollWidth,
                         height: elemGuru[i].scrollHeight,
                         scale: 3
@@ -2672,12 +2670,10 @@
                         imageData: cvsGuru,
                         width: lebarKertas,
                         height: tinggiKertas 
-                        //FIXME TABEL JADI MEMANJANG, DAN TAMBAHKAN TTD
                     })
                 }
 
-
-                let alamat = await doc.output('bloburl')
+                const alamat = await doc.output('bloburl')
                 $('#iframe_print').attr('src', alamat)
                 $('#loading').modal('hide')
                 return doc;
@@ -2690,7 +2686,7 @@
             })
 
             $('#print_out').on('shown.bs.modal', function (e) {
-
+//TODO MKG dan MKS belum terisi
                 //kosongkan tabel------0---------1---------2---------3---------4---------5-----------6-----------7----------8-------------9----------10----------11----------12----------13---------14------------15---------16----------17----------18----------19----------20-----------21-->
                 let arrKosongkan = [
                     [25, 39],
@@ -3038,7 +3034,7 @@
                 })
 
                 //status guru
-                //TODO isi tabel status guru
+
                 //10-23
                 let dataGuru = dataKeadaan.data_guru
                 let stor = {
@@ -3122,7 +3118,8 @@
                 /////////////////// END PRINT TABEL KEADAAN GEDUNG //////////////////////
 
                 //////////////// START PRINT TABEL GURU ////////////////
-                {//TODO isi tabel keadaan guru
+                {
+                    $('#tabel_print_guru').html("")
                     function TemplateGuru(no, nama, nip, jk, agama, kawin, tempatLahir, tglLahir, jabatan, ijazahTertinggi, tahunIjazah, status, gol,
                         masaBerlakuGolongan, gapok, tglSkPengangkatan, noSkPengangkatan, golThn, golBln, seluruhnyaThn, seluruhnyaBln, sebagaiGuru, didaerahIni, disekolahIni, sakit, izin, alpha, jml, ket) {
                         return ` <tr>
@@ -3160,7 +3157,7 @@
                             kd = "E. KEADAAN GURU"
                         }
                         return `<div style="word-break: break-word;padding: 20px;" class="tabel_print">
-               <table style="width:973px;max-width:973px;">
+                            <table style="width:973px;max-width:973px;">
                                 <thead>
                                     <tr>
                                         <th style="border:none" colspan="5">
@@ -3209,6 +3206,40 @@
                         </div>`
                     }
 
+                     let templateTtd = function (tglTtd, namaKepsek, nipKepsek) {
+                    return `
+                    <tr>
+                        <td colspan="24" style="border:none"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="18" style="border:none;padding:0"></td>
+                        <td colspan="5" style="border:none;padding:0">Parepare, ${tglTtd}</td>
+                        <td style="border:none;padding:0"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="24" style="border:none"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="18" style="border:none;padding:0"></td>
+                        <td colspan="5" style="border:none;padding:0">Kepala sekolah</td>
+                        <td style="border:none;padding:0"></td>
+                    </tr>
+                    <tr style="height:40px">
+                        <td colspan="24" style="border:none"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="18" style="border:none;padding:0"></td>
+                        <td colspan="5" style="border:none;padding:0">${namaKepsek}</td>
+                        <td style="border:none;padding:0"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="18" style="border:none;padding:0"></td>
+                        <td colspan="5" style="border:none;padding:0">NIP. ${nipKepsek}</td>
+                        <td style="border:none;padding:0"></td>
+                    </tr>
+                    `
+                }
+                
                     //jika jumlah guru lebih dari 8 makan tambah tabel baru di dalam #tabel_print_guru
                     let banyakLembarGuru = Object.keys(dataGuru).length / 8
                     let teksKeadaanGuru = true
@@ -3219,17 +3250,32 @@
                         $('#tabel_print_guru').append(templatePrintGuru(teksKeadaanGuru))
                     }
 
-
+                    function FirstProper(txt){
+                        return txt.charAt(0).toUpperCase() + txt.slice(1)
+                    }
+                    let namaKepsek = "", nipKepsek = ""
                     Object.keys(dataGuru).forEach((val, idx, arr) => {
                         let ix = Math.floor(idx / 8)
-                        $('.body_tabel_guru').eq(ix).append(TemplateGuru(idx + 1, dataGuru[val].nama_guru, dataGuru[val].nip, dataGuru[val].select_gender_guru == "laki-laki" ? "L" : "P", dataGuru[val].select_agama_guru, dataGuru[val].select_perkawinan_guru, dataGuru[val].tempat_lahir_guru, dataGuru[val].tanggal_lahir_guru, dataGuru[val].select_jabatan_guru, dataGuru[val].select_ijazah_tertinggi_guru, dataGuru[val].tahun_ijazah_guru, dataGuru[val].select_status_guru, dataGuru[val].select_golru_guru, dataGuru[val].tmt_golru_guru, dataGuru[val].gapok_guru, dataGuru[val].tanggal_sk_pengangkatan_guru, dataGuru[val].nomor_sk_pengangkatan_guru, dataGuru[val].mkg_tahun_guru, dataGuru[val].mkg_bulan_guru, dataGuru[val].mkg_cpns_tahun_guru, dataGuru[val].mkg_cpns_bulan_guru, dataGuru[val].sebagai_guru, dataGuru[val].didaerah_ini_guru, dataGuru[val].disekolah_ini_guru, dataGuru[val].sakit_guru, dataGuru[val].izin_guru, dataGuru[val].alpha_guru, (dataGuru[val].sakit_guru * 1 + dataGuru[val].izin_guru * 1 + dataGuru[val].alpha_guru * 1), ""))
+                        try{
+                            if((dataGuru[val].select_jabatan_guru).match(/kepala sekolah/ig)){
+                                namaKepsek = dataGuru[val].nama_guru
+                                nipKepsek = dataGuru[val].nip
+                            }
+                        }catch(err){
+                            console.log('nama dan nip kepsek belum ditemukan')
+                        }
+
+                        $('.body_tabel_guru').eq(ix).append(TemplateGuru(idx + 1, dataGuru[val].nama_guru, dataGuru[val].nip, dataGuru[val].select_gender_guru == "laki-laki" ? "L" : "P", FirstProper(dataGuru[val].select_agama_guru), FirstProper(dataGuru[val].select_perkawinan_guru), dataGuru[val].tempat_lahir_guru, dataGuru[val].tanggal_lahir_guru, dataGuru[val].select_jabatan_guru, FirstProper(dataGuru[val].select_ijazah_tertinggi_guru), dataGuru[val].tahun_ijazah_guru, dataGuru[val].select_status_guru, dataGuru[val].select_golru_guru, dataGuru[val].tmt_golru_guru, dataGuru[val].gapok_guru, dataGuru[val].tanggal_sk_pengangkatan_guru, dataGuru[val].nomor_sk_pengangkatan_guru, dataGuru[val].mkg_tahun_guru, dataGuru[val].mkg_bulan_guru, dataGuru[val].mkg_cpns_tahun_guru, dataGuru[val].mkg_cpns_bulan_guru, dataGuru[val].sebagai_guru, dataGuru[val].didaerah_ini_guru, dataGuru[val].disekolah_ini_guru, dataGuru[val].sakit_guru, dataGuru[val].izin_guru, dataGuru[val].alpha_guru, (dataGuru[val].sakit_guru * 1 + dataGuru[val].izin_guru * 1 + dataGuru[val].alpha_guru * 1), ""))
+                        if (idx == arr.length - 1) {
+                            $('.body_tabel_guru').eq(ix).append(templateTtd(TglLahir(Date.now(), true), namaKepsek , nipKepsek))
+                        }
                     })
                 }
 
 
                 AmbilWb($('#tabel_print_keadaan_siswa'), $('.tabel_print'))
                     .then(doc => {
-                        $('#cetak').click((evt) => {
+                        $('#cetak')[0].onclick = function(evt){
                             $('#loading').modal('show')
 
                             let kirimRekap = {
@@ -3241,12 +3287,12 @@
                                 no_dokumen: noDokumen,
                                 kurikulum: $('#kurikulum').val()
                             }
+                           
                             KirimPost(url, kirimRekap).then(function (res) {
                                 console.log(res)
                                 $('#loading').modal('hide')
 
                                 if (res.status == 'tersimpan') {
-                                    // TODO ganti isi storage db 
                                     ModalInfo(
                                         "Laporan bulanan Anda telah kami terima.<br>Terima kasih"
                                     )
@@ -3264,7 +3310,7 @@
                                 $('#loading').modal('hide')
                                 $('.modal-backdrop').css('z-index', '1040')
                             })
-                        })
+                        }
                     })
             })
 
@@ -3447,7 +3493,7 @@
                 })
             }
 
-            function TglLahir(e) {
+            function TglLahir(e, format = false){
                 let d = new Date(e) //.toLocaleDateString('en-GB').split("/")
                 let tgl = d.getDate().toString()
                 if (tgl.length == 1) {
@@ -3459,6 +3505,11 @@
                     bln = '0' + bln
                 }
                 let thn = d.getFullYear()
+                if(format){
+                    bln = bulanId(d.getMonth())
+                    return `${tgl} ${bln} ${thn}`
+                }
+
                 return `${thn}-${bln}-${tgl}`
             }
 

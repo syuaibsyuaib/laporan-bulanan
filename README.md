@@ -1,4 +1,4 @@
-<b>MOHON DONASINYA UNTUK BELI KOPI,<br> 
+<b>MOHON DONASINYA buat beli KOPI biar makin semangat bikin ngodingnya,<br> 
 SILAHKAN PILIH SALAHSATU METODE TRANSFER BERIKUT:</b>
 
 1. DANA:<br>

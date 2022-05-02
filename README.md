@@ -1,5 +1,5 @@
-<b>MOHON DONASINYA buat beli KOPI biar makin semangat bikin ngodingnya,<br> 
-SILAHKAN PILIH SALAHSATU METODE TRANSFER BERIKUT:</b>
+<b>MOHON DONASINYA buat beli KOPI biar makin semangat ngodingnya,<br> 
+silahkan pilih salahsatu metode transfer berikut:</b>
 
 1. DANA:<br>
 https://link.dana.id/qr/1rq5cwr0

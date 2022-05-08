@@ -2411,6 +2411,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
         integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/tools.js"></script>
     <script>
         jQuery(document).ready(function ($) {
             const {
@@ -2423,23 +2424,6 @@
             let formLaporan = document.getElementById("formLaporan")
             let divLogin = document.getElementById("divLogin")
             let modalLogin = document.querySelector("#modalLogin")
-
-            // let arrSiswaKeluarMasuk = ['#siswa_masuk_bulan_ini', '#siswa_keluar_bulan_ini']
-            // for (let j = 0; j < arrSiswaKeluarMasuk.length; j++) {
-            //     for (let i = 0; i < $(`${arrSiswaKeluarMasuk[j]} input`).length; i++) {
-            //         $(`${arrSiswaKeluarMasuk[j]} input:eq(${i})`).change((e) => {
-            //             if ($(`${arrSiswaKeluarMasuk[j]} input:eq(${i})`).val() * 1 > 0) {
-            //                 $(`.siswa_kewarganegaraan:eq(${j})`).collapse('show')
-            //             } else {
-            //                 $(`.siswa_kewarganegaraan:eq(${j})`).collapse('hide')
-            //             }
-            //         })
-            //     }
-            // }
-            function bulanId(val) {
-                let arrBln = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
-                return arrBln[val]
-            }
 
             $('#body_keadaan_siswa').collapse('show')
 
@@ -2459,18 +2443,6 @@
                                 .val() * 1)
 
                         hitungAbsenSiswa()
-
-                        // try {
-                        //     let absenSiswa = JSON.parse(localStorage.data_keadaan)['keadaan_siswa'];
-                        //     $('#form_absensi_siswa input').eq(0).val(absenSiswa.jml_hari_efektif)
-                        //     $('#form_absensi_siswa input').eq(1).val(absenSiswa.siswa_sakit)
-                        //     $('#form_absensi_siswa input').eq(2).val(absenSiswa.siswa_izin)
-                        //     $('#form_absensi_siswa input').eq(3).val(absenSiswa.siswa_alpha)
-                        //     $('#form_absensi_siswa span').text(absenSiswa.siswa_alpha * 1 + absenSiswa.siswa_sakit * 1 + absenSiswa.siswa_izin * 1)
-                        // }
-                        // catch (err) {
-                        //     console.log('belum ada data_keadaan')
-                        // }
 
                         break;
                     case 'keadaan guru':
@@ -2612,7 +2584,7 @@
                 "https://script.google.com/macros/s/AKfycbz26xJ5WLtkniWtiqKxDMqSCoD1FgThsQPi_D9TYePNwZP9FnQ/exec";
 
             localStorage.clear()
-           
+
             async function AmbilWb(elemSiswa, elemGuru) {
                 let marginAtas = 5
                 let marginKiriSiswa = 10, marginKiriGuru = 5
@@ -2642,9 +2614,9 @@
                     height: tinggiKertasSiswa
                 })
 
-               //KHUSUS PAGE GURU
+                //KHUSUS PAGE GURU
                 let toMm = 0.2645833333
-                let pengaliKertas = 215/elemGuru[0].offsetHeight
+                let pengaliKertas = 215 / elemGuru[0].offsetHeight
 
                 for (let i = 0; i < elemGuru.length; i++) {
                     let tinggiTabel = elemGuru[i].offsetHeight
@@ -2662,14 +2634,14 @@
                         // autoPaging: true
                     })
 
-                    if(i == elemGuru.length - 1){
+                    if (i == elemGuru.length - 1) {
                         tinggiKertas = tinggiTabel * pengaliKertas
                     }
 
                     doc.addImage({
                         imageData: cvsGuru,
                         width: lebarKertas,
-                        height: tinggiKertas 
+                        height: tinggiKertas
                     })
                 }
 
@@ -2686,7 +2658,7 @@
             })
 
             $('#print_out').on('shown.bs.modal', function (e) {
-//TODO MKG dan MKS belum terisi
+                //TODO MKG dan MKS belum terisi
                 //kosongkan tabel------0---------1---------2---------3---------4---------5-----------6-----------7----------8-------------9----------10----------11----------12----------13---------14------------15---------16----------17----------18----------19----------20-----------21-->
                 let arrKosongkan = [
                     [25, 39],
@@ -3034,7 +3006,6 @@
                 })
 
                 //status guru
-
                 //10-23
                 let dataGuru = dataKeadaan.data_guru
                 let stor = {
@@ -3042,6 +3013,7 @@
                         0, klr_bln_ini: 0, pns: 0, guru_mulok: 0, sakit_guru: 0, izin_guru: 0, alpha_guru: 0
                 }
 
+                //hitung jumlah pegawai berdasarkan statusnya
                 Object.keys(dataGuru).forEach((val, idx, arr) => {
                     if (dataGuru[val]["keaktifan"] == "Aktif") {
                         stor.jml_guru_aktif++
@@ -3081,12 +3053,14 @@
                                 break;
                         }
 
+                        //hitung total sakit, izin dan alpa
                         stor.sakit_guru += dataGuru[val].sakit_guru * 1
                         stor.izin_guru += dataGuru[val].izin_guru * 1
                         stor.alpha_guru += dataGuru[val].alpha_guru * 1
                     }
                 })
 
+                //ketidak hadiran diubah jadi persentase
                 let pengaliGuru = 100 / (hariEfektif * stor.jml_guru_aktif)
                 let guruSakit = (stor.sakit_guru * pengali).toFixed(1)
                 let guruIzin = (stor.izin_guru * pengali).toFixed(1)
@@ -3118,6 +3092,7 @@
                 /////////////////// END PRINT TABEL KEADAAN GEDUNG //////////////////////
 
                 //////////////// START PRINT TABEL GURU ////////////////
+                //CATATAN: area khusus mengelola print tabel guru 
                 {
                     $('#tabel_print_guru').html("")
                     function TemplateGuru(no, nama, nip, jk, agama, kawin, tempatLahir, tglLahir, jabatan, ijazahTertinggi, tahunIjazah, status, gol,
@@ -3151,7 +3126,7 @@
 
                     }
 
-                    let templatePrintGuru = function (keadaanGuru = false) {
+                    let templateHeaderPrintGuru = function (keadaanGuru = false) {
                         let kd = ""
                         if (keadaanGuru) {
                             kd = "E. KEADAAN GURU"
@@ -3206,8 +3181,8 @@
                         </div>`
                     }
 
-                     let templateTtd = function (tglTtd, namaKepsek, nipKepsek) {
-                    return `
+                    let templateTtd = function (tglTtd, namaKepsek, nipKepsek) {
+                        return `
                     <tr>
                         <td colspan="24" style="border:none"></td>
                     </tr>
@@ -3238,44 +3213,70 @@
                         <td style="border:none;padding:0"></td>
                     </tr>
                     `
-                }
-                
-                    //jika jumlah guru lebih dari 8 makan tambah tabel baru di dalam #tabel_print_guru
+                    }
+
+                    //jika jumlah guru lebih dari 8 maka tambah tabel baru di dalam #tabel_print_guru
                     let banyakLembarGuru = Object.keys(dataGuru).length / 8
                     let teksKeadaanGuru = true
                     for (let i = 0; i < Math.ceil(banyakLembarGuru); i++) {
                         if (i > 0) {
                             teksKeadaanGuru = false
                         }
-                        $('#tabel_print_guru').append(templatePrintGuru(teksKeadaanGuru))
+                        $('#tabel_print_guru').append(templateHeaderPrintGuru(teksKeadaanGuru))
                     }
 
-                    function FirstProper(txt){
-                        return txt.charAt(0).toUpperCase() + txt.slice(1)
-                    }
                     let namaKepsek = "", nipKepsek = ""
                     Object.keys(dataGuru).forEach((val, idx, arr) => {
                         let ix = Math.floor(idx / 8)
-                        try{
-                            if((dataGuru[val].select_jabatan_guru).match(/kepala sekolah/ig)){
+                        try {
+                            if ((dataGuru[val].select_jabatan_guru).match(/kepala sekolah/ig)) {
                                 namaKepsek = dataGuru[val].nama_guru
                                 nipKepsek = dataGuru[val].nip
                             }
-                        }catch(err){
+                        } catch (err) {
                             console.log('nama dan nip kepsek belum ditemukan')
                         }
 
-                        $('.body_tabel_guru').eq(ix).append(TemplateGuru(idx + 1, dataGuru[val].nama_guru, dataGuru[val].nip, dataGuru[val].select_gender_guru == "laki-laki" ? "L" : "P", FirstProper(dataGuru[val].select_agama_guru), FirstProper(dataGuru[val].select_perkawinan_guru), dataGuru[val].tempat_lahir_guru, dataGuru[val].tanggal_lahir_guru, dataGuru[val].select_jabatan_guru, FirstProper(dataGuru[val].select_ijazah_tertinggi_guru), dataGuru[val].tahun_ijazah_guru, dataGuru[val].select_status_guru, dataGuru[val].select_golru_guru, dataGuru[val].tmt_golru_guru, dataGuru[val].gapok_guru, dataGuru[val].tanggal_sk_pengangkatan_guru, dataGuru[val].nomor_sk_pengangkatan_guru, dataGuru[val].mkg_tahun_guru, dataGuru[val].mkg_bulan_guru, dataGuru[val].mkg_cpns_tahun_guru, dataGuru[val].mkg_cpns_bulan_guru, dataGuru[val].sebagai_guru, dataGuru[val].didaerah_ini_guru, dataGuru[val].disekolah_ini_guru, dataGuru[val].sakit_guru, dataGuru[val].izin_guru, dataGuru[val].alpha_guru, (dataGuru[val].sakit_guru * 1 + dataGuru[val].izin_guru * 1 + dataGuru[val].alpha_guru * 1), ""))
+                        $('.body_tabel_guru').eq(ix).append(TemplateGuru(
+                            idx + 1,
+                            dataGuru[val].nama_guru,
+                            dataGuru[val].nip,
+                            dataGuru[val].select_gender_guru == "laki-laki" ? "L" : "P",
+                            FirstProper(dataGuru[val].select_agama_guru),
+                            FirstProper(dataGuru[val].select_perkawinan_guru),
+                            dataGuru[val].tempat_lahir_guru,
+                            dataGuru[val].tanggal_lahir_guru,
+                            dataGuru[val].select_jabatan_guru,
+                            FirstProper(dataGuru[val].select_ijazah_tertinggi_guru),
+                            dataGuru[val].tahun_ijazah_guru,
+                            dataGuru[val].select_status_guru,
+                            dataGuru[val].select_golru_guru,
+                            dataGuru[val].tmt_golru_guru,
+                            dataGuru[val].gapok_guru,
+                            dataGuru[val].tanggal_sk_pengangkatan_guru,
+                            dataGuru[val].nomor_sk_pengangkatan_guru,
+                            HitungMasaKerja(dataGuru[val].tmt_golru_guru, [dataGuru[val].mkg_tahun_guru, dataGuru[val].mkg_bulan_guru])[0],
+                            HitungMasaKerja(dataGuru[val].tmt_golru_guru, [dataGuru[val].mkg_tahun_guru, dataGuru[val].mkg_bulan_guru])[1],
+                            HitungMasaKerja(dataGuru[val].tmt_cpns_guru, [dataGuru[val].mkg_cpns_tahun_guru, dataGuru[val].mkg_cpns_bulan_guru])[0],
+                            HitungMasaKerja(dataGuru[val].tmt_cpns_guru, [dataGuru[val].mkg_cpns_tahun_guru, dataGuru[val].mkg_cpns_bulan_guru])[1],
+                            dataGuru[val].sebagai_guru,
+                            dataGuru[val].didaerah_ini_guru,
+                            dataGuru[val].disekolah_ini_guru,
+                            dataGuru[val].sakit_guru,
+                            dataGuru[val].izin_guru,
+                            dataGuru[val].alpha_guru,
+                            (dataGuru[val].sakit_guru * 1 + dataGuru[val].izin_guru * 1 + dataGuru[val].alpha_guru * 1),
+                            ""
+                        ))
                         if (idx == arr.length - 1) {
-                            $('.body_tabel_guru').eq(ix).append(templateTtd(TglLahir(Date.now(), true), namaKepsek , nipKepsek))
+                            $('.body_tabel_guru').eq(ix).append(templateTtd(TglLahir(Date.now(), 'dd mmmm yyyy'), namaKepsek, nipKepsek))
                         }
                     })
                 }
 
-
                 AmbilWb($('#tabel_print_keadaan_siswa'), $('.tabel_print'))
                     .then(doc => {
-                        $('#cetak')[0].onclick = function(evt){
+                        $('#cetak')[0].onclick = function (evt) {
                             $('#loading').modal('show')
 
                             let kirimRekap = {
@@ -3287,7 +3288,7 @@
                                 no_dokumen: noDokumen,
                                 kurikulum: $('#kurikulum').val()
                             }
-                           
+
                             KirimPost(url, kirimRekap).then(function (res) {
                                 console.log(res)
                                 $('#loading').modal('hide')
@@ -3314,20 +3315,11 @@
                     })
             })
 
-
             //SIMPAN TABEL PRINT OUT KE STORAGE
             function SimpanRekap(isiRekap) {
                 let isi = JSON.parse(localStorage.data_keadaan)
                 isi["rekap"] = isiRekap
                 localStorage.data_keadaan = JSON.stringify(isi)
-            }
-
-            function chunk(array, length) {
-                let result = [];
-                for (let i = 0; i < array.length / length; i++) {
-                    result.push(array.slice(i * length, i * length + length));
-                }
-                return result;
             }
 
             $('#login').on('submit', (e) => {
@@ -3380,7 +3372,7 @@
                 $('#jml_guru_bln_lalu').text(dbGuru.length)
 
                 dbGuru.filter((item, ind, arr) => {
-                    $('#edit_guru_collapse tbody').append(listGuru(item[1], item[2], item[15], ind + 1,
+                    $('#edit_guru_collapse tbody').append(ListGuru(item[1], item[2], item[15], ind + 1,
                         item[0]))
                     //$('#rekap_guru_collapse tbody').append(listGuru(item[1], item[2], item[15], ind + 1, item[0]))
                 })
@@ -3402,6 +3394,9 @@
                 $('#form_guru input[name=total_guru_pegawai]').val(dbGuru.length)
                 $('#total_guru_pegawai').text(dbGuru.length)
 
+                //CATATAN: jika tombol edit guru di klik maka 
+                //kosongkan dlu semua input dari modal edit guru, 
+                //lalu isi dengan data guru yang dipilih
                 $('.list-guru').filter((ind, item, arr) => {
                     $(item).on('click', (e) => {
                         let id = $(`.list-guru:eq(${ind})`).parents().eq(1).children().eq(1)
@@ -3413,25 +3408,18 @@
                             $('#head_nama_guru').html(`<b>${dbGuru[ind][1]}</b>`)
                             try {
                                 let dataGuru = JSON.parse(localStorage.data_keadaan).data_guru
-                                // console.log(dataGuru[id]['tanggal_lahir_guru'])
-                                // $('#form_edit_guru input').eq(1).val(dataGuru[id]['nama_guru']) //nama
-                                // $('#form_edit_guru input').eq(2).val(dataGuru[id]['tempat_lahir_guru']) //t4 lahir
-                                // $('#form_edit_guru input').eq(3).val(TglLahir(dataGuru[id]['tanggal_lahir_guru'])) //tgl lahir
-                                // $('#form_edit_guru input').eq(9).val(TglLahir(dataGuru[id]['tanggal_sk_pengangkatan_guru'])) //tgl sk pangkat terakhir
 
                                 let arrKeys = Object.keys(dataGuru[id])
                                 let objDataGuru = $('#form_edit_guru')
                                     .serializeArray() //ambil name & value
                                 let tampungArr = []
 
-                                $('#form_edit_guru input, #form_edit_guru select').each((idx,
-                                    el) => {
-                                    tampungArr.push($(el).prop('name'))
+                                objDataGuru.filter((item) => {
+                                    tampungArr.push(item.name)
                                 })
 
-                                FilterDb('data_guru', id, tampungArr, $(
-                                    '#modal_keadaan_guru select[name="select_gender_guru"]'
-                                )[0])
+                                FilterDb('data_guru', id, tampungArr, $('#modal_keadaan_guru select[name="select_gender_guru"]')[0])
+
                                 $(`#tabel_keadaan_guru span:eq(0)`).text(dbGuru[ind][2])
                                 $(`#tabel_keadaan_guru input:eq(2)`).val(dbGuru[ind][2])
                                 $('#modal_keadaan_guru').on('show.bs.modal', function (ev) {
@@ -3484,33 +3472,13 @@
                                 $('#form_edit_guru input').eq(1).val(dbGuru[ind][1]) //nama
                                 $('#form_edit_guru input').eq(2).val(dbGuru[ind][7]) //t4 lahir
                                 $('#form_edit_guru input[type=date]').eq(0).val(TglLahir(dbGuru[
-                                    ind][8])) //tgl lahir
+                                    ind][8]), 'dd-mm-yyyy') //tgl lahir
                                 $('#form_edit_guru input[type=date]').eq(2).val(TglLahir(dbGuru[
-                                    ind][4])) //tgl sk pangkat terakhir
+                                    ind][4]), 'dd-mm-yyyy') //tgl sk pangkat terakhir
                             }
                         }
                     })
                 })
-            }
-
-            function TglLahir(e, format = false){
-                let d = new Date(e) //.toLocaleDateString('en-GB').split("/")
-                let tgl = d.getDate().toString()
-                if (tgl.length == 1) {
-                    tgl = '0' + tgl
-                }
-
-                let bln = (d.getMonth() + 1).toString()
-                if (bln.length == 1) {
-                    bln = '0' + bln
-                }
-                let thn = d.getFullYear()
-                if(format){
-                    bln = bulanId(d.getMonth())
-                    return `${tgl} ${bln} ${thn}`
-                }
-
-                return `${thn}-${bln}-${tgl}`
             }
 
             $("#form_siswa input").change((e) => {
@@ -3569,9 +3537,7 @@
                             })
 
                             for (let i = 0; i < arrName.length; i++) {
-                                $(`input[name=${arrName[i]}][type=date]`).val(TglLahir(pars[item][
-                                    arrName[i]
-                                ]))
+                                $(`input[name=${arrName[i]}][type=date]`).val(TglLahir(pars[item][arrName[i]], 'dd-mm-yyyy'))
                                 $(`select[name=${arrName[i]}]`).val(pars[item][arrName[i]])
                             }
                             return false;
@@ -3836,22 +3802,6 @@
                 }
             }
 
-            function listGuru(namaGuru, nip, tugas, no, id) {
-                return `<tr>
-                        <td>${no}</td>
-                        <td class="d-none">${id}</td>
-                        <td>${namaGuru}</td>
-                        <td>${nip}</td>
-                        <td>${tugas}</td>
-                        <td>
-                            <button type="button" class="btn btn-info list-guru" data-toggle="modal" data-target="#modal_keadaan_guru">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16"><path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                                </svg>
-                            </button>
-                        </td>
-                        </tr>`
-            }
-
             function ProsesRekap() {
                 let errCode = ''
                 try {
@@ -3993,20 +3943,7 @@
             })
 
             $(".yearpicker").yearpicker()
-
         });
-
-
-
-        // JANGAN UPLOAD
-        async function KirimPost(url, data) {
-            let kirimPost = await fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(data)
-            })
-
-            return kirimPost.json();
-        }
     </script>
 </body>
 

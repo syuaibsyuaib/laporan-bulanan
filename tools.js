@@ -69,19 +69,20 @@ function ListGuru(namaGuru, nip, tugas, no, id) {
 
 //fungsi hitung masa kerja tahun dan bulan
 function HitungMasaKerja(tmt, mk = [0, 0]) {
+    //FIXME
     let tglSaatIni = TglLahir(Date.now(), 'array')
     //tmt = [thn, bln]; mk = [thn, bln]
     let isiSk = { "tmt sk": TglLahir(tmt, "array"), "masa kerja": mk }
-    let selisihThn = tglSaatIni[0] - isiSk["tmt sk"][0]
-    let selisihBln = tglSaatIni[1] - isiSk["tmt sk"][1]
+    let selisihThn = tglSaatIni[0] - isiSk["tmt sk"][0] * 1
+    let selisihBln = tglSaatIni[1] - isiSk["tmt sk"][1] * 1
 
     if (selisihBln > 0) {
         selisihThn += selisihBln
     }
 
     //jumlahkan masa kerja yang sudah ada dengan selisih thn dan bulan
-    let masaKerjaThn = isiSk["masa kerja"][0] + selisihThn
-    let masaKerjaBln = isiSk["masa kerja"][1] + selisihBln
+    let masaKerjaThn = isiSk["masa kerja"][0] * 1 + selisihThn
+    let masaKerjaBln = isiSk["masa kerja"][1] * 1 + selisihBln
     return [masaKerjaThn, masaKerjaBln]
 }
 

@@ -77,8 +77,8 @@ function HitungMasaKerja(tmt, mk = [0, 0]) {
     let tglSaatIni = TglLahir(Date.now(), 'array')
     //tmt = [thn, bln]; mk = [thn, bln]
     let isiSk = { "tmt sk": TglLahir(tmt, "array"), "masa kerja": mk }
-    let selisihThn = tglSaatIni[0] - isiSk["tmt sk"][0] * 1
-    let selisihBln = tglSaatIni[1] - isiSk["tmt sk"][1] * 1
+    let selisihThn = tglSaatIni[0] - isiSk["tmt sk"][0]
+    let selisihBln = tglSaatIni[1] - isiSk["tmt sk"][1]
 
     if (selisihBln > 0) {
         selisihThn += selisihBln

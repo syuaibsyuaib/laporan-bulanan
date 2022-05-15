@@ -2604,7 +2604,6 @@
                     // hotfixes: ["px_scaling"],
                     format: [330, 215],//[elemSiswa[0].scrollWidth * 3.3, (elemSiswa[0].scrollWidth * 0.6515151515151515) * 3.3],
                     putOnlyUsedFonts: true,
-                    precision: 1,
                     autoPaging: true
                 });
 
@@ -3300,7 +3299,11 @@
                                     )
                                     doc.save(
                                         `laporan bulanan_${db.data_sekolah[1]}_${periode}.pdf`
-                                    )
+                                        , {
+                                            orientation: "l",
+                                            unit: 'mm',
+                                            format: [330, 215]
+                                        })
                                 } else {
                                     ModalInfo(
                                         '<span class="text-danger">Gagal tersimpan, hubungi Admin</span>',
@@ -3758,7 +3761,6 @@
                     localStorage.setItem('data_keadaan', JSON.stringify(isidb))
                     $('#fetch_info').modal('show')
                     setTimeout(() => $('#fetch_info').modal('hide'), 1500)
-
                     return 'new'
                 } else if (!JSON.parse(localStorage.data_keadaan)[namaKey]) {
                     let pars = JSON.parse(localStorage.data_keadaan)
@@ -3788,7 +3790,6 @@
                 localStorage.setItem('data_keadaan', JSON.stringify(isidb))
                 $('#fetch_info').modal('show')
                 setTimeout(() => $('#fetch_info').modal('hide'), 1500)
-
                 try {
                     let dbKeadaan = JSON.parse(localStorage.data_keadaan)
                     let absenSiswa = dbKeadaan.absen_siswa

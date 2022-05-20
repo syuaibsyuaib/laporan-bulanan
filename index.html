@@ -3281,7 +3281,7 @@
 
                             let kirimRekap = {
                                 tujuan: 'simpan',
-                                data_keadaan: dataKeadaan,
+                                data_keadaan: JSON.parse(localStorage.data_keadaan),
                                 npsn: db.data_sekolah[1],
                                 password: db.data_sekolah[7],
                                 bulan: periode,

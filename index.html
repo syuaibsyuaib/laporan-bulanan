@@ -326,20 +326,20 @@
                                                     </option>
                                                     <option value="sd">SD
                                                     </option>
-                                                    <option value="lainnya">
+                                                    <!-- <option value="lainnya">
                                                         Lainnya
-                                                    </option>
+                                                    </option> -->
                                                 </select>
                                             </td>
                                         </tr>
-                                        <tr class="collapse" id="collapse_ijazah_lainnya">
+                                        <!-- <tr class="collapse" id="collapse_ijazah_lainnya">
                                             <td>Jika Ijasah Lainnya</td>
                                             <td>:</td>
                                             <td>
                                                 <input type="text" name="ijazah_tertinggi_lainnya_guru"
                                                     class="form-control">
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                         <tr>
                                             <td>Tahun Ijazah</td>
                                             <td>:</td>
@@ -2604,7 +2604,6 @@
                     // hotfixes: ["px_scaling"],
                     format: [330, 215],//[elemSiswa[0].scrollWidth * 3.3, (elemSiswa[0].scrollWidth * 0.6515151515151515) * 3.3],
                     putOnlyUsedFonts: true,
-                    precision: 1,
                     autoPaging: true
                 });
 
@@ -3237,6 +3236,7 @@
                             console.log('nama dan nip kepsek belum ditemukan')
                         }
 
+                        //FIXME mkg dan mks masih salah hitung
                         $('.body_tabel_guru').eq(ix).append(TemplateGuru(
                             idx + 1,
                             dataGuru[val].nama_guru,
@@ -3281,7 +3281,7 @@
 
                             let kirimRekap = {
                                 tujuan: 'simpan',
-                                data_keadaan: dataKeadaan,
+                                data_keadaan: JSON.parse(localStorage.data_keadaan),
                                 npsn: db.data_sekolah[1],
                                 password: db.data_sekolah[7],
                                 bulan: periode,
@@ -3299,7 +3299,11 @@
                                     )
                                     doc.save(
                                         `laporan bulanan_${db.data_sekolah[1]}_${periode}.pdf`
-                                    )
+                                        , {
+                                            orientation: "l",
+                                            unit: 'mm',
+                                            format: [330, 215]
+                                        })
                                 } else {
                                     ModalInfo(
                                         '<span class="text-danger">Gagal tersimpan, hubungi Admin</span>',
@@ -3757,7 +3761,6 @@
                     localStorage.setItem('data_keadaan', JSON.stringify(isidb))
                     $('#fetch_info').modal('show')
                     setTimeout(() => $('#fetch_info').modal('hide'), 1500)
-
                     return 'new'
                 } else if (!JSON.parse(localStorage.data_keadaan)[namaKey]) {
                     let pars = JSON.parse(localStorage.data_keadaan)
@@ -3787,7 +3790,6 @@
                 localStorage.setItem('data_keadaan', JSON.stringify(isidb))
                 $('#fetch_info').modal('show')
                 setTimeout(() => $('#fetch_info').modal('hide'), 1500)
-
                 try {
                     let dbKeadaan = JSON.parse(localStorage.data_keadaan)
                     let absenSiswa = dbKeadaan.absen_siswa

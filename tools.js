@@ -8,12 +8,12 @@ function TglLahir(e, format) {
     try {
         let d = new Date(e)
         let tgl = d.getDate().toString()
-        if (tgl.length == 1) {
+        if (tgl.length <= 1) {
             tgl = '0' + tgl
         }
 
         let bln = (d.getMonth() + 1).toString()
-        if (bln.length == 1) {
+        if (bln.length <= 1) {
             bln = '0' + bln
         }
 
@@ -26,7 +26,11 @@ function TglLahir(e, format) {
             case 'dd-mm-yyyy':
                 return `${thn}-${bln}-${tgl}`
             case 'array':
-                return [thn, bln]
+                if(isNaN(thn) || isNaN(bln)){
+                    let skrg = new Date()
+                    thn = skrg.getFullYear(); bln = skrg.getMonth() + 1
+                }
+                return [Math.abs(thn), Math.abs(bln)]
             default:
                 return 'format tanggal tidak ditemukan';
         }
@@ -73,8 +77,8 @@ function HitungMasaKerja(tmt, mk = [0, 0]) {
     let tglSaatIni = TglLahir(Date.now(), 'array')
     //tmt = [thn, bln]; mk = [thn, bln]
     let isiSk = { "tmt sk": TglLahir(tmt, "array"), "masa kerja": mk }
-    let selisihThn = tglSaatIni[0] - isiSk["tmt sk"][0] * 1
-    let selisihBln = tglSaatIni[1] - isiSk["tmt sk"][1] * 1
+    let selisihThn = tglSaatIni[0] - isiSk["tmt sk"][0]
+    let selisihBln = tglSaatIni[1] - isiSk["tmt sk"][1]
 
     if (selisihBln > 0) {
         selisihThn += selisihBln
@@ -82,7 +86,7 @@ function HitungMasaKerja(tmt, mk = [0, 0]) {
 
     //jumlahkan masa kerja yang sudah ada dengan selisih thn dan bulan
     let masaKerjaThn = isiSk["masa kerja"][0] * 1 + selisihThn
-    let masaKerjaBln = isiSk["masa kerja"][1] * 1 + selisihBln
+    let masaKerjaBln = Math.abs(isiSk["masa kerja"][1] * 1 + selisihBln)
     return [masaKerjaThn, masaKerjaBln]
 }
 
